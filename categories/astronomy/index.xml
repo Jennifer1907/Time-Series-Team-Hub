@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Astronomy on Time Series Team Hub</title>
+    <link>http://localhost:1313/Time-Series-Team-Hub/categories/astronomy/</link>
+    <description>Recent content in Astronomy on Time Series Team Hub</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 27 Jul 2023 13:03:07 +0700</lastBuildDate>
+    <atom:link href="http://localhost:1313/Time-Series-Team-Hub/categories/astronomy/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Tuần 1 – Blog của Team Time Series</title>
+      <link>http://localhost:1313/Time-Series-Team-Hub/posts/2025/week-1/tuan-1/</link>
+      <pubDate>Thu, 27 Jul 2023 13:03:07 +0700</pubDate>
+      <guid>http://localhost:1313/Time-Series-Team-Hub/posts/2025/week-1/tuan-1/</guid>
+      <description>&lt;p&gt;🎉 &lt;strong&gt;Chào mừng đến với blog Tuần 1 của team Time Series!&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;p&gt;Tuần học đầu tiên đã chính thức bắt đầu với nhiều kiến thức nền tảng cực kỳ quan trọng cho lập trình và khoa học dữ liệu. Bên cạnh tóm tắt kiến thức chính của tuần 1, các bạn có thể tìm thấy tại blog của team Time Series đơn giản hóa kiến thức, minh họa bằng những ví dụ thực tế được áp dụng, không những thế chúng mình còn mở rộng và chứng minh lại kiến thức toán bằng phép toán siêu cơ bản. Hãy dành thời gian đọc hết post từ Buổi 1 đến Buổi số 5 nhé!&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
