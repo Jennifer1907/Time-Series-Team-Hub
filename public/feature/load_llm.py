@@ -5,10 +5,9 @@ import torch
 
 from transformers.utils.quantization_config import BitsAndBytesConfig # for compressing model e.g. 16bits -> 4bits
 from transformers import (
-                          AutoTokenizer, # Tokenize Model
-                          AutoModelForCausalLM,  # LLM Loader - used for loading and using pre-trained models designed for causal language modeling tasks
-                          pipeline) # pipline to setup llm-task oritented model
-                                    # pipline("text-classification", model='model', device=0)
+						AutoTokenizer, # Tokenize Model
+						AutoModelForCausalLM,  # LLM Loader - used for loading and using pre-trained models designed for causal language modeling tasks
+						pipeline) # pipline to setup llm-task oritented model
 
 from langchain_huggingface import HuggingFaceEmbeddings # huggingface sentence_transformer embedding models
 from langchain_huggingface.llms import HuggingFacePipeline # like transformer pipeline
@@ -19,7 +18,6 @@ from langchain_community.document_loaders import PyPDFLoader, TextLoader # PDF P
 from langchain.chains import ConversationalRetrievalChain # Deprecated
 from langchain_experimental.text_splitter import SemanticChunker # module for chunking text
 
-from langchain_chroma import Chroma # AI-native vector databases (ai-native mean built for handle large-scale AI workloads efficiently)
 from langchain_text_splitters import RecursiveCharacterTextSplitter # recursively divide text, then merge them together if merge_size < chunk_size
 from langchain_core.runnables import RunnablePassthrough # Use for testing (make 'example' easy to execute and experiment with)
 from langchain_core.output_parsers import StrOutputParser # format LLM's output text into (list, dict or any custom structure we can work with)
