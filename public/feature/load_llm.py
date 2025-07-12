@@ -56,9 +56,8 @@ nf4_config = BitsAndBytesConfig(
 
 @st.cache_resource
 def load_llm():
-    MODEL_NAME= "lmsys/vicuna-7b-v1.5"
-    # MODEL_NAME = "google/gemma-2b-it"
-
+    # MODEL_NAME= "lmsys/vicuna-7b-v1.5"
+    MODEL_NAME = "google/gemma-2b-it"
 
     model = AutoModelForCausalLM.from_pretrained(
         MODEL_NAME,
