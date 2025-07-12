@@ -20,6 +20,7 @@ Tuần học đầu tiên đã chính thức bắt đầu với nhiều kiến t
 ## 📅 **Nội dung chính và điểm nổi bật**
 
 ### ✅ **Buổi học số 1 - Buổi Warm-up: Skills for Programmers**
+
 - **Instructor:** Dr. Nguyễn Đình Vinh
 - **Nội dung:**
   - Kỹ năng tìm kiếm tài liệu hiệu quả cho lập trình viên
@@ -30,6 +31,7 @@ Tuần học đầu tiên đã chính thức bắt đầu với nhiều kiến t
 ---
 
 ### ✅ **Buổi học số 2 - Basic Python (1)**
+
 - **Instructor:** Dr. Đinh Quang Vinh
 - **Nội dung:**
   - Biểu diễn dữ liệu: int, float, str, list, dict, tuple, set
@@ -40,6 +42,7 @@ Tuần học đầu tiên đã chính thức bắt đầu với nhiều kiến t
 ---
 
 ### ✅ **Buổi học số 3 - SQL - Buổi 1**
+
 - **Instructor:** Dr. Nguyễn Đình Vinh
 - **Nội dung:**
   - Tổng quan về SQL và ứng dụng trong phân tích dữ liệu
@@ -53,6 +56,7 @@ Tuần học đầu tiên đã chính thức bắt đầu với nhiều kiến t
 ---
 
 ### ✅ **Buổi học số 4 - Basic Python (2)**
+
 - **Instructor:** Dr. Đinh Quang Vinh
 - **Nội dung:**
   - Vòng lặp `for`, `while` trong Python
@@ -65,6 +69,7 @@ Tuần học đầu tiên đã chính thức bắt đầu với nhiều kiến t
 ---
 
 ### ✅ **Buổi học số 5 - Coding Methodology**
+
 - **Instructor:** Dr. Thái Hà
 - **Nội dung:**
   - Lộ trình học chuyên sâu Data Science
@@ -74,6 +79,7 @@ Tuần học đầu tiên đã chính thức bắt đầu với nhiều kiến t
 ---
 
 ## 📌 **Tổng kết nổi bật**
+
 - 🔍 Tích hợp kỹ năng lập trình Python và SQL từ cơ bản đến ứng dụng thực tế
 - 🧠 Làm rõ các khái niệm chuẩn hóa dữ liệu, vòng lặp, hàm và đọc ghi file
 - 💼 Gắn lý thuyết với **ví dụ business cụ thể**
@@ -81,14 +87,18 @@ Tuần học đầu tiên đã chính thức bắt đầu với nhiều kiến t
 
 ---
 
-📂 *Tài liệu đi kèm:*  
-  {{< pdf src="/Time-Series-Team-Hub/pdf/Week_1_Buoi_1.pdf" title="Week_1_Buoi_1.pdf" height="700px" >}}
-  {{< pdf src="/Time-Series-Team-Hub/pdf/Week_1_Buoi_2.pdf" title="Week_1_Buoi_2.pdf" height="700px" >}}
-  {{< pdf src="/Time-Series-Team-Hub/pdf/Week_1_Buoi_3.pdf" title="Week_1_Buoi_3.pdf" height="700px" >}}
-  {{< pdf src="/Time-Series-Team-Hub/pdf/Week_1_Buoi_4.pdf" title="Week_1_Buoi_4.pdf" height="700px" >}}
-  {{< pdf src="/Time-Series-Team-Hub/pdf/Week_1_Buoi_5.pdf" title="Week_1_Buoi_5.pdf" height="700px" >}}
+📂 _Tài liệu đi kèm:_
+
+{{< pdf src="/Time-Series-Team-Hub/pdf/Module1/M1W1/W1D2_Research_and_Programming_Basics.pdf" title="W1D2_Research_and_Programming_Basics" height="700px" >}}
+
+{{< pdf src="/Time-Series-Team-Hub/pdf/Module1/M1W1/W1D3_Introduction_to_Python.pdf" title="W1D3_Introduction_to_Python" height="700px" >}}
+
+{{< pdf src="/Time-Series-Team-Hub/pdf/Module1/M1W1/W1D4_Introduction_to_Database.pdf" title="W1D4_Introduction_to_Database" height="700px" >}}
+
+{{< pdf src="/Time-Series-Team-Hub/pdf/Module1/M1W1/W1D5_Common_Python_Errors.pdf" title="W1D5_Common_Python_Errors" height="700px" >}}
+
+{{< pdf src="/Time-Series-Team-Hub/pdf/Module1/M1W1/W1D6_Skills_for_DataScience_and_Programming_Priniple.pdf" title="W1D6_Skills_for_DataScience_and_Programming_Priniple" height="700px" >}}
 
 ---
 
-🧠 *Repository managed by [Time Series Team Hub](https://github.com/Jennifer1907/Time-Series-Team-Hub)*
-
+🧠 _Repository managed by [Time Series Team Hub](https://github.com/Jennifer1907/Time-Series-Team-Hub)_

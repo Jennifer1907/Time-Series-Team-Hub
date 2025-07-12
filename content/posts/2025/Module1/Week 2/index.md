@@ -54,7 +54,7 @@ Trong tuần học thứ 2 đưa chúng ta đến với những kiến thức c�
   - Hiểu rõ về Git và GitHub
   - Nắm vững hệ thống quản lý phiên bản (VCS)
   - **🧮 Điểm nổi bật**
-    - **Thành thạo quy trình làm việc với Git** 
+    - **Thành thạo quy trình làm việc với Git**
     - **Biết cách quản lý nhánh, hợp tác nhóm qua GitHub**
     - **mở rộng với Git Hooks, Alias, CI/CD**
 
@@ -68,16 +68,22 @@ Trong tuần học thứ 2 đưa chúng ta đến với những kiến thức c�
 
 ---
 
-📂 *Tài liệu đi kèm:*  
-{{< pdf src="/Time-Series-Team-Hub/pdf/Data_Structure_(1)_LIST.pdf" title="Data_Structure_(1)_LIST.pdf" height="700px" >}}
-{{< pdf src="/Time-Series-Team-Hub/pdf/Database_SQL(2).pdf" title="Database_SQL(2)" height="700px" >}}
-{{< pdf src="/Time-Series-Team-Hub/pdf/Data_Structure_(2)_TUPLE_SET_and_DICTIONARY.pdf" title="Data_Structure" height="700px" >}}
-{{< pdf src="/Time-Series-Team-Hub/pdf/Git_and_Github_for_Version_Control.pdf" title="Git_and_Github_for_Version_Control" height="700px" >}}
-{{< pdf src="/Time-Series-Team-Hub/pdf/Đằng_sau_Swap.pdf" title="Đằng_sau_Swap" height="700px" >}}
+📂 *Tài liệu đi kèm:*
 
-- [📄 Code_sample](https://github.com/Jennifer1907/Time-Series-Team-Hub/tree/main/content/posts/2025/Week%202/Code_sample)
+{{< pdf src="/Time-Series-Team-Hub/pdf/Module1/M1W2/W2D3+4_Python_List.pdf" title="W2D3+4_Python_List" height="700px" >}}
+
+{{< pdf src="/Time-Series-Team-Hub/pdf/Module1/M1W2/W2D5_ERD_and_Database_Normalization.pdf" title="W2D5_ERD_and_Database_Normalization" height="700px" >}}
+
+{{< pdf src="/Time-Series-Team-Hub/pdf/Module1/M1W2/W2D6_Advanced_Data_Structure_TUPLE_SET_and_DICTIONARY.pdf" title="W2D6_Advanced_Data_Structure_TUPLE_SET_and_DICTIONARY" height="700px" >}}
+
+{{< pdf src="/Time-Series-Team-Hub/pdf/Module1/M1W2/W2D6_Extend_Đằng_sau_Swap.pdf" title="W2D6 Mở rộng bài Advanced Data Structure: Đằng sau Swap" height="700px" >}}
+
+
+{{< pdf src="/Time-Series-Team-Hub/pdf/Module1/M1W2/W2D7_Git_And_Github_For_Version_Control.pdf" title="W2D7_Git_And_Github_For_Version_Control" height="700px" >}}
+
+
+- [📄 Code_sample](https://github.com/Jennifer1907/Time-Series-Team-Hub/tree/main/content/posts/2025/Module1/Week%202/Code_sample)
 
 ---
 
 🧠 *Repository managed by [Time Series Team Hub](https://github.com/Jennifer1907/Time-Series-Team-Hub)*
-
