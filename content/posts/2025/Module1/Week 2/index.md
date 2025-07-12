@@ -69,17 +69,6 @@ Trong tuần học thứ 2 đưa chúng ta đến với những kiến thức c�
 ---
 
 📂 *Tài liệu đi kèm:*
-<<<<<<<< HEAD:content/posts/2025/Module1/Week 2/index.md
-========
-{{< pdf src="/Time-Series-Team-Hub/pdf/Week2_Buoi2_Data_Structure_LIST.pdf" title="Database_SQL(2)" height="700px" >}}
-
-{{< pdf src="/Time-Series-Team-Hub/pdf/Week2_Buoi5_ERD_Database_Normalization.pdf" title="Data_Structure" height="700px" >}}
-
-{{< pdf src="/Time-Series-Team-Hub/pdf/Week2_Buoi5_Database_SQL2" title="Week_3_Buoi_T5.pdf" height="700px" >}}
-
-{{< pdf src="/Time-Series-Team-Hub/pdf/Week2_Buoi5_Git_And_Github_For_Version_Control.pdf" title="Git_and_Github_for_Version_Control" height="700px" >}}
-
->>>>>>>> main:content/posts/Module1/Week 2/index.md
 
 {{< pdf src="/Time-Series-Team-Hub/pdf/Module1/M1W2/W2D3+4_Python_List.pdf" title="W2D3+4_Python_List" height="700px" >}}
 

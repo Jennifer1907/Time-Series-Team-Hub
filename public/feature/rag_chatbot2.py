@@ -375,7 +375,7 @@ def create_rag_chain(all_documents):
             Question: {question}
 
 
-            Hãy tạo 4 câu hỏi trắc nghiệm từ context trong đó mỗi câu bao gồm 4 lựa chọn a) b) c) d) và đánh dấu đáp án đúng bằng *
+            Hãy tạo 1 câu hỏi trắc nghiệm bao gồm 4 lựa chọn a) b) c) d) 
         """
 
         prompt_template = PromptTemplate(

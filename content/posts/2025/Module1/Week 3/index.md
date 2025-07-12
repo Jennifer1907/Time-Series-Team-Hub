@@ -91,19 +91,12 @@ _(Buổi học chính – Dr. Đình Vinh)_
 
 ## 🗂 **Tài liệu đi kèm**
 
-<<<<<<<< HEAD:content/posts/2025/Module1/Week 3/index.md
 {{< pdf src="/Time-Series-Team-Hub/pdf/Module1/M1W3/W3D3+4_OOP.pdf" title="W3D3+4_OOP" height="700px" >}}
 
 {{< pdf src="/Time-Series-Team-Hub/pdf/Module1/M1W3/W3D5_SQL.pdf" title="W3D5_SQL" height="700px" >}}
 
 {{< pdf src="/Time-Series-Team-Hub/pdf/Module1/M1W3/W3D6_OOP_in_TREE_STACK_QUEUE_DataStructure_and_KD-Tree(Extended Content).pdf" title="W3D6_OOP_in_TREE_STACK_QUEUE_DataStructure_with_Extended Content_KD-Tree" height="700px" >}}
-========
-{{< pdf src="/Time-Series-Team-Hub/pdf/Week3_Buoi3+4_OOP.pdf" title="Week_3_Buoi_T3%2BT4_OOP.pdf" height="700px" >}}
-{{< pdf src="/Time-Series-Team-Hub/pdf/Week2_Buoi5_ERD_Database_Normalization" title="Week_3_Buoi_T5.pdf" height="700px" >}}
-{{< pdf src="/Time-Series-Team-Hub/pdf/Week3_Buoi6_Advanced_Data_Structure_Tuple_Set_And_Dictionary.pdf" title="Week_3_Buoi_T6.pdf" height="700px" >}}
-{{< pdf src="/Time-Series-Team-Hub/pdf/Week3_Buoi6_Đằng_sau_Swap.pdf" title="Đằng_sau_Swap" height="700px" >}}
 
->>>>>>>> main:content/posts/Module1/Week 3/index.md
 
 ---
 

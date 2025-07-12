@@ -23,6 +23,9 @@ from langchain_core.runnables import RunnableLambda
 import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
+
+
+
 st.set_page_config(
     page_title="Trợ Lý AI Tiếng Việt",
     page_icon="🤖",
@@ -191,10 +194,6 @@ if 'embeddings' not in st.session_state:
 if 'llm' not in st.session_state:
     st.session_state.llm = None
 
-# *** THÊM KHỞI TẠO RETRIEVER ***
-if 'retriever' not in st.session_state:
-    st.session_state.retriever = None
-
 # Import file processing function from process_file.py
 from process_file import *
 from load_llm import *
@@ -203,6 +202,8 @@ def format_docs(docs):
     if not docs:
         return "Không tìm thấy tài liệu liên quan."
     return "\n\n".join(doc.page_content for doc in docs)
+
+
 
 def create_rag_chain(all_documents):
     """Tạo chuỗi RAG từ tài liệu"""
@@ -266,8 +267,7 @@ def create_rag_chain(all_documents):
         if st.session_state.embeddings:
             try:
                 vector_db = FAISS.from_documents(documents=docs, embedding=st.session_state.embeddings)
-                retriever = vector_db.as_retriever(search_kwargs={"k": 1})
-                st.session_state.retriever = retriever
+                retriever = vector_db.as_retriever(top_k=5)
                 st.success(f"✅ Đã tạo FAISS vector database với {len(docs)} chunks")
             except Exception as e:
                 st.error(f"Lỗi khi tạo FAISS vector database: {str(e)}")
@@ -287,11 +287,22 @@ def create_rag_chain(all_documents):
         # Sử dụng tìm kiếm từ khóa thông minh với hub prompt
         st.info("🔍 Sử dụng tìm kiếm từ khóa thông minh với RAG prompt")
 
+        #? Code dư thừa: prompt trong link rlm/rag-prompt với prompt cục bộ giống nhau
+        # Tải prompt từ hub
+        # try:
+        #     prompt = hub.pull("rlm/rag-prompt")
+        #     st.success("✅ Đã tải prompt template từ hub")
+        # except Exception as e:
+        # st.warning(f"Không thể tải prompt từ hub: {str(e)}")
         st.info("🔄 Sử dụng prompt template cục bộ...")
 
         prompt = """Sử dụng những đoạn ngữ cảnh sau để trả lời câu hỏi ở cuối.
         Nếu bạn không biết câu trả lời, chỉ cần nói rằng bạn không biết, đừng cố bịa ra câu trả lời.
         Trả lời bằng tiếng Việt.
+
+		Ví dụ 1:
+		"question": "OOP là gì?",
+		"answer": "OOP là viết tắt của Lập trình hướng đối tượng, một mô hình tổ chức thiết kế phần mềm xung quanh dữ liệu hoặc đối tượng, thay vì các hàm và logic."
 
         Ngữ cảnh: {context}
 
@@ -300,29 +311,64 @@ def create_rag_chain(all_documents):
         Trả lời:
         """
 
+
         prompt_template = PromptTemplate(
             template=prompt,
             input_variables=["context", "question"]
         )
 
-        # *** KIỂM TRA RETRIEVER TRƯỚC KHI TẠO CHAIN ***
-        if st.session_state.retriever is None:
-            st.error("Retriever không được tạo thành công")
-            def fallback_rag_chain(question):
-                return simple_text_retrieval(question, total_text)
-            return fallback_rag_chain, len(docs)
 
         rag_chain = (
             {
-                "context": st.session_state.retriever | format_docs,
+                "context": retriever | format_docs,
                 "question": RunnablePassthrough()
             }
             | prompt_template
             | st.session_state.llm
             | StrOutputParser()
         )
+        st.write(f"___[DEBUG]__\n")
 
-        return rag_chain, len(docs)
+        # Tạo simple RAG chain sử dụng keyword search với prompt
+        # def smart_rag_chain_with_prompt(question):
+        #     try:
+        #         # Tìm tài liệu liên quan bằng retriever
+        #         relevant_docs = retriever.get_relevant_documents(question)
+        #         context = format_docs(relevant_docs)
+
+        #         # Sử dụng simple text generation để trả lời
+        #         context = simple_text_retrieval(question, context)
+
+        #         rag_chain = (
+        #             {
+        #                 "context": RunnableLambda(lambda _: context),
+        #                 "question": RunnablePassthrough()
+        #             }
+        #             | prompt
+        #             | st.session_state.llm
+        #             | StrOutputParser()
+        #         )
+
+        #         return rag_chain
+
+        #     except Exception as e:
+        #         st.warning(f"Lỗi retriever: {str(e)}, sử dụng toàn bộ text")
+        #         context = simple_text_retrieval(question, total_text)
+
+        #         rag_chain = (
+        #             {
+        #                 "context": RunnableLambda(lambda _: context),
+        #                 "question": RunnablePassthrough()
+        #             }
+        #             | prompt
+        #             | st.session_state.llm
+        #             | StrOutputParser()
+        #         )
+        #         st.write(f"[DEBUG] Lỗi retriever fallback: {str(e)}")
+
+        #         return rag_chain, len(docs)
+
+        return rag_chain, len(docs) # basically return rag_chain, len(docs)
 
     except Exception as e:
         st.error(f"Lỗi nghiêm trọng khi tạo chuỗi RAG: {str(e)}")
@@ -443,6 +489,7 @@ def display_thinking_indicator():
     </div>
     """, unsafe_allow_html=True)
 
+#? rag_chain.invoke typeof function
 def process_user_query(question):
     """Xử lý câu hỏi của người dùng"""
     try:
@@ -459,9 +506,9 @@ def process_user_query(question):
                 # Simple RAG chain (fallback)
                 output = st.session_state.rag_chain(question)
             else:
-                # LangChain RAG chain
-                output = st.session_state.rag_chain.invoke(question)
-				
+                # LangChain RAG chain (không có vì đã bỏ LLM)
+                output = st.session_state.rag_chain(question)
+
         except Exception as chain_error:
             st.error(f"Lỗi khi gọi RAG chain: {str(chain_error)}")
             # Ultimate fallback: sử dụng documents_text nếu có
@@ -514,7 +561,7 @@ def main():
         <div class="vietnam-flag"></div>
         <h1>🇻🇳 Trợ Lý AI Tiếng Việt</h1>
         <p>Hệ thống hỏi đáp thông minh với tài liệu PDF, Word, Excel bằng tiếng Việt</p>
-        <p style="font-size: 14px; margin-top: 10px;">🌟 Powered by AIO VN - No API Key Required! 🌟</p>
+        <p style="font-size: 14px; margin-top: 10px;">🌟 Powered by Vietnamese AI Technology - No API Key Required! 🌟</p>
     </div>
     """, unsafe_allow_html=True)
 
@@ -655,7 +702,6 @@ def main():
         if st.button("🗑️ Xóa Tất Cả Tài Liệu"):
             st.session_state.documents_loaded = False
             st.session_state.rag_chain = None
-            st.session_state.retriever = None  # *** RESET RETRIEVER ***
             st.session_state.chat_history = []
             st.session_state.processing_query = False
             if hasattr(st.session_state, 'documents_text'):
@@ -672,10 +718,10 @@ def main():
         st.divider()
         st.subheader("🇻🇳 Mô Hình Tiếng Việt")
         st.markdown("""
-        <div style="background-color: #800020; padding: 15px; border-radius: 8px; border-left: 4px solid #ffc107;">
+        <div style="background-color: #fff3cd; padding: 15px; border-radius: 8px; border-left: 4px solid #ffc107;">
             <div style="display: flex; align-items: center; margin-bottom: 10px;">
                 <div class="vietnam-flag" style="margin-right: 15px;"></div>
-                <strong>AIO VN</strong>
+                <strong>Vietnamese AI Technology</strong>
             </div>
             <p style="margin: 0; font-size: 14px;">
                 ✨ Sử dụng mô hình embedding 'bkai-foundation-models/vietnamese-bi-encoder'<br>
@@ -694,7 +740,6 @@ def main():
             st.write("**Trạng thái Hệ Thống:**")
             st.write(f"- Models loaded: {st.session_state.models_loaded}")
             st.write(f"- Embeddings: {'✅' if st.session_state.embeddings else '❌'}")
-            st.write(f"- Retriever: {'✅' if st.session_state.retriever else '❌'}")  # *** THÊM KIỂM TRA RETRIEVER ***
             st.write(f"- Documents loaded: {st.session_state.documents_loaded}")
             st.write(f"- RAG chain: {'✅' if st.session_state.rag_chain else '❌'}")
             st.write(f"- Mode: 🔍 Keyword Search (No API required)")
@@ -730,6 +775,7 @@ def main():
     # Tải tài liệu nếu chưa được tải và nguồn là github hoặc local
     if st.session_state.models_loaded and not st.session_state.documents_loaded and st.session_state.pdf_source in ["github", "local"]:
         with st.spinner("📚 Đang tải tài liệu vào kho vector FAISS..."):
+            #? rag_chain save into session state, and become available in every function e.g. process_user_query()
             if st.session_state.pdf_source == "github":
                 st.session_state.rag_chain, num_chunks, loaded_files = load_pdfs_from_github(st.session_state.github_repo_url)
                 print("\n---github---\n")
@@ -739,6 +785,7 @@ def main():
                 print("\n---load from folder---\n")
 
             if st.session_state.rag_chain:
+                # st.session_state.rag_chain = rag_chain #? Lỗi CHÍNH đặt sai biến. phải ngược lại mới đúng.
                 st.session_state.documents_loaded = True
 
                 st.markdown(f"""
@@ -809,22 +856,8 @@ def main():
                 st.session_state.processing_query = False
             else:
                 last_question = st.session_state.chat_history[-1]["content"]
-
-                # *** KIỂM TRA RETRIEVER TRƯỚC KHI SỬ DỤNG ***
-                if st.session_state.retriever is not None:
-                    try:
-                        context_docs = st.session_state.retriever.invoke(last_question)
-                        inputs = {
-                            "context": context_docs,
-                            "question": last_question
-                        }
-                        answer = st.session_state.rag_chain.invoke(inputs)
-                    except Exception as e:
-                        st.error(f"Lỗi khi sử dụng retriever: {str(e)}")
-                        answer = process_user_query(last_question)  # Fallback
-                else:
-                    # Fallback khi không có retriever
-                    answer = process_user_query(last_question)
+                # answer = process_user_query(last_question)
+                answer = st.session_state.rag_chain.invoke(last_question)
 
                 st.session_state.chat_history.append({
                     "content": answer,
@@ -832,6 +865,7 @@ def main():
                 })
 
                 st.session_state.processing_query = False
+
                 st.rerun()
     else:
         # Tin nhắn chào mừng

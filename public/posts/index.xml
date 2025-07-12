@@ -30,11 +30,11 @@
       <description>&lt;p&gt;🎉 &lt;strong&gt;Chào mừng đến với blog Tuần 3 của team Time Series!&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;p&gt;Tuần học thứ 3 đã mang đến những kiến thức cực kỳ quan trọng cho cả lập trình căn bản và ứng dụng thực tiễn trong khoa học dữ liệu như: &lt;strong&gt;Object-Oriented Programming (OOP)&lt;/strong&gt;, &lt;strong&gt;Data Structure nâng cao&lt;/strong&gt;, và &lt;strong&gt;SQL nâng cao&lt;/strong&gt;. Chúng mình đã học không chỉ qua các buổi giảng chính thức từ giảng viên, mà còn qua buổi phụ đạo cùng trợ giảng – nơi các bạn được thảo luận và trực tiếp triển khai trên bài tập được giao. Hãy dành thời gian đọc hết post nhé!&lt;/p&gt;</description>
     </item>
     <item>
-      <title></title>
+      <title>Tuần 4 - Trợ lý AI đã xuất hiện</title>
       <link>http://localhost:1313/Time-Series-Team-Hub/posts/2025/module1/week-4/chat_bot/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <pubDate>Sat, 28 Jun 2025 13:03:07 +0700</pubDate>
       <guid>http://localhost:1313/Time-Series-Team-Hub/posts/2025/module1/week-4/chat_bot/</guid>
-      <description>&lt;h2 id=&#34;-headcontentposts2025module1week-4chat_botmd&#34;&gt;&amp;laquo;&amp;laquo;&amp;laquo;&amp;laquo; HEAD:content/posts/2025/Module1/Week 4/chat_bot.md&lt;/h2&gt;&#xA;&lt;p&gt;title: &amp;ldquo;Tuần 4 - Trợ lý AI đã xuất hiện&amp;rdquo;&#xA;date: 2025-06-28T13:03:07+07:00&#xA;description: Trợ lý AI tiếng Việt hỗ trợ hỏi đáp từ tài liệu PDF bằng công nghệ RAG kết hợp mô hình Vicuna-7B, được xây dựng bằng Streamlit và LangChain.&#xA;image: images/RAGChatbot.png&#xA;caption:&#xA;categories:&lt;/p&gt;</description>
+      <description>&lt;h2 id=&#34;-trợ-lý-ai-tiếng-việt--pdf-rag-assistant&#34;&gt;🤖 Trợ Lý AI Tiếng Việt — PDF RAG Assistant&lt;/h2&gt;&#xA;&lt;p&gt;Chào mừng bạn đến với chatbot AI thông minh của nhóm, được huấn luyện để &lt;strong&gt;trả lời câu hỏi từ tài liệu PDF&lt;/strong&gt; bằng tiếng Việt.&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

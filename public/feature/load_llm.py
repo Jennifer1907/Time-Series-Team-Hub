@@ -32,6 +32,7 @@ import json
 #? Read huggingface token in token.txt file. Please paste your huggingface token in token.txt
 @st.cache_resource
 def get_hg_token():
+    #! RESET huggingface token if get TOKEN ERROR
     with open('token.txt', 'r') as f:
         hg_token = f.read()
         return hg_token
