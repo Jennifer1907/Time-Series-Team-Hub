@@ -10,9 +10,15 @@
     <atom:link href="http://localhost:1313/Time-Series-Team-Hub/tags/feature/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Tuần 4 - Trợ lý AI đã xuất hiện</title>
+<<<<<<< HEAD
       <link>http://localhost:1313/Time-Series-Team-Hub/posts/2025/module1/week-4/chat_bot/</link>
       <pubDate>Sat, 28 Jun 2025 13:03:07 +0700</pubDate>
       <guid>http://localhost:1313/Time-Series-Team-Hub/posts/2025/module1/week-4/chat_bot/</guid>
+=======
+      <link>http://localhost:1313/Time-Series-Team-Hub/posts/module1/week-4/chat_bot/</link>
+      <pubDate>Sat, 28 Jun 2025 13:03:07 +0700</pubDate>
+      <guid>http://localhost:1313/Time-Series-Team-Hub/posts/module1/week-4/chat_bot/</guid>
+>>>>>>> main
       <description>&lt;h2 id=&#34;-trợ-lý-ai-tiếng-việt--pdf-rag-assistant&#34;&gt;🤖 Trợ Lý AI Tiếng Việt — PDF RAG Assistant&lt;/h2&gt;&#xA;&lt;p&gt;Chào mừng bạn đến với chatbot AI thông minh của nhóm, được huấn luyện để &lt;strong&gt;trả lời câu hỏi từ tài liệu PDF&lt;/strong&gt; bằng tiếng Việt.&lt;/p&gt;</description>
     </item>
   </channel>
