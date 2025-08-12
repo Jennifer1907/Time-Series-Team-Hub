@@ -2,7 +2,7 @@
 title: "Module 3 - Tuần 2: K-Học-K-Vui: Hành Trình Tìm K Hoàn Hảo và Những Cú Chạm Py-Spark Ngoạn Mục!"
 date: 2025-08-12T13:03:07+07:00
 description: "Tuần thứ hai của Module 3 mở màn bằng khám phá K-Means clustering và KNN algorithms, cùng với PySpark data engineering – một tuần học đậm chất thực chiến và ứng dụng!"
-image: images/KMeans_KNN_Spark.png
+image: images/knn.png
 caption: Illustration by Time Series Team
 categories:
   - minutes
@@ -37,7 +37,7 @@ Chào mừng bạn đến với tuần học thú vị về hai thuật toán qu
 🗓️ **Thứ Năm - 07/08/2025**  
 ⚡ **Big Data với PySpark** *(Data Engineering)*
 
-**Giảng viên:** TA Đăng Nhã  
+**Giảng viên:** TA Thuận
 **Nội dung:** Chuyển sang góc nhìn Data Engineering! Khi dữ liệu quá lớn để xử lý trên một máy tính, PySpark là giải pháp. Học cách làm việc với distributed computing và xử lý terabytes dữ liệu một cách hiệu quả.
 
 🗓️ **Thứ Sáu - 08/08/2025**  
