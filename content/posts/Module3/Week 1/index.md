@@ -2,7 +2,7 @@
 title: "Module 3 – Tuần 1: Chinh Phục Pandas – Từ Bảng Dữ Liệu Đến Biểu Đồ Sống Động"
 date: 2025-07-06T13:03:07+07:00
 description: "Tuần đầu tiên của Module 3 tập trung vào kỹ năng xử lý dữ liệu bảng, trực quan hóa dữ liệu và các kỹ thuật phân tích từ cơ bản đến nâng cao, kết hợp công cụ Pandas, ETL Pipelines và Excel. Đây là bước đệm quan trọng để ứng dụng vào các bài toán AI thực tế."
-image: images/data_visualize.png
+image: images/data_visualize.jpg
 caption: Illustration by Time Series Team
 categories:
   - minutes
