@@ -1,13 +1,15 @@
 ---
-title: "Module 3 - Tuần 2: K-Học-K-Vui: Hành Trình Tìm K Hoàn Hảo và Những Cú Chạm Py-Spark Ngoạn Mục!"
+title: "Module 3 - Tuần 2: K-Học-K-Vui: Hành Trình Tìm K Hoàn Hảo và Những Cú Chạm Py-Spark Ngoạn Mục!"  
 date: 2025-08-12T13:03:07+07:00
 description: "Tuần thứ hai của Module 3 mở màn bằng khám phá K-Means clustering và KNN algorithms, cùng với PySpark data engineering – một tuần học đậm chất thực chiến và ứng dụng!"
-image: images/knn.png
-caption: Illustration by Time Series Team
-categories:
-  - minutes
-tags:
-draft: false
+image: images\knn.png
+caption:  
+categories:  
+  - minutes  
+tags:  
+  - feature  
+draft: false  
+
 ---
 
 🎉 **Chào mừng đến với blog Tuần 2 của team Time Series – Module 3!**
