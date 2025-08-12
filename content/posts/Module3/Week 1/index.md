@@ -96,11 +96,11 @@ _(Buổi học chính – TA Quốc Thái)_
 ---
 
 📂 _Tài liệu đi kèm:_  
-{< pdf src="/Time-Series-Team-Hub/pdf/M3W1D3+4_Pandas+DataVisualizationAndAnalysis.pdf" title="M3W1D3+4_Pandas+DataVisualizationAndAnalysis" height="700px" >}  
-{< pdf src="/Time-Series-Team-Hub/pdf/M3W1D5_ETL.pdf" title="M3W1D5_ETL" height="700px" >}  
-{< pdf src="/Time-Series-Team-Hub/pdf/M3W1D6_AdvancedDataVisualization.pdf" title="M3W1D6_AdvancedDataVisualization" height="700px" >}  
-{< pdf src="/Time-Series-Team-Hub/pdf/M3W1D7_Excel_for_Data_Analysis(1).pdf" title="M3W1D7_Excel_for_Data_Analysis(1)" height="700px" >}  
-{< pdf src="/Time-Series-Team-Hub/pdf/M3W1D8_TA_Exercise.pdf" title="M3W1D8_TA_Exercise" height="700px" >}  
+{{< pdf src="/Time-Series-Team-Hub/pdf/M3W1D3+4_Pandas+DataVisualizationAndAnalysis.pdf" title="M3W1D3+4_Pandas+DataVisualizationAndAnalysis" height="700px" >}}
+{{< pdf src="/Time-Series-Team-Hub/pdf/M3W1D5_ETL.pdf" title="M3W1D5_ETL" height="700px" >}}
+{{< pdf src="/Time-Series-Team-Hub/pdf/M3W1D6_AdvancedDataVisualization.pdf" title="M3W1D6_AdvancedDataVisualization" height="700px" >}}
+{{< pdf src="/Time-Series-Team-Hub/pdf/M3W1D7_Excel_for_Data_Analysis(1).pdf" title="M3W1D7_Excel_for_Data_Analysis(1)" height="700px" >}}
+{{< pdf src="/Time-Series-Team-Hub/pdf/M3W1D8_TA_Exercise.pdf" title="M3W1D8_TA_Exercise" height="700px" >}}
 
 ---
 
