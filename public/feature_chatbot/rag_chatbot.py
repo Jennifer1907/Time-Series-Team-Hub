@@ -1,12 +1,26 @@
-from langchain_huggingface import HuggingFacePipeline
-import streamlit as st
+"""
+RAG Chatbot - Vietnamese AI Assistant
+=====================================
+A Streamlit-based Vietnamese AI assistant with RAG capabilities
+supporting multiple document formats (PDF, Word, Excel).
+"""
+
+# Standard library imports
 import os
-import requests
+import time
+import tempfile
+import urllib.parse
+import zipfile
 import shutil
 from pathlib import Path
-from langchain_community.document_loaders import PyPDFLoader
-from langchain_community.document_loaders import Docx2txtLoader
-from langchain_community.document_loaders import UnstructuredExcelLoader
+
+# Third-party library imports
+import streamlit as st
+import torch
+
+# LangChain imports
+from langchain_huggingface import HuggingFacePipeline
+from langchain_community.document_loaders import PyPDFLoader, Docx2txtLoader, UnstructuredExcelLoader
 from langchain_huggingface.embeddings import HuggingFaceEmbeddings
 from langchain_experimental.text_splitter import SemanticChunker
 from langchain_text_splitters import RecursiveCharacterTextSplitter
@@ -14,16 +28,7 @@ from langchain_community.vectorstores import FAISS
 from langchain import hub
 from langchain.prompts import PromptTemplate
 from langchain_core.output_parsers import StrOutputParser
-from langchain_core.runnables import RunnablePassthrough
-import time
-import tempfile
-import urllib.parse
-import zipfile
-from langchain_core.runnables import RunnableLambda
-import torch
-from transformers import AutoModelForCausalLM, AutoTokenizer
-
-
+from langchain_core.runnables import RunnablePassthrough, RunnableLambda
 
 
 st.set_page_config(
@@ -287,31 +292,52 @@ def create_rag_chain(all_documents):
         # Sử dụng tìm kiếm từ khóa thông minh với hub prompt
         st.info("🔍 Sử dụng tìm kiếm từ khóa thông minh với RAG prompt")
 
-        #? Code dư thừa: prompt trong link rlm/rag-prompt với prompt cục bộ giống nhau
-        # Tải prompt từ hub
-        # try:
-        #     prompt = hub.pull("rlm/rag-prompt")
-        #     st.success("✅ Đã tải prompt template từ hub")
-        # except Exception as e:
-        # st.warning(f"Không thể tải prompt từ hub: {str(e)}")
+
+        # prompt = """Sử dụng những đoạn ngữ cảnh sau để trả lời câu hỏi ở cuối.
+        # Nếu bạn không biết câu trả lời, chỉ cần nói rằng bạn không biết, đừng cố bịa ra câu trả lời.
+        # Trả lời bằng tiếng Việt.
+
+        # Ví dụ 1:
+        # "question": "OOP là gì?",
+        # "answer": "OOP là viết tắt của Lập trình hướng đối tượng, một mô hình tổ chức thiết kế phần mềm xung quanh dữ liệu hoặc đối tượng, thay vì các hàm và logic."
+
+        # Ngữ cảnh: {context}
+
+        # Câu hỏi: {question}
+
+        # Trả lời:
+        # """
+
         st.info("🔄 Sử dụng prompt template cục bộ...")
 
-        prompt = """Sử dụng những đoạn ngữ cảnh sau để trả lời câu hỏi ở cuối.
-        Nếu bạn không biết câu trả lời, chỉ cần nói rằng bạn không biết, đừng cố bịa ra câu trả lời.
-        Trả lời bằng tiếng Việt.
+        prompt = """
+            Bạn là một trợ lý chuyên tạo câu hỏi trắc nghiệm (MCQ).
+            Mỗi câu hỏi gồm 1 câu hỏi (question), 4 lựa chọn, còn được gọi là choices (A, B, C, D), và chỉ 1 đáp án đúng, được gọi là correct.
+            Đáp án đúng phải được đánh dấu rõ.
+            Nếu bạn không biết câu trả lời, chỉ cần nói rằng bạn không biết.
 
-		Ví dụ 1:
-		"question": "OOP là gì?",
-		"answer": "OOP là viết tắt của Lập trình hướng đối tượng, một mô hình tổ chức thiết kế phần mềm xung quanh dữ liệu hoặc đối tượng, thay vì các hàm và logic."
+            Trả về output dưới dạng JSON duy nhất với đúng bốn khóa. Chỉ xuất ra đối tượng JSON, không thêm bất kỳ nội dung nào khác.
 
-        Ngữ cảnh: {context}
+            Ví dụ về đầu ra JSON:
+            {{
+                "question": "...",
+                "choices": {{
+                    "A": "...",
+                    "B": "...",
+                    "C": "...",
+                    "D": "..."
+                }},
+                "correct": "...",
+                "explanation": "..."
+            }}
 
-        Câu hỏi: {question}
+            Context: {context}
+            Question: {question}
 
-        Trả lời:
+
+            Hãy tạo 1 câu hỏi trắc nghiệm bao gồm 4 lựa chọn a) b) c) d)
         """
-
-
+        print('prompt:', prompt)
         prompt_template = PromptTemplate(
             template=prompt,
             input_variables=["context", "question"]
@@ -329,44 +355,6 @@ def create_rag_chain(all_documents):
         )
         st.write(f"___[DEBUG]__\n")
 
-        # Tạo simple RAG chain sử dụng keyword search với prompt
-        # def smart_rag_chain_with_prompt(question):
-        #     try:
-        #         # Tìm tài liệu liên quan bằng retriever
-        #         relevant_docs = retriever.get_relevant_documents(question)
-        #         context = format_docs(relevant_docs)
-
-        #         # Sử dụng simple text generation để trả lời
-        #         context = simple_text_retrieval(question, context)
-
-        #         rag_chain = (
-        #             {
-        #                 "context": RunnableLambda(lambda _: context),
-        #                 "question": RunnablePassthrough()
-        #             }
-        #             | prompt
-        #             | st.session_state.llm
-        #             | StrOutputParser()
-        #         )
-
-        #         return rag_chain
-
-        #     except Exception as e:
-        #         st.warning(f"Lỗi retriever: {str(e)}, sử dụng toàn bộ text")
-        #         context = simple_text_retrieval(question, total_text)
-
-        #         rag_chain = (
-        #             {
-        #                 "context": RunnableLambda(lambda _: context),
-        #                 "question": RunnablePassthrough()
-        #             }
-        #             | prompt
-        #             | st.session_state.llm
-        #             | StrOutputParser()
-        #         )
-        #         st.write(f"[DEBUG] Lỗi retriever fallback: {str(e)}")
-
-        #         return rag_chain, len(docs)
 
         return rag_chain, len(docs) # basically return rag_chain, len(docs)
 

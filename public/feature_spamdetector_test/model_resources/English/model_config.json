@@ -1,0 +1,19 @@
+{
+  "model_name": "intfloat/multilingual-e5-base",
+  "best_alpha": 1.0,
+  "model_info": {
+    "dataset_size": 6703,
+    "model_name": "intfloat/multilingual-e5-base",
+    "best_alpha": 1.0,
+    "training_date": "2025-08-09T22:48:20.731089",
+    "accuracy_results": {
+      "1": 0.9903057419835943,
+      "3": 0.9903057419835943,
+      "5": 0.9903057419835943
+    },
+    "original_dataset_size": 5572,
+    "final_dataset_size": 6703,
+    "augmentation_enabled": true,
+    "augmentation_count": 1131
+  }
+}

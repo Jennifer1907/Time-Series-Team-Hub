@@ -288,17 +288,15 @@ def create_rag_chain(all_documents):
         st.info("🔍 Sử dụng tìm kiếm từ khóa thông minh với RAG prompt")
 
         #? Code dư thừa: prompt trong link rlm/rag-prompt với prompt cục bộ giống nhau
-        # Tải prompt từ hub
-        # try:
-        #     prompt = hub.pull("rlm/rag-prompt")
-        #     st.success("✅ Đã tải prompt template từ hub")
-        # except Exception as e:
-        # st.warning(f"Không thể tải prompt từ hub: {str(e)}")
         st.info("🔄 Sử dụng prompt template cục bộ...")
 
         # prompt = """Sử dụng những đoạn ngữ cảnh sau để trả lời câu hỏi ở cuối.
         # Nếu bạn không biết câu trả lời, chỉ cần nói rằng bạn không biết, đừng cố bịa ra câu trả lời.
         # Trả lời bằng tiếng Việt.
+
+        # Ví dụ 1:
+        # "question": "OOP là gì?",
+        # "answer": "OOP là viết tắt của Lập trình hướng đối tượng, một mô hình tổ chức thiết kế phần mềm xung quanh dữ liệu hoặc đối tượng, thay vì các hàm và logic."
 
         # Ngữ cảnh: {context}
 
@@ -306,49 +304,6 @@ def create_rag_chain(all_documents):
 
         # Trả lời:
         # """
-
-        # prompt = """
-        #     Dựa trên các mục ngữ cảnh sau, vui lòng tạo một câu hỏi trắc nghiệm liên quan đến '{query}' về mã Python. Câu hỏi phải có một phần thân rõ ràng và bốn lựa chọn: một câu trả lời đúng và ba câu trả lời sai nhưng có vẻ hợp lý. Đảm bảo rằng câu trả lời đúng được hỗ trợ trực tiếp bởi ngữ cảnh, và các câu trả lời sai có liên quan đến chủ đề nhưng không đúng dựa trên ngữ cảnh.
-
-        #     Hướng dẫn tạo câu hỏi:
-
-        #         Xác định một sự thật hoặc thông tin chính từ ngữ cảnh liên quan đến '{query}' có thể được kiểm tra, chẳng hạn như mục đích của một hàm, giá trị của một biến hoặc đầu ra của một đoạn mã.
-
-        #         Xây dựng phần thân câu hỏi một cách rõ ràng và cụ thể.
-
-        #         Tạo bốn lựa chọn trong đó một lựa chọn là câu trả lời đúng, và ba lựa chọn còn lại là hợp lý nhưng không đúng.
-
-        #         Đảm bảo rằng tất cả các lựa chọn có độ dài và định dạng tương tự nhau.
-
-        #         Ngẫu nhiên hóa thứ tự các lựa chọn để câu trả lời đúng không phải lúc nào cũng ở cùng một vị trí.
-
-        #     Trình bày câu hỏi của bạn theo định dạng này:
-
-        #     Câu hỏi: [phần thân câu hỏi]
-        #     Lựa chọn:
-        #     A)[lựa chọn 1]
-        #     B)[lựa chọn 2]
-        #     C)[lựa chọn 3]
-        #     D)[lựa chọn 4]
-        #     Đáp án đúng: [chữ cái của lựa chọn đúng]
-
-        #     Ví dụ về một câu hỏi trắc nghiệm tốt:
-        #     Câu hỏi: Kết quả của print(2 + 3 * 4) trong Python sẽ là gì?
-        #     Lựa chọn:
-        #     A) 20
-        #     B) 14
-        #     C) 24
-        #     D) 10
-        #     Đáp án đúng: B
-
-        #     Ngữ cảnh: {context}
-
-        #     Câu hỏi: {question}
-
-        #     Trả lời:
-
-        # """ #? dùng {{ }} để langchain không nhận string bên trong {} là Biến
-
 
         prompt = """
             Bạn là một trợ lý chuyên tạo câu hỏi trắc nghiệm (MCQ).
@@ -375,7 +330,7 @@ def create_rag_chain(all_documents):
             Question: {question}
 
 
-            Hãy tạo 1 câu hỏi trắc nghiệm bao gồm 4 lựa chọn a) b) c) d) 
+            Hãy tạo 1 câu hỏi trắc nghiệm bao gồm 4 lựa chọn a) b) c) d)
         """
 
         prompt_template = PromptTemplate(

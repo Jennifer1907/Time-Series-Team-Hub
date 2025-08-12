@@ -4,12 +4,11 @@ import os
 import torch
 
 
-from transformers import (
-                          AutoTokenizer, # Tokenize Model
-                          AutoModelForCausalLM,  # LLM Loader - used for loading and using pre-trained models designed for causal language modeling tasks
-                          pipeline) # pipline to setup llm-task oritented model
-                                    # pipline("text-classification", model='model', device=0)
-
+from transformers import(
+						AutoTokenizer, # Tokenize Model
+						AutoModelForCausalLM,  # LLM Loader - used for loading and using pre-trained models designed for causal language modeling tasks
+						)
+from transformers.pipelines import pipeline # pipeline to setup llm-task oritented model
 from langchain_huggingface import HuggingFaceEmbeddings # huggingface sentence_transformer embedding models
 from langchain_huggingface.llms import HuggingFacePipeline # like transformer pipeline
 
@@ -25,7 +24,6 @@ from langchain_core.output_parsers import StrOutputParser # format LLM's output 
 from langchain import hub
 from langchain_core.prompts import PromptTemplate
 import json
-
 
 
 #? Read huggingface token in token.txt file. Please paste your huggingface token in token.txt
@@ -50,7 +48,7 @@ if 'llm' not in st.session_state:
 
 @st.cache_resource
 def load_llm():
-    MODEL_NAME = "microsoft/DialoGPT-small"  # hoặc mô hình nhỏ khác
+    MODEL_NAME = "google/gemma-2-2b-it"  # hoặc mô hình nhỏ khác
 
     model = AutoModelForCausalLM.from_pretrained(
         MODEL_NAME,
@@ -69,7 +67,6 @@ def load_llm():
     return HuggingFacePipeline(pipeline=model_pipeline)
 
 
-#? Tải models
 #? Tải models
 if not st.session_state.models_loaded:
     try:
