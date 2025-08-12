@@ -2,7 +2,7 @@
 title: "Module 3 - Tuần 2: K-Học-K-Vui: Hành Trình Tìm K Hoàn Hảo và Những Cú Chạm Py-Spark Ngoạn Mục!"  
 date: 2025-08-03T10:00:00+07:00  
 description: "Tuần thứ hai của Module 3 mở màn bằng khám phá K-Means clustering và KNN algorithms, cùng với PySpark data engineering – một tuần học đậm chất thực chiến và ứng dụng!"
-image: images\knn.png
+image: images\Clustering.png
 caption:  
 categories:  
   - minutes  
