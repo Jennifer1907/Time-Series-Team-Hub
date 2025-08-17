@@ -2,25 +2,31 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:1313/Time-Series-Team-Hub/posts/</loc>
-    <lastmod>2025-08-12T13:03:07+07:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/Time-Series-Team-Hub/</loc>
-    <lastmod>2025-08-12T13:03:07+07:00</lastmod>
-  </url><url>
     <loc>http://localhost:1313/Time-Series-Team-Hub/categories/</loc>
-    <lastmod>2025-08-02T10:00:00+07:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/Time-Series-Team-Hub/tags/feature/</loc>
-    <lastmod>2025-08-02T10:00:00+07:00</lastmod>
+    <lastmod>2025-08-11T13:03:07+07:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/Time-Series-Team-Hub/categories/minutes/</loc>
-    <lastmod>2025-08-02T10:00:00+07:00</lastmod>
+    <lastmod>2025-08-11T13:03:07+07:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/Time-Series-Team-Hub/posts/module2/week-4/spam_ham_classifier/</loc>
-    <lastmod>2025-08-02T10:00:00+07:00</lastmod>
+    <loc>http://localhost:1313/Time-Series-Team-Hub/posts/module3/week-1/</loc>
+    <lastmod>2025-08-11T13:03:07+07:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/Time-Series-Team-Hub/posts/</loc>
+    <lastmod>2025-08-11T13:03:07+07:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/Time-Series-Team-Hub/</loc>
+    <lastmod>2025-08-11T13:03:07+07:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/Time-Series-Team-Hub/tags/feature/</loc>
+    <lastmod>2025-08-03T10:00:00+07:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/Time-Series-Team-Hub/posts/module3/week-2/</loc>
+    <lastmod>2025-08-03T10:00:00+07:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/Time-Series-Team-Hub/tags/</loc>
+    <lastmod>2025-08-03T10:00:00+07:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/Time-Series-Team-Hub/posts/module2/week-4/spam_ham_classifier/</loc>
     <lastmod>2025-08-02T10:00:00+07:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/Time-Series-Team-Hub/posts/module2/week-3/</loc>

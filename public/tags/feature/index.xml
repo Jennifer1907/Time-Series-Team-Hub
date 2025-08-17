@@ -6,8 +6,15 @@
     <description>Recent content in Feature on Time Series Team Hub</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 02 Aug 2025 10:00:00 +0700</lastBuildDate>
+    <lastBuildDate>Sun, 03 Aug 2025 10:00:00 +0700</lastBuildDate>
     <atom:link href="http://localhost:1313/Time-Series-Team-Hub/tags/feature/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Module 3 - Tuần 2: K-Học-K-Vui: Hành Trình Tìm K Hoàn Hảo và Những Cú Chạm Py-Spark Ngoạn Mục!</title>
+      <link>http://localhost:1313/Time-Series-Team-Hub/posts/module3/week-2/</link>
+      <pubDate>Sun, 03 Aug 2025 10:00:00 +0700</pubDate>
+      <guid>http://localhost:1313/Time-Series-Team-Hub/posts/module3/week-2/</guid>
+      <description>&lt;p&gt;🎉 &lt;strong&gt;Chào mừng đến với blog Tuần 2 của team Time Series – Module 3!&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;p&gt;🌟 &lt;strong&gt;Giới thiệu&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;p&gt;Chào mừng bạn đến với tuần học thú vị về hai thuật toán quan trọng nhất trong Machine Learning! Tuần này chúng ta sẽ khám phá &lt;strong&gt;K-Nearest Neighbors (KNN)&lt;/strong&gt; - một thuật toán học có giám sát đơn giản nhưng mạnh mẽ, và &lt;strong&gt;K-Means Clustering&lt;/strong&gt; - thuật toán phân cụm phổ biến trong học không giám sát.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Module 2 - Tuần 4 - Dũng sĩ diệt SPAM đã trở lại và lợi hại hơn xưa</title>
       <link>http://localhost:1313/Time-Series-Team-Hub/posts/module2/week-4/spam_ham_classifier/</link>

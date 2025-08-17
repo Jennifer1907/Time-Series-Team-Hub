@@ -4,9 +4,9 @@
   <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Tags | Time Series Team Hub</title>
+<title>Module 3 – Tuần 1: Chinh Phục Pandas – Từ Bảng Dữ Liệu Đến Biểu Đồ Sống Động | Time Series Team Hub</title>
 
-<meta name="description" content="">
+<meta name="description" content="Tuần đầu tiên của Module 3 tập trung vào kỹ năng xử lý dữ liệu bảng, trực quan hóa dữ liệu và các kỹ thuật phân tích từ cơ bản đến nâng cao, kết hợp công cụ Pandas, ETL Pipelines và Excel. Đây là bước đệm quan trọng để ứng dụng vào các bài toán AI thực tế.">
     <link rel="stylesheet" href="/Time-Series-Team-Hub/css/main.css">
 
 <link rel="icon" type="image/svg+xml" href="http://localhost:1313/Time-Series-Team-Hub/favicon.svg"> 
@@ -70,28 +70,265 @@
 		<li class="after:content-['❯'] after:ml-4 after:opacity-30 last:after:content-none uppercase">
 			<a href="http://localhost:1313/Time-Series-Team-Hub/">Time Series Team Hub</a>
 		</li>
+		<li class="after:content-['❯'] after:ml-4 after:opacity-30 last:after:content-none uppercase">
+			<a href="http://localhost:1313/Time-Series-Team-Hub/posts/">Posts</a>
+		</li>
 	</ul>
-</div><div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-14">
+</div><div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-14">
 
-  <section class="md:col-span-2">
+  <article class="md:col-span-2 prose lg:prose-lg">
 
-    <h2 class="text-3xl font-bold mb-10">Tags</h2>
-
-    <ul class="grid grid-cols-1 md:grid-cols-2 gap-10 text-2xl"><li class="relative hover:bg-zinc-200 border py-6 px-8 rounded-2xl group">
-      	<a class="insert-link flex items-center space-x-4" href="/Time-Series-Team-Hub/tags/feature/">
-      		<svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="group-hover:animate-spin" viewBox="0 0 16 16">
-  				<path d="M8 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
-  				<path d="M13.997 5.17a5 5 0 0 0-8.101-4.09A5 5 0 0 0 1.28 9.342a5 5 0 0 0 8.336 5.109 3.5 3.5 0 0 0 5.201-4.065 3.001 3.001 0 0 0-.822-5.216zm-1-.034a1 1 0 0 0 .668.977 2.001 2.001 0 0 1 .547 3.478 1 1 0 0 0-.341 1.113 2.5 2.5 0 0 1-3.715 2.905 1 1 0 0 0-1.262.152 4 4 0 0 1-6.67-4.087 1 1 0 0 0-.2-1 4 4 0 0 1 3.693-6.61 1 1 0 0 0 .8-.2 4 4 0 0 1 6.48 3.273z"/>
-			</svg>
-      		<span>Feature</span></a>
-  		</li>
-
+    <header class="not-prose">
       
-    
-    </ul>
-  
-  </section>
+      <h1 id="title" class="text-4xl font-bold leading-normal">Module 3 – Tuần 1: Chinh Phục Pandas – Từ Bảng Dữ Liệu Đến Biểu Đồ Sống Động</h1>
 
+      <div id="lead" class="my-6">
+
+        <p class="font-bold">Tuần đầu tiên của Module 3 tập trung vào kỹ năng xử lý dữ liệu bảng, trực quan hóa dữ liệu và các kỹ thuật phân tích từ cơ bản đến nâng cao, kết hợp công cụ Pandas, ETL Pipelines và Excel. Đây là bước đệm quan trọng để ứng dụng vào các bài toán AI thực tế. </p>
+
+      </div>
+      
+      <div id="writer" class="flex items-center space-x-4"><ul class="flex items-center space-x-4 flex-nowrap whitespace-nowrap overflow-x-auto">
+          
+          <li class="font-semibold my-2"></li>
+          
+          <li class="before:content-['•'] before:mr-2 before:opacity-50 my-2"><time datetime="2025-08-11T13:03:07&#43;07:00">August 11, 2025</time>
+          </li>
+
+          <li class="before:content-['•'] before:mr-2 before:opacity-50 my-2">
+            3 min read
+          </li>
+
+        </ul>
+
+      </div>
+      
+    </header>
+
+    <figure id="featureimage" class="rounded-xl aspect-video">
+            <img class="rounded-lg" src="http://localhost:1313/Time-Series-Team-Hub/images/data_visualize_hu_94f5cb74591bc90b.jpg" alt="" width="750" height="546">
+        <figcaption class="text-center italic text-xs">Illustration by Time Series Team</figcaption>
+
+    </figure>
+
+    <div id="content" class="mb-14">
+      <p>🎉 <strong>Chào mừng đến với blog Tuần 1 của team Time Series – Module 3!</strong></p>
+<p>Tuần này, chúng ta sẽ cùng nhau khám phá sức mạnh của <strong>Pandas</strong> trong việc xử lý và trực quan hóa dữ liệu, từ dữ liệu bảng, dữ liệu time-series cho tới các pipeline ETL và Excel. Đây là những kỹ năng thiết yếu để phân tích dữ liệu và xây dựng nền tảng cho các ứng dụng AI.</p>
+<hr>
+<h2 id="-lịch-trình-học-và-nội-dung-chính">📅 <strong>Lịch trình học và nội dung chính</strong></h2>
+<h3 id="-thứ-3--ngày-29072025">🧑‍🏫 <strong>Thứ 3 – Ngày 29/07/2025</strong></h3>
+<p><em>(Buổi warm-up – MSc. Quốc Thái)</em></p>
+<p><strong>Chủ đề:</strong> Cơ bản về Pandas</p>
+<ul>
+<li>Đọc và thao tác dữ liệu bảng và time-series dùng Pandas</li>
+<li>Thảo luận cơ bản về Series và DataFrame</li>
+</ul>
+<hr>
+<h3 id="-thứ-4--ngày-30072025">👨‍🎓 <strong>Thứ 4 – Ngày 30/07/2025</strong></h3>
+<p><em>(Buổi học chính – Dr. Quang Vinh)</em></p>
+<p><strong>Chủ đề:</strong> Data Visualization and Analysis</p>
+<ul>
+<li>Thảo luận về Series và DataFrame</li>
+<li>Biểu diễn và thao tác dữ liệu time-series và dữ liệu bảng</li>
+<li>Data visualization dùng Pandas (tích hợp matplotlib và seaborn)</li>
+<li>Ứng dụng cho các bài toán AI thực tế</li>
+</ul>
+<hr>
+<h3 id="-thứ-5--ngày-31072025">👨‍💻 <strong>Thứ 5 – Ngày 31/07/2025</strong></h3>
+<p><em>(Data Engineering – TA Đăng Nhã)</em></p>
+<p><strong>Chủ đề:</strong> ETL Pipelines</p>
+<ul>
+<li>Các bước Extract, Transform, Load cho dữ liệu thô</li>
+<li>Thư viện phổ biến cho ETL và ví dụ minh họa</li>
+</ul>
+<hr>
+<h3 id="-thứ-6--ngày-01082025">👨‍🎓 <strong>Thứ 6 – Ngày 01/08/2025</strong></h3>
+<p><em>(Buổi học chính – Dr. Đình Vinh)</em></p>
+<p><strong>Chủ đề:</strong> Advanced Data Visualization</p>
+<ul>
+<li>Chọn lựa cách biểu diễn dữ liệu cho từng mục đích</li>
+<li>Thực hành với nhiều dạng dữ liệu khác nhau</li>
+</ul>
+<hr>
+<h3 id="-thứ-7--ngày-02082025">📊 <strong>Thứ 7 – Ngày 02/08/2025</strong></h3>
+<p><em>(Data Analysis – Dr. Thái Hà)</em></p>
+<p><strong>Chủ đề:</strong> Excel for Data Analysis (1)</p>
+<ul>
+<li>Hiểu xu hướng dữ liệu qua thống kê cơ bản</li>
+<li>Trực quan hoá dữ liệu và sử dụng biểu đồ hiệu quả</li>
+</ul>
+<hr>
+<h3 id="-chủ-nhật--ngày-03082025">📝 <strong>Chủ nhật – Ngày 03/08/2025</strong></h3>
+<p><em>(Buổi học chính – TA Quốc Thái)</em></p>
+<p><strong>Chủ đề:</strong> Exercise</p>
+<ul>
+<li>Ôn nhanh nội dung buổi thứ 4 và thứ 6</li>
+<li>Giải các bài tập thực hành</li>
+</ul>
+<hr>
+<h2 id="-tổng-hợp-kiến-thức--điểm-nhấn">📌 <strong>Tổng hợp kiến thức &amp; điểm nhấn</strong></h2>
+<h3 id="-pandas--xử-lý--trực-quan-hóa-dữ-liệu">✅ <strong>Pandas – Xử lý &amp; trực quan hóa dữ liệu</strong></h3>
+<ul>
+<li>Hiểu và sử dụng Series, DataFrame</li>
+<li>Biểu diễn dữ liệu bảng và time-series</li>
+<li>Trực quan hóa dữ liệu tích hợp matplotlib, seaborn</li>
+</ul>
+<hr>
+<h3 id="-etl-pipelines">✅ <strong>ETL Pipelines</strong></h3>
+<ul>
+<li>Nắm quy trình Extract, Transform, Load</li>
+<li>Thư viện và công cụ hỗ trợ ETL</li>
+</ul>
+<hr>
+<h3 id="-advanced-data-visualization--excel">✅ <strong>Advanced Data Visualization &amp; Excel</strong></h3>
+<ul>
+<li>Lựa chọn phương pháp trực quan hóa phù hợp</li>
+<li>Sử dụng Excel để phân tích dữ liệu và tạo biểu đồ</li>
+</ul>
+<hr>
+<p>📂 <em>Tài liệu đi kèm:</em><br>
+<details>
+	<summary> M3W1D3&#43;4_Pandas&#43;DataVisualizationAndAnalysis </summary>
+	<div class="pdf-container my-6 border rounded-lg overflow-hidden shadow-lg">
+		<div class="pdf-header bg-zinc-100 px-4 py-2 flex items-center justify-between">
+			<span class="font-semibold text-sm">📄 M3W1D3&#43;4_Pandas&#43;DataVisualizationAndAnalysis </span>
+			<div class="flex space-x-2">
+				<a href="/Time-Series-Team-Hub/pdf/M3W1D3&#43;4_Pandas&#43;DataVisualizationAndAnalysis.pdf" target="_blank" class="text-blue-600 hover:text-blue-800 text-sm">
+					Open in New Tab
+				</a>
+				<a href="/Time-Series-Team-Hub/pdf/M3W1D3&#43;4_Pandas&#43;DataVisualizationAndAnalysis.pdf" download class="text-blue-600 hover:text-blue-800 text-sm">
+					Download
+				</a>
+			</div>
+		</div>
+		<iframe 
+			src="/Time-Series-Team-Hub/pdf/M3W1D3&#43;4_Pandas&#43;DataVisualizationAndAnalysis.pdf" 
+			width="100%" 
+			height="700px"
+			class="border-0"
+			title="M3W1D3&#43;4_Pandas&#43;DataVisualizationAndAnalysis">
+			<p>Your browser does not support PDFs. <a href="/Time-Series-Team-Hub/pdf/M3W1D3&#43;4_Pandas&#43;DataVisualizationAndAnalysis.pdf">Download the PDF</a>.</p>
+		</iframe>
+	</div>
+</details>
+
+<details>
+	<summary> M3W1D5_ETL </summary>
+	<div class="pdf-container my-6 border rounded-lg overflow-hidden shadow-lg">
+		<div class="pdf-header bg-zinc-100 px-4 py-2 flex items-center justify-between">
+			<span class="font-semibold text-sm">📄 M3W1D5_ETL </span>
+			<div class="flex space-x-2">
+				<a href="/Time-Series-Team-Hub/pdf/M3W1D5_ETL.pdf" target="_blank" class="text-blue-600 hover:text-blue-800 text-sm">
+					Open in New Tab
+				</a>
+				<a href="/Time-Series-Team-Hub/pdf/M3W1D5_ETL.pdf" download class="text-blue-600 hover:text-blue-800 text-sm">
+					Download
+				</a>
+			</div>
+		</div>
+		<iframe 
+			src="/Time-Series-Team-Hub/pdf/M3W1D5_ETL.pdf" 
+			width="100%" 
+			height="700px"
+			class="border-0"
+			title="M3W1D5_ETL">
+			<p>Your browser does not support PDFs. <a href="/Time-Series-Team-Hub/pdf/M3W1D5_ETL.pdf">Download the PDF</a>.</p>
+		</iframe>
+	</div>
+</details>
+
+<details>
+	<summary> M3W1D6_AdvancedDataVisualization </summary>
+	<div class="pdf-container my-6 border rounded-lg overflow-hidden shadow-lg">
+		<div class="pdf-header bg-zinc-100 px-4 py-2 flex items-center justify-between">
+			<span class="font-semibold text-sm">📄 M3W1D6_AdvancedDataVisualization </span>
+			<div class="flex space-x-2">
+				<a href="/Time-Series-Team-Hub/pdf/M3W1D6_AdvancedDataVisualization.pdf" target="_blank" class="text-blue-600 hover:text-blue-800 text-sm">
+					Open in New Tab
+				</a>
+				<a href="/Time-Series-Team-Hub/pdf/M3W1D6_AdvancedDataVisualization.pdf" download class="text-blue-600 hover:text-blue-800 text-sm">
+					Download
+				</a>
+			</div>
+		</div>
+		<iframe 
+			src="/Time-Series-Team-Hub/pdf/M3W1D6_AdvancedDataVisualization.pdf" 
+			width="100%" 
+			height="700px"
+			class="border-0"
+			title="M3W1D6_AdvancedDataVisualization">
+			<p>Your browser does not support PDFs. <a href="/Time-Series-Team-Hub/pdf/M3W1D6_AdvancedDataVisualization.pdf">Download the PDF</a>.</p>
+		</iframe>
+	</div>
+</details>
+
+<details>
+	<summary> M3W1D7_Excel_for_Data_Analysis(1) </summary>
+	<div class="pdf-container my-6 border rounded-lg overflow-hidden shadow-lg">
+		<div class="pdf-header bg-zinc-100 px-4 py-2 flex items-center justify-between">
+			<span class="font-semibold text-sm">📄 M3W1D7_Excel_for_Data_Analysis(1) </span>
+			<div class="flex space-x-2">
+				<a href="/Time-Series-Team-Hub/pdf/M3W1D7_Excel_for_Data_Analysis%281%29.pdf" target="_blank" class="text-blue-600 hover:text-blue-800 text-sm">
+					Open in New Tab
+				</a>
+				<a href="/Time-Series-Team-Hub/pdf/M3W1D7_Excel_for_Data_Analysis%281%29.pdf" download class="text-blue-600 hover:text-blue-800 text-sm">
+					Download
+				</a>
+			</div>
+		</div>
+		<iframe 
+			src="/Time-Series-Team-Hub/pdf/M3W1D7_Excel_for_Data_Analysis%281%29.pdf" 
+			width="100%" 
+			height="700px"
+			class="border-0"
+			title="M3W1D7_Excel_for_Data_Analysis(1)">
+			<p>Your browser does not support PDFs. <a href="/Time-Series-Team-Hub/pdf/M3W1D7_Excel_for_Data_Analysis%281%29.pdf">Download the PDF</a>.</p>
+		</iframe>
+	</div>
+</details>
+
+<details>
+	<summary> M3W1D8_TA_Exercise </summary>
+	<div class="pdf-container my-6 border rounded-lg overflow-hidden shadow-lg">
+		<div class="pdf-header bg-zinc-100 px-4 py-2 flex items-center justify-between">
+			<span class="font-semibold text-sm">📄 M3W1D8_TA_Exercise </span>
+			<div class="flex space-x-2">
+				<a href="/Time-Series-Team-Hub/pdf/M3W1D8_TA_Exercise.pdf" target="_blank" class="text-blue-600 hover:text-blue-800 text-sm">
+					Open in New Tab
+				</a>
+				<a href="/Time-Series-Team-Hub/pdf/M3W1D8_TA_Exercise.pdf" download class="text-blue-600 hover:text-blue-800 text-sm">
+					Download
+				</a>
+			</div>
+		</div>
+		<iframe 
+			src="/Time-Series-Team-Hub/pdf/M3W1D8_TA_Exercise.pdf" 
+			width="100%" 
+			height="700px"
+			class="border-0"
+			title="M3W1D8_TA_Exercise">
+			<p>Your browser does not support PDFs. <a href="/Time-Series-Team-Hub/pdf/M3W1D8_TA_Exercise.pdf">Download the PDF</a>.</p>
+		</iframe>
+	</div>
+</details>
+</p>
+<hr>
+<p>🧠 <em>Repository managed by <a href="https://github.com/Jennifer1907/Time-Series-Team-Hub">Time Series Team Hub</a></em></p>
+
+</div>
+
+    <footer id="content-footer" class="not-prose">
+
+      <div id="related-post" class="">
+
+        <h2 class="text-xl md:text-2xl font-bold mb-6 md:mb-8">Recommended for You</h2>
+      </div>
+
+    </footer>
+
+  </article>
+
+  
   <aside class="md:col-span-1"><div class="lg:sticky lg:top-8">
 
 	
@@ -147,8 +384,8 @@
 </div>
 </aside>
 
-  </div>
-
+</div>
+  
 </main>
   <footer class="bg-zinc-100 py-10 md:py-14"><div class="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
 
