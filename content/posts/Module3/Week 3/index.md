@@ -88,7 +88,7 @@ Sau tuần học này, bạn sẽ có thể:
 <!-- {{< pdf src="/Time-Series-Team-Hub/pdf/M3W3D3_Decision_Tree_Classification.pdf" title="M3W2D3_Decision_Tree_Classification" height="700px" >}} -->
 {{< pdf src="/Time-Series-Team-Hub/pdf/M3W2D5_Cloud.pdf" title="M3W3D5_Cloud" height="700px" >}}
 <!-- {{< pdf src="/Time-Series-Team-Hub/pdf/M3W2D6_Decision_Tree_Regression.pdf" title="M3W3D6_Decision_Tree_Regression" height="700px" >}} -->
-{{< pdf src="/Time-Series-Team-Hub/pdf/M3W2D7_Excel_for_Data_Analysis.pdf" title="M3W3D7_Excel_for_Data_Analysis" height="700px" >}}
+{{< pdf src="/Time-Series-Team-Hub/pdf/M3W3D7_Excel_for_Data_Analysis.pdf" title="M3W3D7_Excel_for_Data_Analysis(1)" height="700px" >}}
 
 
 ---
