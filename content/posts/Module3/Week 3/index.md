@@ -1,6 +1,6 @@
 ---
 title: "Module 3 - Tuần 3: Cây Quyết Định Gọi Tên Bạn, Mây Cloud Bay Qua Và Những Dòng Suy Nghĩ Trong Excel"
-date: 2025-08-03T10:00:00+07:00
+date: 2025-08-18T10:00:00+07:00
 description: "Tuần thứ ba của Module 3 mở màn với hành trình chinh phục Decision Tree – từ kiến thức nền tảng đến ứng dụng vào bài toán phân loại và dự đoán. Song song đó, chúng ta tiếp tục khám phá sức mạnh của Cloud trong lưu trữ dữ liệu, và nâng cấp kỹ năng phân tích với Excel – một tuần học đậm chất thực chiến và ứng dụng đa nền tảng!"
 image: images\Decision-Tree.jpg
 caption:
