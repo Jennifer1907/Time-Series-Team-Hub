@@ -50,10 +50,8 @@ Pipeline gồm các bước chính:
    - Naive Bayes, KNN (Majority/Weighted/Custom-α), Decision Tree  
    - Báo cáo: Accuracy, Classification Report, Confusion Matrix
 4. **KNN bỏ phiếu trọng số cải tiến**:  
-   \[
-   \mathrm{weight}=(1-\alpha)\cdot \mathrm{similarity}\cdot \mathrm{class\_weights}+\alpha\cdot \mathrm{saliency}
-   \]
-   với **cosine similarity** (Embeddings), **class-weights** nghịch tần suất lớp, và **saliency** (độ quan trọng instance-level). Tham số \(\alpha\in[0,1]\) điều tiết giữa tín hiệu láng giềng và độ nổi bật ngữ nghĩa của mẫu.
+   ![alt text](image.png)
+   với **cosine similarity** (Embeddings), **class-weights** nghịch tần suất lớp, và **saliency** (độ quan trọng instance-level). Tham số alpha từ 0 đến 1 điều tiết giữa tín hiệu láng giềng và độ nổi bật ngữ nghĩa của mẫu.
 5. **Giải thích (XAI)**:  
    - *Masking-based saliency*: đo **độ sụt giảm điểm lớp mục tiêu** khi che từng token, chuẩn hoá về \([0,1]\) và vẽ **heatmap**.  
    - *Topic words* (TF–IDF theo từng chủ đề) giúp **nổi bật thuật ngữ đặc trưng** (vd. `algorithm` cho CS, `magnetic/quantum` cho Cond-Mat).
