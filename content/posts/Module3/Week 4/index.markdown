@@ -2,7 +2,7 @@
 title: "Module 3 - Tuần 4 - Abstract Classifier: Phân loại chủ đề bài báo khoa học có giải thích"
 date: 2025-09-06T10:00:00+07:00
 description: Hệ thống phân loại publication abstract theo các chủ đề khoa học (astro-ph, cond-mat, cs, math, physics) với giải thích token-level, KNN bỏ phiếu trọng số cải tiến, và dashboard Streamlit trực quan.
-image: images/abstract_classifier.jpg
+image: images/lionel-hesry-UNd3lRKhwSw-unsplash.jpg
 caption:
 categories:
   - minutes
