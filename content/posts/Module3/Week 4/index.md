@@ -8,9 +8,6 @@ categories:
   - minutes
 tags:
   - feature
-  - nlp
-  - explainable-ai
-  - streamlit
 draft: false
 ---
 
