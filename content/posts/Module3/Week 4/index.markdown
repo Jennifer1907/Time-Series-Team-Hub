@@ -24,12 +24,11 @@ Hệ thống hỗ trợ 3 lớp chức năng:
 ---
 
 ## 🧪 Trải nghiệm Abstract Classifier tại đây
-**Dùng thử ngay**: [Streamlit](https://abstractclassifer.streamlit.app/)
+**Dùng thử ngay**: [Streamlit](https://github.com/Jennifer1907/Time-Series-Team-Hub/tree/main/assets/feature_abstractclassification)
 
 Khi deploy trên Streamlit Cloud có thể gặp giới hạn tài nguyên. Nếu cần, bạn có thể **clone** mã nguồn và chạy local để có trải nghiệm mượt hơn.
 
 ### 🧪 Mã nguồn / Notebook
-- **Source Code (Streamlit)**: _Link GitHub repo của Abstract Classifier_
 - **Google Colab**: [Github](https://colab.research.google.com/drive/1DcRqqwslura2EcHfzGR9yOt8BkRyXQnW?usp=sharing)
 
 ### 👉 Đối tượng người dùng
