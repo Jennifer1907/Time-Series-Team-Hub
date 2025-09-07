@@ -24,7 +24,8 @@ Hệ thống hỗ trợ 3 lớp chức năng:
 ---
 
 ## 🧪 Trải nghiệm Abstract Classifier tại đây
-**Dùng thử ngay**: [Streamlit](https://abstractclassifer.streamlit.app/) 
+- **Dùng thử ngay**: [Streamlit](https://abstractclassifer.streamlit.app/) 
+- **Slide giới thiệu sản phẩm**: [Canvas](https://www.canva.com/design/DAGyRQvrHYc/ECpVJ2t6DJhdUMLmYi411g/view?utm_content=DAGyRQvrHYc&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h790036dacb)
 
 Khi deploy trên Streamlit Cloud có thể gặp giới hạn tài nguyên. Nếu cần, bạn có thể **clone** mã nguồn và chạy local để có trải nghiệm mượt hơn.
 
