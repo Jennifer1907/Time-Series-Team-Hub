@@ -8,3 +8,4 @@ scikit-learn
 datasets
 sentence-transformers
 scipy
+psutil
