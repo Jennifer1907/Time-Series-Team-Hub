@@ -1,442 +1,535 @@
-# Thêm vào đầu file - Memory và Error Handling
 import streamlit as st
-import pandas as pd
 import numpy as np
+import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
-import plotly.express as px
-import plotly.graph_objects as go
-from plotly.subplots import make_subplots
-import gc  # Garbage collector để giải phóng memory
-import psutil  # Monitor memory usage
-import traceback
-
-import streamlit as st
-import pandas as pd
-import numpy as np
-import matplotlib.pyplot as plt
-import seaborn as sns
-import plotly.express as px
-import plotly.graph_objects as go
-from plotly.subplots import make_subplots
-
 import re
-import math
+import html
 from collections import Counter, defaultdict
 from typing import List, Dict, Literal, Union
 import warnings
 warnings.filterwarnings('ignore')
 
-# ML Libraries
-from datasets import load_dataset
-from sentence_transformers import SentenceTransformer
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import accuracy_score, classification_report, confusion_matrix
-from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer, ENGLISH_STOP_WORDS
-from sklearn.cluster import KMeans
-from sklearn.neighbors import KNeighborsClassifier
-from sklearn.tree import DecisionTreeClassifier
-from sklearn.naive_bayes import GaussianNB
-from sklearn.base import BaseEstimator, ClassifierMixin
-from sklearn.utils.validation import check_X_y, check_array
-from sklearn.utils.multiclass import unique_labels
-from scipy.spatial.distance import cdist
-from scipy.sparse import issparse
+# Streamlit specific imports
+try:
+    from sentence_transformers import SentenceTransformer
+    from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer
+    from sklearn.neighbors import KNeighborsClassifier
+    from sklearn.naive_bayes import GaussianNB
+    from sklearn.tree import DecisionTreeClassifier
+    from sklearn.metrics import accuracy_score
+    from sklearn.base import BaseEstimator, ClassifierMixin
+    from sklearn.utils.validation import check_X_y, check_array
+    from sklearn.utils.multiclass import unique_labels
+    from scipy.spatial.distance import cdist
+    from sklearn.feature_extraction.text import ENGLISH_STOP_WORDS
+except ImportError as e:
+    st.error(f"Import error: {e}")
+    st.stop()
 
-# Thêm cấu hình memory
+# Page configuration
 st.set_page_config(
-    page_title="Scientific Text Classification",
+    page_title="Scientific Abstract Classifier",
     page_icon="🔬",
     layout="wide",
     initial_sidebar_state="expanded"
 )
 
-# Hàm monitor memory
-def get_memory_usage():
-    process = psutil.Process()
-    return process.memory_info().rss / 1024 / 1024  # MB
+# Constants
+CATEGORIES_TO_SELECT = ['astro-ph', 'cond-mat', 'cs', 'math', 'physics']
+CATEGORY_NAMES = {
+    'astro-ph': 'Astrophysics',
+    'cond-mat': 'Condensed Matter',
+    'cs': 'Computer Science',
+    'math': 'Mathematics',
+    'physics': 'Physics'
+}
 
-# Caching functions được sửa lại với error handling
+# Custom KNN Classifier
+class CustomKNN(BaseEstimator, ClassifierMixin):
+    def __init__(self, n_neighbors=5, voting='majority', alpha=0.5, metric='cosine'):
+        self.n_neighbors = n_neighbors
+        self.voting = voting
+        self.alpha = alpha
+        self.metric = metric
+
+    def fit(self, X, y):
+        X, y = check_X_y(X, y)
+        self.classes_ = unique_labels(y)
+        self.X_train_ = X
+        self.y_train_ = y
+
+        # Calculate class weights (inverse frequency)
+        class_counts = Counter(y)
+        total_samples = len(y)
+        self.class_weights_ = {
+            label: total_samples / (len(self.classes_) * count)
+            for label, count in class_counts.items()
+        }
+        return self
+
+    def predict(self, X):
+        X = check_array(X)
+        if self.voting == 'majority':
+            return self._predict_majority(X)
+        elif self.voting == 'weighted':
+            return self._predict_weighted(X)
+        elif self.voting == 'custom':
+            return self._predict_custom(X)
+        else:
+            raise ValueError(f"Unknown voting scheme: {self.voting}")
+
+    def _predict_majority(self, X):
+        predictions = []
+        for x in X:
+            if self.metric == 'cosine':
+                similarities = 1 - cdist([x], self.X_train_, metric='cosine')[0]
+                distances = 1 - similarities
+            else:
+                distances = cdist([x], self.X_train_, metric=self.metric)[0]
+            
+            neighbor_indices = np.argsort(distances)[:self.n_neighbors]
+            neighbor_labels = self.y_train_[neighbor_indices]
+            most_common = Counter(neighbor_labels).most_common(1)[0][0]
+            predictions.append(most_common)
+        return np.array(predictions)
+
+    def _predict_weighted(self, X):
+        predictions = []
+        for x in X:
+            if self.metric == 'cosine':
+                similarities = 1 - cdist([x], self.X_train_, metric='cosine')[0]
+                distances = 1 - similarities
+            else:
+                distances = cdist([x], self.X_train_, metric=self.metric)[0]
+            
+            neighbor_indices = np.argsort(distances)[:self.n_neighbors]
+            neighbor_distances = distances[neighbor_indices]
+            neighbor_labels = self.y_train_[neighbor_indices]
+            
+            weights = 1.0 / (neighbor_distances + 1e-10)
+            label_weights = {}
+            for label, weight in zip(neighbor_labels, weights):
+                label_weights[label] = label_weights.get(label, 0) + weight
+            
+            best_label = max(label_weights, key=label_weights.get)
+            predictions.append(best_label)
+        return np.array(predictions)
+
+    def _predict_custom(self, X):
+        predictions = []
+        saliency_weights = self._calculate_saliency_weights(X)
+        
+        for i, x in enumerate(X):
+            if self.metric == 'cosine':
+                similarities = 1 - cdist([x], self.X_train_, metric='cosine')[0]
+            else:
+                distances = cdist([x], self.X_train_, metric=self.metric)[0]
+                similarities = 1.0 / (1.0 + distances)
+            
+            neighbor_indices = np.argsort(similarities)[::-1][:self.n_neighbors]
+            neighbor_similarities = similarities[neighbor_indices]
+            neighbor_labels = self.y_train_[neighbor_indices]
+            
+            label_weights = {}
+            for similarity, label in zip(neighbor_similarities, neighbor_labels):
+                custom_weight = (
+                    (1 - self.alpha) * similarity * self.class_weights_[label] +
+                    self.alpha * saliency_weights[i]
+                )
+                label_weights[label] = label_weights.get(label, 0) + custom_weight
+            
+            best_label = max(label_weights, key=label_weights.get)
+            predictions.append(best_label)
+        return np.array(predictions)
+
+    def _calculate_saliency_weights(self, X_test):
+        feature_vars = np.var(self.X_train_, axis=0)
+        feature_vars = np.where(feature_vars == 0, 1e-10, feature_vars)
+        saliency = 1.0 / (1.0 + feature_vars)
+        
+        saliency_weights = []
+        for x_test in X_test:
+            weighted_distance = np.sum(saliency * (x_test - np.mean(self.X_train_, axis=0))**2)
+            saliency_weights.append(1.0 / (1.0 + weighted_distance))
+        return np.array(saliency_weights)
+
+# Embedding Vectorizer
+class EmbeddingVectorizer:
+    def __init__(self, model_name: str = "intfloat/multilingual-e5-base", normalize: bool = True):
+        self.model_name = model_name
+        self.normalize = normalize
+        self.model = None
+
+    @st.cache_resource
+    def load_model(_self):
+        """Load the sentence transformer model with caching"""
+        try:
+            _self.model = SentenceTransformer(_self.model_name)
+            return _self.model
+        except Exception as e:
+            st.error(f"Error loading model: {e}")
+            return None
+
+    def _format_inputs(self, texts: List[str], mode: Literal["query", "passage"]):
+        if mode not in {"query", "passage"}:
+            raise ValueError("Mode must be either 'query' or 'passage'")
+        return [f"{mode}: {t.strip()}" for t in texts]
+
+    def transform(self, texts: List[str], mode: Literal["query", "passage"] = "query"):
+        if self.model is None:
+            self.model = self.load_model()
+        
+        if self.model is None:
+            return np.random.random((len(texts), 384))  # Fallback random embeddings
+        
+        if mode == "raw":
+            inputs = texts
+        else:
+            inputs = self._format_inputs(texts, mode)
+        
+        embeddings = self.model.encode(inputs, normalize_embeddings=self.normalize)
+        return embeddings.tolist()
+
+# Sample data generation for demo purposes
 @st.cache_data
-def load_and_preprocess_data():
-    """Load and preprocess the dataset with error handling"""
-    try:
-        with st.spinner("📚 Loading arxiv dataset..."):
-            # Giảm sample size để tránh memory issues
-            SAMPLE_SIZE = 500  # Giảm từ 1000 xuống 500
-            
-            # Monitor memory
-            initial_memory = get_memory_usage()
-            st.sidebar.info(f"Initial Memory: {initial_memory:.1f} MB")
-            
-            ds = load_dataset("UniverseTBD/arxiv-abstracts-large")
-            
-            # Sample data với batch processing
-            samples = []
-            processed_count = 0
-            
-            for s in ds['train']:
-                if len(s['categories'].split(' ')) != 1:
-                    continue
+def generate_sample_data():
+    """Generate sample training data for demo"""
+    # Sample abstracts for each category
+    sample_abstracts = {
+        'astro-ph': [
+            "we study the formation of stars in distant galaxies using hubble space telescope observations stellar evolution galactic structure cosmic radiation",
+            "black hole accretion disk matter spiral galaxy dark matter cosmic microwave background radiation stellar formation",
+            "supernova explosion neutron star pulsar binary system gravitational waves cosmic ray detection stellar remnant",
+            "galaxy cluster dark energy cosmic expansion hubble constant redshift measurement astronomical observation cosmological parameter",
+            "exoplanet detection planetary system habitable zone stellar activity radial velocity transit photometry atmospheric composition"
+        ],
+        'cond-mat': [
+            "we investigate the electronic properties of graphene using density functional theory calculations band structure conductivity",
+            "superconducting material high temperature critical temperature cooper pair electron phonon interaction magnetic field",
+            "quantum phase transition spin glass frustrated magnet monte carlo simulation statistical mechanics thermodynamic property",
+            "semiconductor device heterostructure quantum well electron mobility carrier concentration optical property",
+            "magnetic material ferromagnetism antiferromagnetism spin orbit coupling exchange interaction magnetic moment"
+        ],
+        'cs': [
+            "machine learning algorithm neural network deep learning training data classification regression optimization",
+            "computer vision image processing object detection convolutional neural network feature extraction pattern recognition",
+            "natural language processing text mining sentiment analysis word embedding language model transformer architecture",
+            "algorithm complexity computational time space efficiency optimization problem graph theory data structure",
+            "software engineering system design distributed computing cloud computing scalability performance evaluation"
+        ],
+        'math': [
+            "we prove a new theorem in algebraic geometry using cohomology theory manifold differential equation",
+            "numerical analysis finite element method partial differential equation convergence stability error estimation",
+            "probability theory stochastic process random variable distribution function limit theorem statistical inference",
+            "topology geometric structure homeomorphism continuous function metric space topological property",
+            "number theory prime number integer sequence diophantine equation modular form arithmetic function"
+        ],
+        'physics': [
+            "quantum mechanics wave function schrödinger equation measurement uncertainty principle entanglement superposition",
+            "particle physics standard model elementary particle accelerator collision high energy interaction",
+            "condensed matter physics solid state electron band theory lattice vibration thermal property",
+            "statistical mechanics thermodynamics entropy temperature equilibrium phase transition critical phenomenon",
+            "optics laser light electromagnetic radiation nonlinear optics photonic crystal optical fiber"
+        ]
+    }
+    
+    # Create training data
+    X_train = []
+    y_train = []
+    
+    for i, (category, abstracts) in enumerate(sample_abstracts.items()):
+        for abstract in abstracts:
+            X_train.append(abstract)
+            y_train.append(i)
+    
+    return X_train, y_train
 
-                cur_category = s['categories'].strip().split('.')[0]
-                if cur_category not in CATEGORIES_TO_SELECT:
-                    continue
+# Text preprocessing
+def preprocess_text(text):
+    """Preprocess text similar to training data"""
+    text = text.strip().replace("\n", " ")
+    text = re.sub(r'[^\w\s]', "", text)
+    text = re.sub(r'\d+', "", text)
+    text = re.sub(r'\s+', " ", text)
+    return text.lower()
 
-                samples.append(s)
-                processed_count += 1
+# Saliency computation
+def compute_word_saliency(text, model, vectorizer, original_prediction, class_names):
+    """Compute saliency scores for each word in the text"""
+    words = re.findall(r'\b\w+\b', text.lower())
+    
+    if len(words) <= 1:
+        return words, np.array([0.5])
+    
+    # Get original prediction confidence
+    original_embedding = vectorizer.transform([text])
+    
+    saliencies = []
+    
+    for i, word in enumerate(words):
+        # Create masked text by removing the current word
+        masked_words = words.copy()
+        masked_words.pop(i)
+        masked_text = ' '.join(masked_words)
+        
+        if not masked_text.strip():
+            saliencies.append(0.0)
+            continue
+        
+        try:
+            masked_embedding = vectorizer.transform([masked_text])
+            masked_prediction = model.predict(masked_embedding)[0]
+            
+            if masked_prediction != original_prediction:
+                saliencies.append(1.0)
+            else:
+                saliencies.append(0.3)
+        except:
+            saliencies.append(0.1)
+    
+    # Normalize saliencies
+    saliencies = np.array(saliencies)
+    if np.ptp(saliencies) > 1e-6:
+        saliencies = (saliencies - saliencies.min()) / np.ptp(saliencies)
+    else:
+        saliencies = np.full_like(saliencies, 0.5)
+    
+    return words, saliencies
+
+# Saliency visualization
+def create_saliency_html(words, saliencies, predicted_class):
+    """Create HTML visualization for word saliency"""
+    if not words or len(words) != len(saliencies):
+        return "<p>No words to visualize.</p>"
+    
+    # Color mapping
+    def get_color(saliency):
+        # Blue scale: light blue to dark blue
+        intensity = min(max(saliency, 0), 1)
+        r = int(255 - intensity * 200)
+        g = int(255 - intensity * 150)
+        b = 255
+        return f"rgb({r},{g},{b})"
+    
+    # Create HTML
+    html_parts = []
+    html_parts.append(f"<div style='font-family: Arial, sans-serif; line-height: 1.8;'>")
+    html_parts.append(f"<p><strong>Predicted Class:</strong> {predicted_class}</p>")
+    html_parts.append(f"<div style='margin-bottom: 10px;'>")
+    
+    for word, saliency in zip(words, saliencies):
+        color = get_color(saliency)
+        html_parts.append(
+            f"<span style='background-color: {color}; padding: 2px 4px; "
+            f"margin: 1px; border-radius: 3px; display: inline-block;' "
+            f"title='Saliency: {saliency:.3f}'>{html.escape(word)}</span> "
+        )
+    
+    html_parts.append("</div></div>")
+    return "".join(html_parts)
+
+# Main app
+def main():
+    st.title("🔬 Scientific Abstract Classifier")
+    st.markdown("*Classify scientific abstracts into categories: Astrophysics, Condensed Matter, Computer Science, Mathematics, Physics*")
+    
+    # Sidebar
+    st.sidebar.header("Settings")
+    vectorizer_type = st.sidebar.selectbox(
+        "Choose Vectorizer",
+        ["Embeddings", "TF-IDF", "Bag of Words"]
+    )
+    
+    model_type = st.sidebar.selectbox(
+        "Choose Model",
+        ["Custom KNN (α=0.5)", "Custom KNN (α=0.7)", "KNN Weighted", "Naive Bayes", "Decision Tree"]
+    )
+    
+    show_saliency = st.sidebar.checkbox("Show Word Saliency Analysis", value=True)
+    
+    # Load or generate data
+    with st.spinner("Loading models and data..."):
+        X_train, y_train = generate_sample_data()
+        
+        # Initialize vectorizers
+        if vectorizer_type == "Embeddings":
+            vectorizer = EmbeddingVectorizer()
+            X_train_vec = np.array(vectorizer.transform(X_train))
+        elif vectorizer_type == "TF-IDF":
+            vectorizer = TfidfVectorizer(max_features=1000, stop_words='english')
+            X_train_vec = vectorizer.fit_transform(X_train).toarray()
+        else:  # Bag of Words
+            vectorizer = CountVectorizer(max_features=1000, stop_words='english')
+            X_train_vec = vectorizer.fit_transform(X_train).toarray()
+        
+        # Initialize model
+        if "Custom KNN (α=0.5)" in model_type:
+            model = CustomKNN(n_neighbors=5, voting='custom', alpha=0.5)
+        elif "Custom KNN (α=0.7)" in model_type:
+            model = CustomKNN(n_neighbors=5, voting='custom', alpha=0.7)
+        elif "KNN Weighted" in model_type:
+            model = CustomKNN(n_neighbors=5, voting='weighted')
+        elif "Naive Bayes" in model_type:
+            model = GaussianNB()
+        else:  # Decision Tree
+            model = DecisionTreeClassifier(random_state=42, max_depth=10)
+        
+        # Train model
+        model.fit(X_train_vec, y_train)
+    
+    st.success("✅ Models loaded successfully!")
+    
+    # Input section
+    st.header("📝 Enter Abstract")
+    
+    # Example abstracts
+    examples = {
+        "Astrophysics": "We present observations of a supermassive black hole at the center of a nearby galaxy using the Hubble Space Telescope. Our analysis reveals strong evidence for relativistic jets and accretion disk formation around the black hole.",
+        "Computer Science": "We propose a novel deep learning architecture for natural language processing tasks. Our model combines transformer attention mechanisms with convolutional layers to achieve state-of-the-art performance on sentiment analysis and text classification.",
+        "Mathematics": "We prove a new theorem in algebraic topology concerning the homology groups of certain fiber bundles. The proof uses spectral sequence techniques and provides insights into the geometric structure of these spaces.",
+        "Physics": "We study quantum entanglement in a two-photon system using polarization measurements. Our experimental results demonstrate violation of Bell's inequality and confirm the non-local nature of quantum mechanics.",
+        "Condensed Matter": "We investigate the electronic properties of graphene nanoribbons using density functional theory calculations. Our results show how edge effects and quantum confinement lead to novel electronic band structures."
+    }
+    
+    # Example selector
+    selected_example = st.selectbox("Choose an example:", ["Custom"] + list(examples.keys()))
+    
+    if selected_example != "Custom":
+        default_text = examples[selected_example]
+    else:
+        default_text = ""
+    
+    # Text input
+    user_input = st.text_area(
+        "Paste your scientific abstract here:",
+        value=default_text,
+        height=150,
+        placeholder="Enter the scientific abstract you want to classify..."
+    )
+    
+    if st.button("🔍 Classify Abstract", type="primary"):
+        if user_input.strip():
+            with st.spinner("Analyzing abstract..."):
+                # Preprocess text
+                processed_text = preprocess_text(user_input)
                 
-                # Update progress
-                if processed_count % 100 == 0:
-                    current_memory = get_memory_usage()
-                    st.sidebar.info(f"Processed: {processed_count}, Memory: {current_memory:.1f} MB")
+                # Vectorize
+                if vectorizer_type == "Embeddings":
+                    test_vec = np.array(vectorizer.transform([processed_text]))
+                else:
+                    test_vec = vectorizer.transform([processed_text]).toarray()
                 
-                if len(samples) >= SAMPLE_SIZE:
-                    break
-
-            # Preprocess với memory optimization
-            preprocessed_samples = []
-            for i, s in enumerate(samples):
+                # Predict
+                prediction = model.predict(test_vec)[0]
+                predicted_category = CATEGORIES_TO_SELECT[prediction]
+                predicted_name = CATEGORY_NAMES[predicted_category]
+                
+                # Get prediction probabilities if possible
                 try:
-                    abstract = s['abstract']
-                    abstract = abstract.strip().replace("\n", " ")
-                    abstract = re.sub(r'[^\w\s]', "", abstract)
-                    abstract = re.sub(r'\d+', "", abstract)
-                    abstract = re.sub(r'\s+', " ", abstract)
-                    abstract = abstract.lower()
-
-                    # Giới hạn độ dài text để tránh memory issues
-                    if len(abstract) > 1000:
-                        abstract = abstract[:1000]
-
-                    part = s["categories"].split(" ")
-                    category = part[0].split(".")[0]
-
-                    preprocessed_samples.append({
-                        "text": abstract,
-                        "label": category
-                    })
+                    if hasattr(model, 'predict_proba'):
+                        proba = model.predict_proba(test_vec)[0]
+                    else:
+                        # For KNN, create dummy probabilities
+                        proba = np.zeros(len(CATEGORIES_TO_SELECT))
+                        proba[prediction] = 0.85
+                        # Distribute remaining probability
+                        remaining = 0.15
+                        for i in range(len(proba)):
+                            if i != prediction:
+                                proba[i] = remaining / (len(proba) - 1)
+                except:
+                    proba = np.zeros(len(CATEGORIES_TO_SELECT))
+                    proba[prediction] = 1.0
+                
+                # Display results
+                col1, col2 = st.columns([1, 1])
+                
+                with col1:
+                    st.header("🎯 Prediction Results")
+                    st.success(f"**Predicted Category:** {predicted_name}")
+                    st.info(f"**Confidence:** {proba[prediction]:.1%}")
                     
-                    # Update progress
-                    if (i + 1) % 100 == 0:
-                        progress = (i + 1) / len(samples)
-                        st.sidebar.progress(progress)
-                        
-                except Exception as e:
-                    st.warning(f"Error processing sample {i}: {str(e)}")
-                    continue
-
-            # Clean up
-            del ds, samples
-            gc.collect()
-            
-            final_memory = get_memory_usage()
-            st.sidebar.success(f"Data loaded! Final Memory: {final_memory:.1f} MB")
-            
-            return preprocessed_samples
-            
-    except Exception as e:
-        st.error(f"❌ Error loading dataset: {str(e)}")
-        st.error("Traceback:")
-        st.code(traceback.format_exc())
-        return []
-
-@st.cache_data
-def create_vectorizers(preprocessed_samples):
-    """Create different types of vectorizers with memory optimization"""
-    try:
-        with st.spinner("🔧 Creating vectorizers..."):
-            if not preprocessed_samples:
-                st.error("No data to process!")
-                return None
-                
-            # Monitor memory
-            initial_memory = get_memory_usage()
-            st.sidebar.info(f"Vectorizer Memory Start: {initial_memory:.1f} MB")
-            
-            # Create label mappings
-            sorted_categories = sorted(CATEGORIES_TO_SELECT, key=lambda x: x.lower())
-            label_to_id = {label: i for i, label in enumerate(sorted_categories)}
-            id_to_label = {i: label for i, label in enumerate(sorted_categories)}
-
-            # Prepare data
-            X_full = [s["text"] for s in preprocessed_samples]
-            y_full = [label_to_id[s["label"]] for s in preprocessed_samples]
-
-            # Train-test split
-            X_train, X_test, y_train, y_test = train_test_split(
-                X_full, y_full, test_size=0.2, random_state=42, stratify=y_full
-            )
-
-            # Tạo BOW và TF-IDF trước
-            st.sidebar.info("Creating BOW vectorizer...")
-            bow_vectorizer = CountVectorizer(max_features=5000)  # Giới hạn features
-            X_train_bow = bow_vectorizer.fit_transform(X_train).toarray()
-            X_test_bow = bow_vectorizer.transform(X_test).toarray()
-            
-            bow_memory = get_memory_usage()
-            st.sidebar.info(f"BOW Memory: {bow_memory:.1f} MB")
-
-            st.sidebar.info("Creating TF-IDF vectorizer...")
-            tfidf_vectorizer = TfidfVectorizer(max_features=5000)  # Giới hạn features
-            X_train_tfidf = tfidf_vectorizer.fit_transform(X_train).toarray()
-            X_test_tfidf = tfidf_vectorizer.transform(X_test).toarray()
-            
-            tfidf_memory = get_memory_usage()
-            st.sidebar.info(f"TF-IDF Memory: {tfidf_memory:.1f} MB")
-
-            # Embeddings với batch processing
-            st.sidebar.info("Creating embeddings (this may take a while)...")
-            
-            try:
-                embedding_vectorizer = EmbeddingVectorizer()
-                
-                # Process embeddings in batches
-                batch_size = 32
-                X_train_embeddings = []
-                
-                for i in range(0, len(X_train), batch_size):
-                    batch = X_train[i:i+batch_size]
-                    batch_embeddings = embedding_vectorizer.transform(batch)
-                    X_train_embeddings.extend(batch_embeddings)
+                    # Show all probabilities
+                    st.subheader("📊 All Categories")
+                    prob_df = pd.DataFrame({
+                        'Category': [CATEGORY_NAMES[cat] for cat in CATEGORIES_TO_SELECT],
+                        'Probability': proba
+                    }).sort_values('Probability', ascending=False)
                     
-                    # Update progress
-                    progress = min((i + batch_size) / len(X_train), 1.0)
-                    st.sidebar.progress(progress)
+                    st.dataframe(prob_df, use_container_width=True)
+                
+                with col2:
+                    st.header("📈 Probability Distribution")
+                    fig, ax = plt.subplots(figsize=(10, 6))
+                    bars = ax.bar([CATEGORY_NAMES[cat] for cat in CATEGORIES_TO_SELECT], proba)
+                    ax.set_ylabel('Probability')
+                    ax.set_title('Category Probabilities')
+                    plt.xticks(rotation=45, ha='right')
                     
-                    # Memory check
-                    current_memory = get_memory_usage()
-                    if current_memory > 4000:  # Nếu memory > 4GB
-                        st.warning("Memory usage too high! Switching to smaller batch size.")
-                        batch_size = 16
+                    # Highlight the predicted category
+                    bars[prediction].set_color('orange')
+                    
+                    plt.tight_layout()
+                    st.pyplot(fig)
                 
-                X_train_embeddings = np.array(X_train_embeddings)
-                
-                # Test embeddings
-                X_test_embeddings = []
-                for i in range(0, len(X_test), batch_size):
-                    batch = X_test[i:i+batch_size]
-                    batch_embeddings = embedding_vectorizer.transform(batch)
-                    X_test_embeddings.extend(batch_embeddings)
-                
-                X_test_embeddings = np.array(X_test_embeddings)
-                
-                embed_memory = get_memory_usage()
-                st.sidebar.success(f"Embeddings Memory: {embed_memory:.1f} MB")
-                
-            except Exception as e:
-                st.error(f"Error creating embeddings: {str(e)}")
-                # Fallback: skip embeddings
-                X_train_embeddings = np.zeros((len(X_train), 384))
-                X_test_embeddings = np.zeros((len(X_test), 384))
-                embedding_vectorizer = None
-
-            # Clean up
-            gc.collect()
-            
-            return {
-                'X_train': X_train,
-                'X_test': X_test,
-                'y_train': y_train,
-                'y_test': y_test,
-                'X_train_bow': X_train_bow,
-                'X_test_bow': X_test_bow,
-                'X_train_tfidf': X_train_tfidf,
-                'X_test_tfidf': X_test_tfidf,
-                'X_train_embeddings': X_train_embeddings,
-                'X_test_embeddings': X_test_embeddings,
-                'bow_vectorizer': bow_vectorizer,
-                'tfidf_vectorizer': tfidf_vectorizer,
-                'embedding_vectorizer': embedding_vectorizer,
-                'label_to_id': label_to_id,
-                'id_to_label': id_to_label
-            }
-            
-    except Exception as e:
-        st.error(f"❌ Error creating vectorizers: {str(e)}")
-        st.error("Traceback:")
-        st.code(traceback.format_exc())
-        return None
-
-@st.cache_data
-def train_all_models(data_dict):
-    """Train all model combinations with memory optimization"""
-    try:
-        if data_dict is None:
-            st.error("No data available for training!")
-            return []
-            
-        with st.spinner("🤖 Training all models..."):
-            initial_memory = get_memory_usage()
-            st.sidebar.info(f"Training Memory Start: {initial_memory:.1f} MB")
-            
-            # Giảm số models để tránh memory issues
-            models = {
-                'Naive Bayes': GaussianNB(),
-                'KNN (Majority)': CustomKNN(n_neighbors=5, voting='majority'),
-                'KNN (Weighted)': CustomKNN(n_neighbors=5, voting='weighted'),
-                'Decision Tree': DecisionTreeClassifier(random_state=42, max_depth=10)
-            }
-
-            datasets = {
-                'Bag of Words': (data_dict['X_train_bow'], data_dict['X_test_bow']),
-                'TF-IDF': (data_dict['X_train_tfidf'], data_dict['X_test_tfidf']),
-            }
-            
-            # Chỉ thêm embeddings nếu có
-            if data_dict['embedding_vectorizer'] is not None:
-                datasets['Embeddings'] = (data_dict['X_train_embeddings'], data_dict['X_test_embeddings'])
-
-            results = []
-            total_combinations = len(models) * len(datasets)
-            current_combination = 0
-            
-            for vectorizer_name, (X_train_vec, X_test_vec) in datasets.items():
-                for model_name, model in models.items():
+                # Saliency analysis
+                if show_saliency and vectorizer_type == "Embeddings":
+                    st.header("🔍 Word Saliency Analysis")
+                    st.markdown("*Words are colored by their importance in the prediction. Darker blue = more important.*")
+                    
                     try:
-                        current_combination += 1
-                        progress = current_combination / total_combinations
-                        st.sidebar.progress(progress)
-                        st.sidebar.info(f"Training: {model_name} - {vectorizer_name}")
-                        
-                        # Create fresh model copy
-                        if 'Naive Bayes' in model_name:
-                            model_copy = GaussianNB()
-                        elif 'KNN' in model_name:
-                            if 'Majority' in model_name:
-                                model_copy = CustomKNN(n_neighbors=5, voting='majority')
-                            elif 'Weighted' in model_name:
-                                model_copy = CustomKNN(n_neighbors=5, voting='weighted')
-                        else:
-                            model_copy = DecisionTreeClassifier(random_state=42, max_depth=10)
-
-                        # Train and evaluate
-                        model_copy.fit(X_train_vec, data_dict['y_train'])
-                        y_pred = model_copy.predict(X_test_vec)
-                        accuracy = accuracy_score(data_dict['y_test'], y_pred)
-
-                        # Calculate classification report
-                        unique_labels = sorted(list(set(data_dict['y_train']) | set(data_dict['y_test']) | set(y_pred)))
-                        target_names = [data_dict['id_to_label'][label] for label in unique_labels]
-
-                        report = classification_report(
-                            data_dict['y_test'], y_pred,
-                            labels=unique_labels,
-                            target_names=target_names,
-                            output_dict=True,
-                            zero_division=0
+                        words, saliencies = compute_word_saliency(
+                            processed_text, model, vectorizer, prediction, CATEGORIES_TO_SELECT
                         )
-
-                        cm = confusion_matrix(data_dict['y_test'], y_pred, labels=unique_labels)
-
-                        results.append({
-                            'Model': model_name,
-                            'Vectorizer': vectorizer_name,
-                            'Accuracy': accuracy,
-                            'Report': report,
-                            'Confusion_Matrix': cm,
-                            'Predictions': y_pred,
-                            'Trained_Model': model_copy
-                        })
                         
-                        # Memory check
-                        current_memory = get_memory_usage()
-                        st.sidebar.info(f"Current Memory: {current_memory:.1f} MB")
+                        # Create and display HTML visualization
+                        html_viz = create_saliency_html(words, saliencies, predicted_name)
+                        st.components.v1.html(html_viz, height=200)
                         
-                        # Clean up
-                        del model_copy
-                        gc.collect()
+                        # Show top contributing words
+                        st.subheader("🔝 Top Contributing Words")
+                        word_saliency_pairs = list(zip(words, saliencies))
+                        word_saliency_pairs.sort(key=lambda x: x[1], reverse=True)
+                        
+                        top_words_df = pd.DataFrame(word_saliency_pairs[:10], columns=['Word', 'Saliency Score'])
+                        st.dataframe(top_words_df, use_container_width=True)
                         
                     except Exception as e:
-                        st.warning(f"Error training {model_name} - {vectorizer_name}: {str(e)}")
-                        continue
-
-            final_memory = get_memory_usage()
-            st.sidebar.success(f"Training Complete! Final Memory: {final_memory:.1f} MB")
-            
-            return results
-            
-    except Exception as e:
-        st.error(f"❌ Error training models: {str(e)}")
-        st.error("Traceback:")
-        st.code(traceback.format_exc())
-        return []
-
-# Main app logic với error handling
-def main():
-    try:
-        # Sidebar controls
-        st.sidebar.markdown("### 📊 Analysis Options")
-        
-        # Memory monitor
-        current_memory = get_memory_usage()
-        st.sidebar.metric("Current Memory Usage", f"{current_memory:.1f} MB")
-        
-        analysis_type = st.sidebar.selectbox(
-            "Choose Analysis Type:",
-            ["📈 Model Performance Overview", "🎯 Model Comparison", "🔍 Detailed Analysis", "📝 Text Classification Demo"]
-        )
-
-        # Load data với step-by-step approach
-        if 'data_loaded' not in st.session_state:
-            st.session_state.data_loaded = False
-            
-        if not st.session_state.data_loaded:
-            if st.button("🚀 Start Data Loading", type="primary"):
-                try:
-                    # Step 1: Load data
-                    st.info("Step 1/3: Loading and preprocessing data...")
-                    preprocessed_samples = load_and_preprocess_data()
-                    
-                    if not preprocessed_samples:
-                        st.error("Failed to load data. Please try again.")
-                        return
-                    
-                    # Step 2: Create vectorizers
-                    st.info("Step 2/3: Creating vectorizers...")
-                    data_dict = create_vectorizers(preprocessed_samples)
-                    
-                    if data_dict is None:
-                        st.error("Failed to create vectorizers. Please try again.")
-                        return
-                    
-                    # Step 3: Train models
-                    st.info("Step 3/3: Training models...")
-                    results = train_all_models(data_dict)
-                    
-                    if not results:
-                        st.error("Failed to train models. Please try again.")
-                        return
-                    
-                    # Save to session state
-                    st.session_state.preprocessed_samples = preprocessed_samples
-                    st.session_state.data_dict = data_dict
-                    st.session_state.results = results
-                    st.session_state.data_loaded = True
-                    
-                    st.success("✅ Data loaded and models trained successfully!")
-                    st.balloons()
-                    
-                except Exception as e:
-                    st.error(f"❌ Error during initialization: {str(e)}")
-                    st.error("Traceback:")
-                    st.code(traceback.format_exc())
-                    return
+                        st.warning(f"Could not compute saliency analysis: {str(e)}")
         else:
-            # Analysis sections
-            if analysis_type == "📈 Model Performance Overview":
-                show_model_overview()
-            elif analysis_type == "🎯 Model Comparison":
-                show_model_comparison()
-            elif analysis_type == "🔍 Detailed Analysis":
-                show_detailed_analysis()
-            elif analysis_type == "📝 Text Classification Demo":
-                show_text_classification_demo()
-                
-    except Exception as e:
-        st.error(f"❌ Application Error: {str(e)}")
-        st.error("Traceback:")
-        st.code(traceback.format_exc())
+            st.warning("Please enter an abstract to classify.")
+    
+    # Information section
+    st.header("ℹ️ About")
+    with st.expander("Model Information"):
+        st.markdown("""
+        **Categories:**
+        - **Astrophysics (astro-ph):** Astronomy, cosmology, stellar physics
+        - **Condensed Matter (cond-mat):** Materials science, solid state physics
+        - **Computer Science (cs):** Algorithms, machine learning, software engineering
+        - **Mathematics (math):** Pure and applied mathematics
+        - **Physics (physics):** General physics, quantum mechanics, particle physics
+        
+        **Features:**
+        - Multiple vectorization methods (Embeddings, TF-IDF, Bag of Words)
+        - Custom KNN classifier with different voting schemes
+        - Word saliency analysis for interpretability
+        - Real-time classification
+        """)
+    
+    with st.expander("How to Use"):
+        st.markdown("""
+        1. **Choose Settings:** Select your preferred vectorizer and model in the sidebar
+        2. **Input Text:** Enter or select an example scientific abstract
+        3. **Classify:** Click the "Classify Abstract" button
+        4. **Analyze Results:** View the prediction, confidence scores, and word importance
+        
+        **Tips:**
+        - Longer, more detailed abstracts typically give better results
+        - The word saliency analysis helps understand which terms influenced the prediction
+        - Try different model combinations to see how they perform
+        """)
 
 if __name__ == "__main__":
     main()

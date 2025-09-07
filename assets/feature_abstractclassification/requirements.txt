@@ -9,3 +9,4 @@ datasets
 sentence-transformers
 scipy
 psutil
+transformers
