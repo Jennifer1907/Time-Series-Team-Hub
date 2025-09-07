@@ -492,6 +492,11 @@ def main():
                         
                         # Filter out stop words and short words
                         filtered_word_saliency = []
+                        EXTENDED_STOP_WORDS = set(ENGLISH_STOP_WORDS).union({
+                            'we', 'our', 'us', 'using', 'used', 'show', 'study', 'present', 
+                            'investigate', 'analyze', 'result', 'method', 'paper', 'work',
+                            'new', 'novel', 'propose', 'develop', 'based', 'obtained'
+                        })
                         for word, saliency in zip(words, saliencies):
                             if (word.lower() not in EXTENDED_STOP_WORDS and 
                                 len(word) >= 3 and 
