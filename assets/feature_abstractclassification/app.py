@@ -11,7 +11,37 @@ import gc  # Garbage collector để giải phóng memory
 import psutil  # Monitor memory usage
 import traceback
 
-# ... (giữ nguyên các import khác)
+import streamlit as st
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+import plotly.express as px
+import plotly.graph_objects as go
+from plotly.subplots import make_subplots
+
+import re
+import math
+from collections import Counter, defaultdict
+from typing import List, Dict, Literal, Union
+import warnings
+warnings.filterwarnings('ignore')
+
+# ML Libraries
+from datasets import load_dataset
+from sentence_transformers import SentenceTransformer
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score, classification_report, confusion_matrix
+from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer, ENGLISH_STOP_WORDS
+from sklearn.cluster import KMeans
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.naive_bayes import GaussianNB
+from sklearn.base import BaseEstimator, ClassifierMixin
+from sklearn.utils.validation import check_X_y, check_array
+from sklearn.utils.multiclass import unique_labels
+from scipy.spatial.distance import cdist
+from scipy.sparse import issparse
 
 # Thêm cấu hình memory
 st.set_page_config(
