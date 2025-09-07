@@ -487,13 +487,33 @@ def main():
                         html_viz = create_saliency_html(words, saliencies, predicted_name)
                         st.components.v1.html(html_viz, height=200)
                         
-                        # Show top contributing words
+                        # Show top contributing words (filtered)
                         st.subheader("🔝 Top Contributing Words")
-                        word_saliency_pairs = list(zip(words, saliencies))
-                        word_saliency_pairs.sort(key=lambda x: x[1], reverse=True)
                         
-                        top_words_df = pd.DataFrame(word_saliency_pairs[:10], columns=['Word', 'Saliency Score'])
-                        st.dataframe(top_words_df, use_container_width=True)
+                        # Filter out stop words and short words
+                        filtered_word_saliency = []
+                        for word, saliency in zip(words, saliencies):
+                            if (word.lower() not in EXTENDED_STOP_WORDS and 
+                                len(word) >= 3 and 
+                                word.isalpha() and
+                                saliency > 0.1):  # Only include words with meaningful saliency
+                                filtered_word_saliency.append((word, saliency))
+                        
+                        # Sort by saliency score
+                        filtered_word_saliency.sort(key=lambda x: x[1], reverse=True)
+                        
+                        if filtered_word_saliency:
+                            # Take top 10 meaningful words
+                            top_words_df = pd.DataFrame(
+                                filtered_word_saliency[:10], 
+                                columns=['Word', 'Saliency Score']
+                            )
+                            st.dataframe(top_words_df, use_container_width=True)
+                            
+                            # Show statistics
+                            st.caption(f"Showing {len(top_words_df)} most important words (stop words filtered out)")
+                        else:
+                            st.warning("No significant contributing words found after filtering stop words.")
                         
                     except Exception as e:
                         st.warning(f"Could not compute saliency analysis: {str(e)}")
