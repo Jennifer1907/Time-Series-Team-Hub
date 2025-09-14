@@ -281,6 +281,7 @@ def compute_word_saliency(text, model, vectorizer, original_prediction, class_na
             masked_embedding = vectorizer.transform([masked_text])
             masked_prediction = model.predict(masked_embedding)[0]
             
+            
             if masked_prediction != original_prediction:
                 saliencies.append(1.0)
             else:
@@ -291,9 +292,21 @@ def compute_word_saliency(text, model, vectorizer, original_prediction, class_na
     # Normalize saliencies
     saliencies = np.array(saliencies)
     if np.ptp(saliencies) > 1e-6:
-        saliencies = (saliencies - saliencies.min()) / np.ptp(saliencies)
+    # min-max chuẩn
+        saliencies = (saliencies - saliencies.min()) / (rng + 1e-8)
     else:
-        saliencies = np.full_like(saliencies, 0.5)
+    # ---- Cách A: z-score + sigmoid để kéo giãn nhỏ ----
+        m, std = saliencies.mean(), saliencies.std()
+        if std > 0:
+            z = (saliencies - m) / (std + 1e-8)
+            g = 5.0  # hệ số "gain" (tăng nếu muốn tương phản mạnh hơn)
+            s = 1.0 / (1.0 + np.exp(-g * z))          # sigmoid -> (0,1)
+            saliencies = (s - s.min()) / (s.max() - s.min() + 1e-8)
+        else:
+        # ---- Cách B: rank-based (mọi giá trị bằng nhau) ----
+            idx = np.arange(len(saliencies))
+            ranks = np.argsort(np.argsort(idx)).astype(float)
+            saliencies = ranks / max(len(saliencies) - 1, 1)
     
     return words, saliencies
 
