@@ -100,8 +100,7 @@ Sau khi “làm bạn” với **Random Forest** và **AdaBoost** ở tuần tr�
 📂 **_Tài liệu đi kèm:_**  
 {{< pdf src="/Time-Series-Team-Hub/pdf/M4W2D1+2_GradientBoosting.pdf" title="M4W2D1+2_GradientBoosting" height="700px" >}}  
 {{< pdf src="/Time-Series-Team-Hub/pdf/M4W2D3_WebDeploymentUsingFastAPI.pdf" title="M4W2D3_WebDeploymentUsingFastAPI" height="700px" >}}  
-{{< pdf src="/Time-Series-Team-Hub/pdf/M4W2D4_XGBoost.pdf" title="M4W2D4_XGBoost" height="700px" >}}  
-{{< pdf src="/Time-Series-Team-Hub/pdf/M4W2_Extra_GradientBoosting_StepByStep.pdf" title="M4W2_Extra_GradientBoosting_StepByStep" height="700px" >}}  
+{{< pdf src="/Time-Series-Team-Hub/pdf/M4W2D4_XGBoost.pdf" title="M4W2D4_XGBoost" height="700px" >}} 
 
 ---
 
