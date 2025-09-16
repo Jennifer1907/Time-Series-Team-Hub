@@ -5,7 +5,7 @@ description: "Tuần này chúng ta tiếp nối series Tree-based models với 
 image: images/Boosting.png
 categories:
   - minutes
-tags:
+tags: 
   - gradient-boosting
   - xgboost
   - fastapi
