@@ -21,8 +21,8 @@ draft: false
 Sau khi “làm bạn” với **Random Forest** và **AdaBoost** ở tuần trước, tuần này series Tree-based models tiếp tục với hai cao thủ đình đám: **Gradient Boosting** và **XGBoost**.  
 
 Điểm đặc biệt của tuần này:  
-- **Gradient Boosting**: đi từ ví dụ tính tay từng bước để hiểu rõ cơ chế “fit residuals”, rồi code lại với scikit-learn.  
-- **XGBoost**: khai thác phía sau màn hình — công thức Taylor bậc 2, similarity score, regularization — và áp dụng cho regression, classification, time series.  
+- **Gradient Boosting**: đi từ ví dụ tính tay từng bước để hiểu rõ cơ chế “fit residuals”, rồi code lại với scikit-learn, kèm phần **Behind the Scenes** (giải thích nội bộ: residual = negative gradient, leaf value từ minimization).  
+- **XGBoost**: đào sâu **Behind the Scenes** hơn nữa — công thức Taylor bậc 2, similarity score, regularization — và áp dụng cho regression, classification, time series.  
 - **FastAPI**: một ngày “MLOps nhẹ nhàng” để học cách biến model thành web API với CRUD, response model, và mini case study “Fashion Detection App”.  
 
 ---
@@ -40,7 +40,7 @@ Sau khi “làm bạn” với **Random Forest** và **AdaBoost** ở tuần tr�
 🧠 **Gradient Boosting – Lý thuyết & ứng dụng** *(Main Session)*  
 **Giảng viên:** Dr. Đình Vinh  
 - Gradient Boosting cho regression & classification: loss, gradient, leaf output.  
-- Phần “Behind the scenes”: tại sao residual = negative gradient, tại sao dùng Taylor approximation.  
+- Phần **Behind the Scenes**: tại sao residual = negative gradient, tại sao dùng Taylor approximation để xấp xỉ loss.  
 - Ứng dụng vào **time series forecasting**: walk-forward CV, rolling vs expanding window, đánh giá bằng MAE/MSE/MAPE.  
 
 🗓️ **Thứ Năm - 11/09/2025**  
@@ -55,7 +55,7 @@ Sau khi “làm bạn” với **Random Forest** và **AdaBoost** ở tuần tr�
 🚀 **XGBoost (1)** *(Main Session)*  
 **Giảng viên:** Dr. Đình Vinh  
 - XGBoost cho regression & classification.  
-- **Similarity Score** để chọn split, leaf output tính từ gradient + Hessian.  
+- **Behind the Scenes**: công thức Taylor bậc 2 (gradient + Hessian), similarity score để chọn split, leaf output.  
 - Regularization: λ (L2), γ (min split loss), shrinkage (learning rate).  
 - Handling missing values, ứng dụng cho time series.  
 
@@ -81,6 +81,7 @@ Sau khi “làm bạn” với **Random Forest** và **AdaBoost** ở tuần tr�
 - Hiểu cơ chế boosting stage-wise: mỗi cây fit pseudo-residuals.  
 - Làm ví dụ tay cho regression (MSE) & classification (logistic).  
 - Biết cách kiểm soát overfit bằng learning rate, depth nhỏ, subsample.  
+- Hiểu **Behind the Scenes**: residual = negative gradient, leaf value từ minimization/Taylor.  
 - Áp dụng cho time series với walk-forward CV.  
 
 📌 **XGBoost**  
