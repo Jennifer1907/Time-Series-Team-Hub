@@ -3,14 +3,10 @@ title: "Module 4 - Tuần 2: Tree Series Tiếp Tục – Gradient Boosting, XGB
 date: 2025-09-14T10:00:00+07:00
 description: "Tuần này chúng ta tiếp nối series Tree-based models với Gradient Boosting và XGBoost, học từ ví dụ tính tay đến code thật, kèm bonus 1 ngày FastAPI để đưa mô hình lên web!"
 image: images/Boosting.png
-categories:
-  - minutes
-tags: 
-  - features
-  - gradient-boosting
-  - xgboost
-  - fastapi
-  - timeseries
+categories:  
+  - minutes  
+tags:  
+  - feature  
 draft: false
 
 ---
