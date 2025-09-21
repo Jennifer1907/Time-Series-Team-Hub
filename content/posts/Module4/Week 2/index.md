@@ -6,6 +6,7 @@ image: images/Boosting.png
 categories:
   - minutes
 tags: 
+  - features
   - gradient-boosting
   - xgboost
   - fastapi
