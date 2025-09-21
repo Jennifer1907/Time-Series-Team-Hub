@@ -2,7 +2,7 @@
 title: "Module 4 - Tuần 1: Random Forest • AdaBoost • Gradio demo • Tổng quan Time-series"
 date: 2025-09-02T09:00:00+07:00
 description: "Tuần mở màn của Module 4 tập trung vào hai thuật toán ensemble chủ lực (Random Forest, AdaBoost), thực hành dựng demo bằng Gradio (Basic MLOps), và mở rộng nền tảng về dữ liệu chuỗi thời gian – một tuần học thiên về thực hành, ứng dụng và kết nối giữa mô hình & triển khai."
-image: assets/images/RF_AdaBoost.png
+image: images/RF_AdaBoost.png
 caption: "Minh họa dòng chảy học tập tuần: Random Forest → Gradio → AdaBoost → Time-series → Exercise."
 categories:
   - minutes
