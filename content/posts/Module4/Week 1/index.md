@@ -95,9 +95,9 @@ Tuần này, chúng ta bước vào các kỹ thuật **ensemble learning** tr�
 ---
 
 📂 **_Tài liệu đi kèm:_**
-{{< pdf src="/Time-Series-Team-Hub/pdf/M4W1.pdf" title="M4W1" height="700px" >}}
-
-{{< pdf src="/Time-Series-Team-Hub/pdf/M4W1D5_A_Gentle_Introduction_To_AdaBoost.pdf" title="M4W1D5_A_Gentle_Introduction_To_AdaBoost" height="700px" >}}
+{{< pdf src="/Time-Series-Team-Hub/pdf/M4W1D3+4__Random_Forest.pdf" title="M4W2D3+4__Random_Forest.pdf" height="700px" >}}  
+{{< pdf src="/Time-Series-Team-Hub/pdf/M4W1D5__Gradio_for_ML_Model_Demos.pdf" title="M4W1D5__Gradio_for_ML_Model_Demos" height="700px" >}}  
+{{< pdf src="/Time-Series-Team-Hub/pdf/M4W1D6_AdaBoost.pdf" title="M4W1D6_AdaBoost.pdf" height="700px" >}} 
 
 
 
