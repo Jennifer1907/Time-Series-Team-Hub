@@ -6,7 +6,6 @@ image: images/Boosting.png
 categories:  
   - minutes  
 tags:  
-  - feature  
 draft: false
 
 ---
