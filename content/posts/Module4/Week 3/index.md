@@ -102,8 +102,9 @@ Nếu tuần trước chúng ta dừng lại ở Gradient Boosting & XGBoost, th
 
 📂 _Tài liệu đi kèm:_ 
 
-({{< pdf src="/Time-Series-Team-Hub/pdf/M4W4D2D4_All_about_tree.pdf" title="M4W4D2D4_All_about_tree" height="700px" >}}) 
+{{< pdf src="/Time-Series-Team-Hub/pdf/M4W4D2D4_All_about_tree.pdf" title="M4W4D2D4_All_about_tree" height="700px" >}}  
 {{< pdf src="/Time-Series-Team-Hub/pdf/M4W3D3_DockerForML.pdf" title="M4W3D3_DockerForML" height="700px" >}}  
+
 ---
 
 🧠 **_Repository được quản lý bởi [Time Series Team Hub](https://github.com/Jennifer1907/Time-Series-Team-Hub)_**
