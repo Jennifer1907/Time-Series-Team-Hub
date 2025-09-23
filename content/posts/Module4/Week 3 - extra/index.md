@@ -2,10 +2,11 @@
 title: "Module 4 - Tuần 3: Hành trình khám phá **Tree-Based Models**: Từ lý thuyết đến thực chiến"
 date: 2025-09-22T10:00:00+07:00
 description:  "Tuần 3 là tuần 'cây cối nở rộ': chúng ta ôn tập toàn bộ họ nhà Tree từ Random Forest đến XGBoost, rồi học LightGBM!"
-image: images/tree_tree.png
+image: images/all_about_tree.jpg
 categories:  
   - minutes  
 tags:  
+  - features
   
 draft: false
 ---
