@@ -1,18 +1,17 @@
 ---
 title: "Module 4 - Tuần 3: Hành trình khám phá **Tree-Based Models**: Từ lý thuyết đến thực chiến"
-date: 2025-09-23T10:00:00+07:00
-description: "Tuần 3 là tuần 'cây cối nở rộ': chúng ta ôn tập toàn bộ họ nhà Tree từ Random Forest đến XGBoost, rồi học LightGBM!"
-image: 
+date: 2025-09-22T10:00:00+07:00
+description:  "Tuần 3 là tuần 'cây cối nở rộ': chúng ta ôn tập toàn bộ họ nhà Tree từ Random Forest đến XGBoost, rồi học LightGBM!"
+image: images/tree_tree.png
 categories:  
   - minutes  
 tags:  
-  - features
   
 draft: false
-
 ---
 
 ✨ Đây không chỉ là một bài blog, mà là toàn bộ **tinh túy quá trình học tập và tổng hợp** của nhóm với các mô hình cây. Từ những bước tính tay đơn giản nhất cho một cây quyết định, đến việc so sánh benchmark hàng loạt mô hình hiện đại như **XGBoost** và **LightGBM**.  
+
 
 ---
 
@@ -99,3 +98,12 @@ Blog này đi kèm với một bản PDF chi tiết, trong đó:
 ---
 
 ✍️ *Viết bởi nhóm gồm các thành viên đam mê dữ liệu, mong muốn biến hành trình học tập thành tài liệu hữu ích cho cộng đồng.*
+---
+
+📂 _Tài liệu đi kèm:_ 
+
+{{< pdf src="/Time-Series-Team-Hub/pdf/M4W4D2D4_All_about_tree.pdf" title="M4W4D2D4_All_about_tree" height="700px" >}}  
+
+---
+
+🧠 **_Repository được quản lý bởi [Time Series Team Hub](https://github.com/Jennifer1907/Time-Series-Team-Hub)_**
