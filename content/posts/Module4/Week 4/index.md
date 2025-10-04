@@ -18,6 +18,7 @@ draft: false
 
 Chào mừng bạn đến với Heart Disease Classifier – dự án mở rộng từ nhóm Time-Series Team.
 Hệ thống này tập trung vào chẩn đoán và phân loại bệnh tim dựa trên nhiều hướng tiếp cận tiên tiến trong Machine Learning & Deep Learning, đồng thời tích hợp Explainable AI (XAI) giúp giải thích quyết định mô hình.
+
 ---
 
 ## 🧪 Trải nghiệm Heart Disease Classifier tại đây
