@@ -5,8 +5,9 @@ description: Mô hình dự đoán bệnh tim mở rộng hướng kết hợp e
 image: images/heart.jpg
 caption:
 categories:
-  - minutes
+    - minutes
 tags:
+    - feature
 
 draft: false
 ---
