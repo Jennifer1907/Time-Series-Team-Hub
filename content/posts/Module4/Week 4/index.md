@@ -4,22 +4,24 @@ date: 2025-09-06T10:00:00+07:00
 description: Mô hình dự đoán bệnh tim mở rộng hướng kết hợp ensemble learning và tăng cường dataset bằng dữ liệu ảnh.
 image: images/heart.jpg
 caption:
-categories:
-    - minutes
-tags:
-    - feature
+categories:  
+  - minutes  
+tags:  
+  - feature
 
 draft: false
 ---
 
 ## 🧠 Module 4 - Tuần 4 — ❤️ Heart Disease Classifier – Time-Series Team
 
+---
+
 Chào mừng bạn đến với Heart Disease Classifier – dự án mở rộng từ nhóm Time-Series Team.
 Hệ thống này tập trung vào chẩn đoán và phân loại bệnh tim dựa trên nhiều hướng tiếp cận tiên tiến trong Machine Learning & Deep Learning, đồng thời tích hợp Explainable AI (XAI) giúp giải thích quyết định mô hình.
 ---
 
 ## 🧪 Trải nghiệm Heart Disease Classifier tại đây
-- **Slide giới thiệu sản phẩm**: [Canvas](https://www.canva.com/design/DAGyRQvrHYc/ECpVJ2t6DJhdUMLmYi411g/view?utm_content=DAGyRQvrHYc&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h790036dacb)
+- **Slide giới thiệu sản phẩm**: [Canvas](https://www.canva.com/design/DAG0zM148Qg/hn0w-MEamlx4noLQBs0JtA/view?utm_content=DAG0zM148Qg&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h532a96a668)
 
 
 ### 🧪 Mã nguồn / Notebook
@@ -40,6 +42,7 @@ Hệ thống này tập trung vào chẩn đoán và phân loại bệnh tim d�
 - Tunicate Swarm Algorithm (TSA): Thuật toán meta-heuristic lấy cảm hứng từ sinh học, tối ưu trọng số kết hợp mô hình.
 - Triển khai & Kết quả: So sánh độ chính xác, ROC–AUC, và độ ổn định khi thay đổi dữ liệu.
 - XAI: Dùng beeswarm plot và feature importance để minh hoạ vai trò của từng mô hình con trong ensemble.
+
 2. **CardioFusion**: Ghép đa phương thức EchoNet + Cleveland
 - Pipeline tổng quát: Hợp nhất dữ liệu tabular (Cleveland) và video tim (EchoNet).
 - Mô hình thành phần:
@@ -59,9 +62,9 @@ Explainable AI (XAI):
 ---
 
 ## 📊 Kết quả tiêu biểu
-**Pipeline 1**: Stacking + meta-model và stacking equal weight cho thấy khả năng tối ưu trọng số dự đoán tốt hơn các mô hình riêng lẻ.
-**Pipeline 2**: Sử dụng ResNet-50 để trích đặc trưng từ EchoNet và MLP để trích đặc trưng từ Cleveland. Hợp nhất (fusion) đặc trưng của CNN + MLP để dự đoán bệnh tim
+- **Pipeline 1**: Stacking + meta-model và stacking equal weight cho thấy khả năng tối ưu trọng số dự đoán tốt hơn các mô hình riêng lẻ.
 
+- **Pipeline 2**: Sử dụng ResNet-50 để trích đặc trưng từ EchoNet và MLP để trích đặc trưng từ Cleveland. Hợp nhất (fusion) đặc trưng của CNN + MLP để dự đoán bệnh tim
 
 ---
 
