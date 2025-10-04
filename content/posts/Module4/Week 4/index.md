@@ -1,8 +1,6 @@
 ---
 title: "Module 4 - Tuần 4 - Tabular Data Project: Phân loại khả năng mắc bệnh tim dựa vào các triệu chứng"
 date: 2025-09-06T10:00:00+07:00
-description: Mô hình dự đoán bệnh tim triển khaititle: "Module 4 - Tuần 4 - Tabular Data Project: Phân loại khả năng mắc bệnh tim dựa vào các triệu chứng"
-date: 2025-09-06T10:00:00+07:00
 description: Mô hình dự đoán bệnh tim mở rộng hướng kết hợp ensemble learning và tăng cường dataset bằng dữ liệu ảnh.
 image: images/heart.jpg
 caption:
