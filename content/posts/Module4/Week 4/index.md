@@ -7,7 +7,7 @@ caption:
 categories:
   - minutes
 tags:
- 
+
 draft: false
 ---
 
@@ -18,14 +18,13 @@ Hệ thống này tập trung vào chẩn đoán và phân loại bệnh tim d�
 ---
 
 ## 🧪 Trải nghiệm Heart Disease Classifier tại đây
-- **Dùng thử ngay**: [Streamlit](https://abstractclassifer.streamlit.app/) 
 - **Slide giới thiệu sản phẩm**: [Canvas](https://www.canva.com/design/DAGyRQvrHYc/ECpVJ2t6DJhdUMLmYi411g/view?utm_content=DAGyRQvrHYc&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h790036dacb)
 
-Khi deploy trên Streamlit Cloud có thể gặp giới hạn tài nguyên. Nếu cần, bạn có thể **clone** mã nguồn và chạy local để có trải nghiệm mượt hơn.
 
 ### 🧪 Mã nguồn / Notebook
 - **Google Colab**: [Colab-Pipeline 1](https://colab.research.google.com/drive/1b4kaHX-tU743qJOBEm71biyhZE2e3Q1z?usp=sharing)
-- **Source Code of Streamlit**: [Github](https://github.com/Jennifer1907/Time-Series-Team-Hub/tree/main/assets/feature_abstractclassification)
+- **Google Colab**: [Colab-Pipeline 1](https://colab.research.google.com/drive/1Sy2U8LzNYSV9NmpGZJb5d9Oqpo7ssiI-?usp=sharing)
+
 
 ### 👉 Đối tượng người dùng
 - Nhà nghiên cứu AI Y tế: thử nghiệm mô hình đa phương thức trong chẩn đoán tim mạch.
@@ -34,7 +33,6 @@ Khi deploy trên Streamlit Cloud có thể gặp giới hạn tài nguyên. Nế
 ---
 
 ## 🎯 Hai hướng mở rộng chính
-
 1. **So sánh Ensemble Learning**: Stacking vs TSA
 - Pipeline tổng quát: Chuẩn hoá dữ liệu Cleveland, huấn luyện nhiều mô hình cơ sở.
 - Stacking Model: Kết hợp dự đoán của Random Forest, XGBoost, LightGBM, CatBoost → Logistic Regression meta-learner.
@@ -50,7 +48,6 @@ Khi deploy trên Streamlit Cloud có thể gặp giới hạn tài nguyên. Nế
 - Triển khai & Kết quả: Fusion cho thấy cải thiện rõ rệt so với dùng từng nguồn dữ liệu riêng lẻ.
 
 ## 🔍 Giải thích & Ứng dụng
-
 Explainable AI (XAI):
 - Với ensemble: đánh giá tầm ảnh hưởng toàn cục của mỗi mô hình cơ sở.
 - Với fusion: trực quan hóa trọng số đặc trưng tim mạch và chỉ số lâm sàng.
@@ -61,8 +58,8 @@ Explainable AI (XAI):
 ---
 
 ## 📊 Kết quả tiêu biểu
-
 **Pipeline 1**: Stacking + meta-model và stacking equal weight cho thấy khả năng tối ưu trọng số dự đoán tốt hơn các mô hình riêng lẻ.
+**Pipeline 2**: Sử dụng ResNet-50 để trích đặc trưng từ EchoNet và MLP để trích đặc trưng từ Cleveland. Hợp nhất (fusion) đặc trưng của CNN + MLP để dự đoán bệnh tim
 
 
 ---
