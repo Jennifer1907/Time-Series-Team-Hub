@@ -98,5 +98,4 @@ Explainable AI (XAI):
 ---
 
 🗂️ Tài liệu đính kèm
-
 {{< pdf src="/Time-Series-Team-Hub/pdf/M3W4D1_Abstract_Classifier.pdf" title="M3W4D1_Abstract_Classifier" height="700px" >}}
