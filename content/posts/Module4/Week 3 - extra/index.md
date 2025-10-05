@@ -6,7 +6,6 @@ image: images/all_about_tree.jpg
 categories:  
   - minutes  
 tags:  
-  - feature
   
 draft: false
 ---
