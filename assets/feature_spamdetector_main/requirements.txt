@@ -1,0 +1,19 @@
+# Core dependencies
+streamlit
+torch
+transformers
+faiss-cpu
+scikit-learn
+pandas
+numpy
+
+# Data processing and augmentation
+nltk
+tqdm
+
+# Visualization
+plotly
+
+# File handling and utilities
+gdown
+kagglehub
