@@ -107,5 +107,5 @@ Explainable AI (XAI):
 
 🗂️ Bài báo tham khảo
 
-{{< pdf src="/Time-Series-Team-Hub/pdf/M4W4D1_Enhancing cardiac disease by multimodal.pdf" title="M3W4D1_Enhancing cardiac disease
+{{< pdf src="/Time-Series-Team-Hub/pdf/M4W4D1_Enhancing_cardiac_disease_by_multimodal.pdf" title="M3W4D1_Enhancing cardiac disease
 detection via a fusion of machine learning and medical imaging" height="700px" >}}
