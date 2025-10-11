@@ -102,4 +102,10 @@ Explainable AI (XAI):
 ---
 
 🗂️ Tài liệu đính kèm
-{{< pdf src="/Time-Series-Team-Hub/pdf/M3W4D1_Abstract_Classifier.pdf" title="M3W4D1_Abstract_Classifier" height="700px" >}}
+
+{{< pdf src="/Time-Series-Team-Hub/pdf/M4W4D1_E-heart.pdf" title="M4W4D1_E-heart" height="700px" >}}
+
+🗂️ Bài báo tham khảo
+
+{{< pdf src="/Time-Series-Team-Hub/pdf/M4W4D1_Enhancing cardiac disease by multimodal.pdf" title="M3W4D1_Enhancing cardiac disease
+detection via a fusion of machine learning and medical imaging" height="700px" >}}
