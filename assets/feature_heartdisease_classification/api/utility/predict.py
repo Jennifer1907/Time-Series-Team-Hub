@@ -45,7 +45,6 @@ def predict_single_sample(
             outputs, _ = fusion_model(numerical_input, cnn_input)
             probabilities = torch.softmax(outputs, dim=1)
             prediction = outputs.argmax(dim=1).item()
-            print('prediction:', prediction)
             disease_probability = probabilities[0, 1].item()
 
         print("\n" + "="*70)

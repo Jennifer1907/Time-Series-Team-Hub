@@ -9,6 +9,7 @@ from .feature_engineer import preprocess_and_engineer_features
 from .load_data import sulianova_data, load_echonet_with_kagglehub
 from .load_model import cnn_model, transform
 
+
 def extract_single_video_features(video_path, cnn_model, transform, max_frames=10):
     """
     Extract CNN features from a single video file.
@@ -59,7 +60,7 @@ def extract_single_video_features(video_path, cnn_model, transform, max_frames=1
     except Exception as e:
         print(f"  ✗ Error extracting features from video: {e}")
         return None
-
+    
 
 def preprocessing_pipeline(
     sample_json: Optional[dict] = None,
@@ -85,6 +86,7 @@ def preprocessing_pipeline(
     Returns:
         numerical_input: Tensor ready for model input (1, n_features)
         cnn_input: Tensor ready for model input (1, 64) or None
+        label: Ground truth label (if available)
         sample_info: Dictionary with patient information
     """
 
@@ -131,7 +133,6 @@ def preprocessing_pipeline(
         echonet_features = np.load(echonet_features_path)
 
         if video_index < len(echonet_features):
-            print('echo data video_index:', video_index)
             single_cnn_feature = echonet_features[video_index:video_index+1]
             print(f"  ✓ Extracted feature shape: {single_cnn_feature.shape}")
         else:
@@ -146,10 +147,10 @@ def preprocessing_pipeline(
 
         # Get specific video filename
         if video_index < len(echonet_filelist):
-            video_filename = f"{echonet_filelist.iloc[video_index]['FileName']}.avi"
-            video_path = videos_path / video_filename
+            video_filename = echonet_filelist.iloc[video_index]['FileName']
+            video_path = f'{videos_path}/{video_filename}.avi'
 
-            print(f"  ✓ Processing video: {video_filename} from {video_path}")
+            print(f"  ✓ Processing video: {video_filename}")
 
             # Extract features for this single video
             single_cnn_feature = extract_single_video_features(
@@ -184,7 +185,7 @@ def preprocessing_pipeline(
 
     # Move to device if CUDA is available
     device = 'cuda' if torch.cuda.is_available() else 'cpu'
-    print(f'  ✓ Output device: {device}')
+    print('output device:', device)
     numerical_input = numerical_input.to(device)
     if cnn_input is not None:
         cnn_input = cnn_input.to(device)
