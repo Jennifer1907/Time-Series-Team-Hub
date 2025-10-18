@@ -1,5 +1,5 @@
 ---
-title: "Module 5 - Tuần 1 + 2: Chinh phục Linear Regression từ cơ bản tới nâng cao & Hủy Diệt Data Conflicts cùng MLOps Versioning và Feast"
+title: "Module 5 - Tuần 1 + 2: Chinh phục Linear Regression & Hủy Diệt Data Conflicts cùng MLOps Versioning và Feast"
 date: 2025-10-13T10:00:00+07:00
 description: "Tuần 2 của Module 5 đào sâu vào Advanced Linear Regression — từ vector hóa công thức đến triển khai dự án ML thực chiến với Feast. Blog này tập trung vào Linear Regression và MLOps, trong khi XAI (LIME–ANCHOR–SHAP) sẽ được tổng hợp trong một bài blog đặc biệt sắp tới!"
 image: images/Advanced_Linear_FeatureStore.jpeg
