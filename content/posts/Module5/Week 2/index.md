@@ -137,7 +137,7 @@ $$
 
 ## 📚 **Tài liệu đi kèm**
 
-{{< pdf src="/Time-Series-Team-Hub/pdf/M5W1W2_Linear_Regression.pdf" title="Advanced Linear Regression" height="700px" >}}
+{{< pdf src="/Time-Series-Team-Hub/pdf/M5W1W2_LinearRegression.pdf" title="Advanced Linear Regression" height="700px" >}}
 
 {{< pdf src="/Time-Series-Team-Hub/pdf/M5W1W2_MLOps_Data_Versioning.pdf" title="MLOps with Feast" height="700px" >}}
 
