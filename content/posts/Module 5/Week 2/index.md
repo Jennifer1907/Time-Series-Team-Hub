@@ -126,9 +126,8 @@ _(Buổi ôn tập – TA Quốc Thái)_
 
 ## 📚 **Tài liệu đi kèm**
 
-{{< pdf src="/AI-Vietnam/Module5_Week2/M5W1W2_Linear_Regression.pdf" title="Advanced Linear Regression" height="700px" >}}  
-{{< pdf src="/AI-Vietnam/Module5_Week2/M5W1W2_MLOps_with_Feast.pdf" title="MLOps with Feast" height="700px" >}}  
-
+{{< pdf src="/Time-Series-Team-Hub/pdf/M5W1W2_Linear_Regression.pdf" title="Advanced Linear Regression" height="700px" >}}  
+{{< pdf src="/Time-Series-Team-Hub/pdf/M5W1W2_MLOps_with_Feast.pdf" title="MLOps with Feast" height="700px" >}}  
 ---
 
 🧠 _Repository managed by [AI Vietnam Team Hub](https://github.com/AI-Vietnam-Institution/All-in-One-Course)_  
