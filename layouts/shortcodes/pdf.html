@@ -2,6 +2,7 @@
 {{- $title := .Get "title" | default "PDF Document" -}}
 {{- $height := .Get "height" | default "600px" -}}
 
+
 <details>
 	<summary> {{ $title }} </summary>
 	<div class="pdf-container my-6 border rounded-lg overflow-hidden shadow-lg">
@@ -16,9 +17,9 @@
 				</a>
 			</div>
 		</div>
-		<iframe 
-			src="{{ $src }}" 
-			width="100%" 
+		<iframe
+			src="{{ $src }}"
+			width="100%"
 			height="{{ $height }}"
 			class="border-0"
 			title="{{ $title }}">
