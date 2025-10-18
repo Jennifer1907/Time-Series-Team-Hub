@@ -1,5 +1,5 @@
 ---
-title: "Module 5 - Tuần 2: Advanced Linear Regression & MLOps cho Data Versioning và Feast"
+title: "Module 5 - Tuần 1 + 2: Chinh phục Linear Regression từ cơ bản tới nâng cao & Hủy Diệt Data Conflicts cùng MLOps Versioning và Feast"
 date: 2025-10-13T10:00:00+07:00
 description: "Tuần 2 của Module 5 đào sâu vào Advanced Linear Regression — từ vector hóa công thức đến triển khai dự án ML thực chiến với Feast. Blog này tập trung vào Linear Regression và MLOps, trong khi XAI (LIME–ANCHOR–SHAP) sẽ được tổng hợp trong một bài blog đặc biệt sắp tới!"
 image: images/Advanced_Linear_FeatureStore.jpeg
@@ -12,10 +12,10 @@ draft: false
 ---
 
 🎓 **All-in-One Course 2025 – aivietnam.edu.vn**
-📘 **Study Guide: Module 5 – Week 2**
-🧩 **Chủ đề:** Advanced Linear Regression & MLOps with Feast
+📘 **Study Guide: Module 5 – Week 1 + 2**
+🧩 **Chủ đề:** Chinh phục Linear Regression từ Cơ Bản tới Nâng Cao & Hủy Diệt Data Conflicts cùng MLOps Versioning và Feast
 
-> 🧠 *Lưu ý:* Blog này chỉ bao gồm **Linear Regression nâng cao** và **Triển khai, quản lý dự án ML với Feast**.
+> 🧠 *Lưu ý:* Blog này chỉ bao gồm **Linear Regression từ Cơ Bản tới Nâng Cao** và **Triển khai, quản lý dự án ML với Data Versioning và Feast**.
 > Toàn bộ phần **XAI (LIME – ANCHOR – SHAP)** sẽ được **tổng hợp, mở rộng và xuất bản trong bài blog đặc biệt sắp tới:
 > “All-in-One XAI Series 2025 – Giải thích mô hình Machine Learning từ cơ bản đến nâng cao.”*
 
@@ -45,7 +45,18 @@ _(Buổi học chính – Dr. Quang Vinh)_
 
 ---
 
-### ⚙️ **Thứ 5 – Ngày 09/10/2025**
+### ⚙️ **Thứ 5 Tuần 1 – Ngày 02/10/2025**
+
+_(MLOps Session – TA Dương Thuận)_
+
+**Chủ đề:** Kiểm soát phiên bản dữ liệu cho dự án ML/AI
+- Tổng quan về AI, MLOps và Data Versioning
+- 3 Thách thức chính trong Quản lý Dữ liệu và Code
+- Giới thiệu về Data Version Control (DVC) qua so sánh DvC và Git
+- Case Study: Triển khai DVC cho Dataset MNIST
+- Tự động hóa Pipelines và Các khái niệm Versioning
+
+### ⚙️ **Thứ 5 Tuần 2 – Ngày 09/10/2025**
 
 _(MLOps Session – TA Dương Thuận)_
 
