@@ -4,9 +4,9 @@
 	<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Module 4 - Tuần 2: Tree Series Tiếp Tục – Gradient Boosting, XGBoost &amp; FastAPI Deployment | Time Series Team Hub</title>
+<title>Module 5 - Tuần 1 &#43; 2: Chinh phục Linear Regression &amp; Hủy Diệt Data Conflicts cùng MLOps Versioning và Feast | Time Series Team Hub</title>
 
-<meta name="description" content="Tuần này chúng ta tiếp nối series Tree-based models với Gradient Boosting và XGBoost, học từ ví dụ tính tay đến code thật, kèm bonus 1 ngày FastAPI để đưa mô hình lên web!">
+<meta name="description" content="Tuần 2 của Module 5 đào sâu vào Advanced Linear Regression — từ vector hóa công thức đến triển khai dự án ML thực chiến với Feast. Blog này tập trung vào Linear Regression và MLOps, trong khi XAI (LIME–ANCHOR–SHAP) sẽ được tổng hợp trong một bài blog đặc biệt sắp tới!">
     <link rel="stylesheet" href="/Time-Series-Team-Hub/css/main.css">
 
 <link rel="icon" type="image/svg+xml" href="http://localhost:1313/Time-Series-Team-Hub/favicon.svg"> 
@@ -81,11 +81,11 @@
 
     <header class="not-prose">
       
-      <h1 id="title" class="text-4xl font-bold leading-normal">Module 4 - Tuần 2: Tree Series Tiếp Tục – Gradient Boosting, XGBoost &amp; FastAPI Deployment</h1>
+      <h1 id="title" class="text-4xl font-bold leading-normal">Module 5 - Tuần 1 &#43; 2: Chinh phục Linear Regression &amp; Hủy Diệt Data Conflicts cùng MLOps Versioning và Feast</h1>
 
       <div id="lead" class="my-6">
 
-        <p class="font-bold">Tuần này chúng ta tiếp nối series Tree-based models với Gradient Boosting và XGBoost, học từ ví dụ tính tay đến code thật, kèm bonus 1 ngày FastAPI để đưa mô hình lên web! </p>
+        <p class="font-bold">Tuần 2 của Module 5 đào sâu vào Advanced Linear Regression — từ vector hóa công thức đến triển khai dự án ML thực chiến với Feast. Blog này tập trung vào Linear Regression và MLOps, trong khi XAI (LIME–ANCHOR–SHAP) sẽ được tổng hợp trong một bài blog đặc biệt sắp tới! </p>
 
       </div>
       
@@ -93,11 +93,11 @@
           
           <li class="font-semibold my-2"></li>
           
-          <li class="before:content-['•'] before:mr-2 before:opacity-50 my-2"><time datetime="2025-09-14T10:00:00&#43;07:00">September 14, 2025</time>
+          <li class="before:content-['•'] before:mr-2 before:opacity-50 my-2"><time datetime="2025-10-13T10:00:00&#43;07:00">October 13, 2025</time>
           </li>
 
           <li class="before:content-['•'] before:mr-2 before:opacity-50 my-2">
-            4 min read
+            5 min read
           </li>
 
         </ul>
@@ -107,151 +107,202 @@
     </header>
 
     <figure id="featureimage" class="rounded-xl aspect-video">
-            <img class="rounded-lg" src="http://localhost:1313/Time-Series-Team-Hub/images/Boosting_hu_2e10cb2ff21bd06f.png" alt="" width="750" height="422">
+            <img class="rounded-lg" src="http://localhost:1313/Time-Series-Team-Hub/images/Advanced_Linear_FeatureStore_hu_7283559fb84e6083.jpeg" alt="" width="750" height="519">
+        <figcaption class="text-center italic text-xs">Illustration by AI Vietnam Team</figcaption>
 
     </figure>
 
     <div id="content" class="mb-14">
-      <p>🎉 <strong>Chào mừng đến với blog Tuần 2 của team Time Series – Module 4!</strong></p>
-<p>🌟 <strong>Giới thiệu</strong></p>
-<p>Sau khi “làm bạn” với <strong>Random Forest</strong> và <strong>AdaBoost</strong> ở tuần trước, tuần này series Tree-based models tiếp tục với hai cao thủ đình đám: <strong>Gradient Boosting</strong> và <strong>XGBoost</strong>.</p>
-<p>Điểm đặc biệt của tuần này:</p>
+      <p>🎓 <strong>All-in-One Course 2025 – aivietnam.edu.vn</strong>
+📘 <strong>Study Guide: Module 5 – Week 1 + 2</strong>
+🧩 <strong>Chủ đề:</strong> Chinh phục Linear Regression từ Cơ Bản tới Nâng Cao &amp; Hủy Diệt Data Conflicts cùng MLOps Versioning và Feast</p>
+<blockquote>
+<p>🧠 <em>Lưu ý:</em> Blog này chỉ bao gồm <strong>Linear Regression từ Cơ Bản tới Nâng Cao</strong> và <strong>Triển khai, quản lý dự án ML với Data Versioning và Feast</strong>.
+Toàn bộ phần <strong>XAI (LIME – ANCHOR – SHAP)</strong> sẽ được *<em>tổng hợp, mở rộng và xuất bản trong bài blog đặc biệt sắp tới:
+“All-in-One XAI Series 2025 – Giải thích mô hình Machine Learning từ cơ bản đến nâng cao.”</em></p></blockquote>
+<hr>
+<h2 id="-lịch-trình-học-và-nội-dung-chính">📅 <strong>Lịch trình học và nội dung chính</strong></h2>
+<h3 id="-thứ-3--ngày-07102025">🧑‍🏫 <strong>Thứ 3 – Ngày 07/10/2025</strong></h3>
+<p><em>(Buổi warm-up – TA Đình Thắng)</em></p>
+<p><strong>Chủ đề:</strong> Linear Regression dùng Vector/Matrix và Numpy</p>
 <ul>
-<li><strong>Gradient Boosting</strong>: đi từ ví dụ tính tay từng bước để hiểu rõ cơ chế “fit residuals”, rồi code lại với scikit-learn, kèm phần <strong>Behind the Scenes</strong> (giải thích nội bộ: residual = negative gradient, leaf value từ minimization).</li>
-<li><strong>XGBoost</strong>: đào sâu <strong>Behind the Scenes</strong> hơn nữa — công thức Taylor bậc 2, similarity score, regularization — và áp dụng cho regression, classification, time series.</li>
-<li><strong>FastAPI</strong>: một ngày “MLOps nhẹ nhàng” để học cách biến model thành web API với CRUD, response model, và mini case study “Fashion Detection App”.</li>
+<li>Mô tả công thức hồi quy tuyến tính bằng vector và ma trận.</li>
+<li>Cài đặt bài toán Linear Regression cơ bản với <strong>Numpy</strong>.</li>
+<li>Trực quan hóa mối quan hệ giữa dữ liệu và mô hình tuyến tính.</li>
 </ul>
 <hr>
-<p>📅 <strong>Lịch trình tuần học</strong></p>
-<p>🗓️ <strong>Thứ Ba - 09/09/2025</strong><br>
-🔍 <strong>Warm-up: Gradient Boosting cơ bản</strong> <em>(Extra Class)</em><br>
-<strong>Giảng viên:</strong> TA Đình Thắng</p>
+<h3 id="-thứ-4--ngày-08102025">👨‍🏫 <strong>Thứ 4 – Ngày 08/10/2025</strong></h3>
+<p><em>(Buổi học chính – Dr. Quang Vinh)</em></p>
+<p><strong>Chủ đề:</strong> Loss Functions cho Linear Regression</p>
 <ul>
-<li>Ôn lại decision tree, supervised learning.</li>
-<li>Làm <strong>ví dụ tính tay step-by-step</strong> cho regression (MSE) và classification (logistic loss).</li>
-<li>Thấy rõ từng bước: khởi tạo F0 (mean/log-odds), tính pseudo-residuals, chọn split, tính leaf value, update model.</li>
-</ul>
-<p>🗓️ <strong>Thứ Tư - 10/09/2025</strong><br>
-🧠 <strong>Gradient Boosting – Lý thuyết &amp; ứng dụng</strong> <em>(Main Session)</em><br>
-<strong>Giảng viên:</strong> Dr. Đình Vinh</p>
-<ul>
-<li>Gradient Boosting cho regression &amp; classification: loss, gradient, leaf output.</li>
-<li>Phần <strong>Behind the Scenes</strong>: tại sao residual = negative gradient, tại sao dùng Taylor approximation để xấp xỉ loss.</li>
-<li>Ứng dụng vào <strong>time series forecasting</strong>: walk-forward CV, rolling vs expanding window, đánh giá bằng MAE/MSE/MAPE.</li>
-</ul>
-<p>🗓️ <strong>Thứ Năm - 11/09/2025</strong><br>
-⚡ <strong>Triển khai ML model với FastAPI</strong> <em>(Basic MLOps)</em><br>
-<strong>Giảng viên:</strong> TA Đăng Nhã</p>
-<ul>
-<li>Từ <strong>khái niệm API</strong> (request/response, client-server) → <strong>ASGI &amp; Uvicorn</strong>.</li>
-<li>Hiểu async/await để code concurrent.</li>
-<li><strong>CRUD với FastAPI</strong>: routing, Pydantic models, status codes, <code>/docs</code> &amp; <code>/redoc</code>.</li>
-<li><strong>Case study</strong>: Fashion Detection App – dựng endpoint cho mô hình object detection, gửi ảnh → trả bounding boxes.</li>
-</ul>
-<p>🗓️ <strong>Thứ Sáu - 12/09/2025</strong><br>
-🚀 <strong>XGBoost (1)</strong> <em>(Main Session)</em><br>
-<strong>Giảng viên:</strong> Dr. Đình Vinh</p>
-<ul>
-<li>XGBoost cho regression &amp; classification.</li>
-<li><strong>Behind the Scenes</strong>: công thức Taylor bậc 2 (gradient + Hessian), similarity score để chọn split, leaf output.</li>
-<li>Regularization: λ (L2), γ (min split loss), shrinkage (learning rate).</li>
-<li>Handling missing values, ứng dụng cho time series.</li>
-</ul>
-<p>🗓️ <strong>Thứ Bảy - 13/09/2025</strong><br>
-📊 <strong>Project Time-series: PG&amp;E Energy Analytics Challenge</strong><br>
-<strong>Giảng viên:</strong> PhD-c Võ Nguyên</p>
-<ul>
-<li>Tìm hiểu data năng lượng, đặc trưng seasonal/winter-summer.</li>
-<li>Thử nghiệm Decision Tree, Random Forest, XGBoost.</li>
-<li>So sánh ưu/nhược điểm từng cách, chọn chiến lược tốt cho dự báo.</li>
-</ul>
-<p>🗓️ <strong>Chủ Nhật - 14/09/2025</strong><br>
-💪 <strong>Exercise Session: Gradient Boosting &amp; XGBoost</strong><br>
-<strong>Giảng viên:</strong> TA Quốc Thái</p>
-<ul>
-<li>Ôn tập trọng tâm tuần.</li>
-<li>Làm bài tập tổng hợp regression, classification, time series.</li>
-<li>Củng cố hiểu biết qua hands-on coding.</li>
+<li>So sánh <strong>MSE (Mean Squared Error)</strong>, <strong>MAE (Mean Absolute Error)</strong> và <strong>Huber Loss</strong>.</li>
+<li>Thảo luận về <strong>tính lồi (convexity)</strong> trong tối ưu hóa và gradient descent.</li>
+<li>Ứng dụng đạo hàm và cập nhật tham số mô hình với learning rate.</li>
 </ul>
 <hr>
-<p>🎯 <strong>Mục tiêu học tập</strong></p>
-<p>📌 <strong>Gradient Boosting</strong></p>
+<h3 id="-thứ-5-tuần-1--ngày-02102025">⚙️ <strong>Thứ 5 Tuần 1 – Ngày 02/10/2025</strong></h3>
+<p><em>(MLOps Session – TA Dương Thuận)</em></p>
+<p><strong>Chủ đề:</strong> Kiểm soát phiên bản dữ liệu cho dự án ML/AI</p>
 <ul>
-<li>Hiểu cơ chế boosting stage-wise: mỗi cây fit pseudo-residuals.</li>
-<li>Làm ví dụ tay cho regression (MSE) &amp; classification (logistic).</li>
-<li>Biết cách kiểm soát overfit bằng learning rate, depth nhỏ, subsample.</li>
-<li>Hiểu <strong>Behind the Scenes</strong>: residual = negative gradient, leaf value từ minimization/Taylor.</li>
-<li>Áp dụng cho time series với walk-forward CV.</li>
+<li>Tổng quan về AI, MLOps và Data Versioning</li>
+<li>3 Thách thức chính trong Quản lý Dữ liệu và Code</li>
+<li>Giới thiệu về Data Version Control (DVC) qua so sánh DvC và Git</li>
+<li>Case Study: Triển khai DVC cho Dataset MNIST</li>
+<li>Tự động hóa Pipelines và Các khái niệm Versioning</li>
 </ul>
-<p>📌 <strong>XGBoost</strong></p>
+<h3 id="-thứ-5-tuần-2--ngày-09102025">⚙️ <strong>Thứ 5 Tuần 2 – Ngày 09/10/2025</strong></h3>
+<p><em>(MLOps Session – TA Dương Thuận)</em></p>
+<p><strong>Chủ đề:</strong> Triển khai và Quản lý Dự án ML với Feast</p>
 <ul>
-<li>Hiểu công thức Taylor bậc 2 (gradient + Hessian).</li>
-<li>Biết cách tính <strong>Similarity Score</strong>, leaf value.</li>
-<li>Nắm vai trò regularization (λ, γ).</li>
-<li>Xử lý missing values và ứng dụng cho dữ liệu time series.</li>
-</ul>
-<p>📌 <strong>FastAPI Deployment</strong></p>
-<ul>
-<li>Hiểu khái niệm API, ASGI, async/await.</li>
-<li>Viết CRUD endpoints, dùng Pydantic để validate input/output.</li>
-<li>Biết dựng response model, status code chuẩn.</li>
-<li>Triển khai mini-app cho mô hình ML.</li>
+<li>Giới thiệu <strong>Feature Store</strong> trong MLOps – nơi quản lý các feature phục vụ mô hình học máy.</li>
+<li>Nguyên tắc đảm bảo <strong>nhất quán giữa training và serving (online–offline consistency)</strong>.</li>
+<li>Phiên bản hóa feature, truy cập thời gian thực và tích hợp pipeline với Feast.</li>
+<li>Thực hành mini demo: từ dữ liệu thô → feature → model → deployment pipeline.</li>
 </ul>
 <hr>
-<p>📂 <em>Tài liệu đi kèm:</em></p>
-<p><details>
-	<summary> M4W2D3_WebDeploymentUsingFastAPI </summary>
-	<div class="pdf-container my-6 border rounded-lg overflow-hidden shadow-lg">
-		<div class="pdf-header bg-zinc-100 px-4 py-2 flex items-center justify-between">
-			<span class="font-semibold text-sm">📄 M4W2D3_WebDeploymentUsingFastAPI </span>
-			<div class="flex space-x-2">
-				<a href="/Time-Series-Team-Hub/pdf/M4W2D3_WebDeploymentUsingFastAPI.pdf" target="_blank" class="text-blue-600 hover:text-blue-800 text-sm">
-					Open in New Tab
-				</a>
-				<a href="/Time-Series-Team-Hub/pdf/M4W2D3_WebDeploymentUsingFastAPI.pdf" download class="text-blue-600 hover:text-blue-800 text-sm">
-					Download
-				</a>
-			</div>
-		</div>
-		<iframe
-			src="/Time-Series-Team-Hub/pdf/M4W2D3_WebDeploymentUsingFastAPI.pdf"
-			width="100%"
-			height="700px"
-			class="border-0"
-			title="M4W2D3_WebDeploymentUsingFastAPI">
-			<p>Your browser does not support PDFs. <a href="/Time-Series-Team-Hub/pdf/M4W2D3_WebDeploymentUsingFastAPI.pdf">Download the PDF</a>.</p>
-		</iframe>
-	</div>
-</details>
-<br>
+<h3 id="-thứ-6--ngày-10102025">👨‍🏫 <strong>Thứ 6 – Ngày 10/10/2025</strong></h3>
+<p><em>(Buổi học chính – Dr. Quang Vinh)</em></p>
+<p><strong>Chủ đề:</strong> Vectorized Linear Regression</p>
+<ul>
+<li>Biểu diễn công thức hồi quy cho 1, m và N samples bằng vector/matrix.</li>
+<li>Tối ưu hóa phép tính bằng vectorization để tăng tốc độ huấn luyện.</li>
+<li>Cài đặt hoàn chỉnh bằng <strong>Numpy</strong> và phân tích hiệu năng.</li>
+</ul>
+<hr>
+<h3 id="-thứ-7--ngày-11102025">🔬 <strong>Thứ 7 – Ngày 11/10/2025</strong></h3>
+<p><em>(XAI Session – Dr. Đình Vinh)</em></p>
+<p><strong>Chủ đề:</strong> Giải thuật ANCHOR trong XAI <em>(preview – sẽ có trong blog riêng)</em></p>
+<ul>
+<li>Giới thiệu khái niệm <strong>Explai­nable AI (XAI)</strong> và ý tưởng của <strong>ANCHOR</strong> trong việc giải thích mô hình theo điều kiện “if–then”.</li>
+<li>Các ví dụ cài đặt minh họa sẽ được <strong>tổng hợp trong blog “All-in-One XAI Series 2025”</strong>.</li>
+</ul>
+<hr>
+<h3 id="-chủ-nhật--ngày-12102025">👨‍🎓 <strong>Chủ nhật – Ngày 12/10/2025</strong></h3>
+<p><em>(Buổi ôn tập – TA Quốc Thái)</em></p>
+<p><strong>Chủ đề:</strong> Advanced Linear Regression – Exercise</p>
+<ul>
+<li>Ôn tập nội dung của buổi thứ 4 và thứ 6.</li>
+<li>Giải bài tập về vectorization, loss function và gradient descent.</li>
+<li>Thảo luận cách mở rộng Linear Regression thành Ridge/Lasso Regression.</li>
+</ul>
+<hr>
+<h2 id="-điểm-nhấn-và-kiến-thức-chính">📌 <strong>Điểm nhấn và kiến thức chính</strong></h2>
+<h3 id="-linear-regression--nền-tảng-mở-rộng">✅ <strong>Linear Regression – Nền tảng mở rộng</strong></h3>
+<ul>
+<li>Hiểu rõ bản chất ma trận trong hồi quy tuyến tính:
+$$
+\hat{y} = X\beta + \varepsilon
+$$</li>
+<li>So sánh và ứng dụng MSE, MAE, Huber trong thực tế.</li>
+<li>Áp dụng vectorization để tăng hiệu quả huấn luyện.</li>
+<li>Xử lý Colinearity trong Hồi quy tuyến tính bội (Multiple Linear Regression)</li>
+<li>Áp dụng regulization để tránh tình trạng overfitting</li>
+</ul>
+<hr>
+<h3 id="-mlops-với-feast--quản-lý-feature-trong-ml">✅ <strong>MLOps với Feast – Quản lý Feature trong ML</strong></h3>
+<ul>
+<li>Làm quen với khái niệm <strong>Feature Store</strong> và cách Feast hỗ trợ version control, lineage và serving.</li>
+<li>Triển khai pipeline từ dữ liệu thô đến mô hình.</li>
+<li>Đảm bảo tính nhất quán dữ liệu và khả năng mở rộng khi deploy ML model.</li>
+</ul>
+<hr>
+<h3 id="-xai-lime--anchor--shap--giới-thiệu">🧩 <strong>XAI (LIME – ANCHOR – SHAP) – Giới thiệu</strong></h3>
+<blockquote>
+<p>🔜 <em>Phần XAI sẽ được giới thiệu chi tiết trong blog riêng sắp tới:
+“All-in-One XAI Series 2025: LIME – ANCHOR – SHAP – Giải thích mô hình ML toàn diện.”</em></p>
+<p>Bài viết đó sẽ bao gồm:</p>
+<ul>
+<li>Giải thích trực quan từng phương pháp.</li>
+<li>Cài đặt minh họa bằng Python (Sklearn, SHAP, LIME).</li>
+<li>So sánh độ ổn định, độ tin cậy, và trade-off giữa các phương pháp.</li>
+</ul></blockquote>
+<hr>
+<h2 id="-tài-liệu-đi-kèm">📚 <strong>Tài liệu đi kèm</strong></h2>
 <details>
-	<summary> M4W2D4_XGBoost </summary>
+	<summary> Advanced Linear Regression </summary>
 	<div class="pdf-container my-6 border rounded-lg overflow-hidden shadow-lg">
 		<div class="pdf-header bg-zinc-100 px-4 py-2 flex items-center justify-between">
-			<span class="font-semibold text-sm">📄 M4W2D4_XGBoost </span>
+			<span class="font-semibold text-sm">📄 Advanced Linear Regression </span>
 			<div class="flex space-x-2">
-				<a href="/Time-Series-Team-Hub/pdf/M4W2D4_XGBoost.pdf" target="_blank" class="text-blue-600 hover:text-blue-800 text-sm">
+				<a href="/Time-Series-Team-Hub/pdf/M5W1W2_LinearRegression.pdf" target="_blank" class="text-blue-600 hover:text-blue-800 text-sm">
 					Open in New Tab
 				</a>
-				<a href="/Time-Series-Team-Hub/pdf/M4W2D4_XGBoost.pdf" download class="text-blue-600 hover:text-blue-800 text-sm">
+				<a href="/Time-Series-Team-Hub/pdf/M5W1W2_LinearRegression.pdf" download class="text-blue-600 hover:text-blue-800 text-sm">
 					Download
 				</a>
 			</div>
 		</div>
 		<iframe
-			src="/Time-Series-Team-Hub/pdf/M4W2D4_XGBoost.pdf"
+			src="/Time-Series-Team-Hub/pdf/M5W1W2_LinearRegression.pdf"
 			width="100%"
 			height="700px"
 			class="border-0"
-			title="M4W2D4_XGBoost">
-			<p>Your browser does not support PDFs. <a href="/Time-Series-Team-Hub/pdf/M4W2D4_XGBoost.pdf">Download the PDF</a>.</p>
+			title="Advanced Linear Regression">
+			<p>Your browser does not support PDFs. <a href="/Time-Series-Team-Hub/pdf/M5W1W2_LinearRegression.pdf">Download the PDF</a>.</p>
 		</iframe>
 	</div>
 </details>
-</p>
-<hr>
-<p>🧠 <strong><em>Repository managed by <a href="https://github.com/Jennifer1907/Time-Series-Team-Hub">Time Series Team Hub</a></em></strong></p>
 
+<details>
+	<summary> MLOps with Data Versioning </summary>
+	<div class="pdf-container my-6 border rounded-lg overflow-hidden shadow-lg">
+		<div class="pdf-header bg-zinc-100 px-4 py-2 flex items-center justify-between">
+			<span class="font-semibold text-sm">📄 MLOps with Data Versioning </span>
+			<div class="flex space-x-2">
+				<a href="/Time-Series-Team-Hub/pdf/M5W1D5_MLOps_Data_Versioning.pdf" target="_blank" class="text-blue-600 hover:text-blue-800 text-sm">
+					Open in New Tab
+				</a>
+				<a href="/Time-Series-Team-Hub/pdf/M5W1D5_MLOps_Data_Versioning.pdf" download class="text-blue-600 hover:text-blue-800 text-sm">
+					Download
+				</a>
+			</div>
+		</div>
+		<iframe
+			src="/Time-Series-Team-Hub/pdf/M5W1D5_MLOps_Data_Versioning.pdf"
+			width="100%"
+			height="700px"
+			class="border-0"
+			title="MLOps with Data Versioning">
+			<p>Your browser does not support PDFs. <a href="/Time-Series-Team-Hub/pdf/M5W1D5_MLOps_Data_Versioning.pdf">Download the PDF</a>.</p>
+		</iframe>
+	</div>
+</details>
+
+<details>
+	<summary> MLOps with Feast </summary>
+	<div class="pdf-container my-6 border rounded-lg overflow-hidden shadow-lg">
+		<div class="pdf-header bg-zinc-100 px-4 py-2 flex items-center justify-between">
+			<span class="font-semibold text-sm">📄 MLOps with Feast </span>
+			<div class="flex space-x-2">
+				<a href="/Time-Series-Team-Hub/pdf/M5W2D5_MLOps_with_Feast.pdf" target="_blank" class="text-blue-600 hover:text-blue-800 text-sm">
+					Open in New Tab
+				</a>
+				<a href="/Time-Series-Team-Hub/pdf/M5W2D5_MLOps_with_Feast.pdf" download class="text-blue-600 hover:text-blue-800 text-sm">
+					Download
+				</a>
+			</div>
+		</div>
+		<iframe
+			src="/Time-Series-Team-Hub/pdf/M5W2D5_MLOps_with_Feast.pdf"
+			width="100%"
+			height="700px"
+			class="border-0"
+			title="MLOps with Feast">
+			<p>Your browser does not support PDFs. <a href="/Time-Series-Team-Hub/pdf/M5W2D5_MLOps_with_Feast.pdf">Download the PDF</a>.</p>
+		</iframe>
+	</div>
+</details>
+
+<hr>
+<p>🧠 <em>Repository managed by <a href="https://github.com/AI-Vietnam-Institution/All-in-One-Course">AI Vietnam Team Hub</a></em>
+📍 <em>Blog thuộc series <strong>All-in-One Course 2025</strong> – chương trình đào tạo toàn diện AI, Data Science, và MLOps tại <a href="https://aivietnam.edu.vn">aivietnam.edu.vn</a></em></p>
+
+
+    <ul id="taxonomy" class="not-prose flex items-center space-x-4 flex-nowrap whitespace-nowrap overflow-x-auto">
+
+      <li class="font-semibold my-4">Tags:</li>
+        <li ><a class="py-2 px-6 border rounded-full hover:bg-zinc-100 active:bg-zinc-300" href="/Time-Series-Team-Hub/tags/feature/">Feature</a></li>
+    </ul>
 </div>
 
     <footer id="content-footer" class="not-prose">

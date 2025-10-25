@@ -139,9 +139,11 @@ $$
 
 {{< pdf src="/Time-Series-Team-Hub/pdf/M5W1W2_LinearRegression.pdf" title="Advanced Linear Regression" height="700px" >}}
 
-{{< pdf src="/Time-Series-Team-Hub/pdf/M5W1W2_MLOps_Data_Versioning.pdf" title="MLOps with Feast" height="700px" >}}
+{{< pdf src="/Time-Series-Team-Hub/pdf/M5W1D5_MLOps_Data_Versioning.pdf" title="MLOps with Data Versioning" height="700px" >}}
 
-{{< pdf src="/Time-Series-Team-Hub/pdf/M5W1W2_MLOps_with_Feast.pdf" title="MLOps with Feast" height="700px" >}}
+{{< pdf src="/Time-Series-Team-Hub/pdf/M5W2D5_MLOps_with_Feast.pdf" title="MLOps with Feast" height="700px" >}}
+
+
 ---
 
 🧠 _Repository managed by [AI Vietnam Team Hub](https://github.com/AI-Vietnam-Institution/All-in-One-Course)_
