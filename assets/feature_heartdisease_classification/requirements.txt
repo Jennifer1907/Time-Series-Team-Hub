@@ -12,3 +12,5 @@ xgboost
 lightgbm
 kagglehub
 lightning
+opencv-python
+seaborn
