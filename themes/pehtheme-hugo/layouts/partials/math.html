@@ -1,0 +1,19 @@
+{{ if or .Params.math .Site.Params.math }}
+<!-- KaTeX CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css"
+	integrity="sha384-GqV8jWJ4M4d7KpAaFdFHQPJoPIZHjI46tD/1m5K8Fg8z57EIsYjyN8e/XuID8vQv" crossorigin="anonymous">
+
+<!-- KaTeX JS -->
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"
+	integrity="sha384-vL+PRUsWbppvSttTjlL6R9T/cAzSBx3IMT/14F4Hqp6NAY7G6UJzKuZ1S74gCkQw"
+	crossorigin="anonymous"></script>
+
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"
+	integrity="sha384-mll67QQ5HOwCRm7C0blXZqXQKUX2eX0TQ1gV7m4nG1cTQqgXk7HbiUJxO2bdfXU0" crossorigin="anonymous" onload="renderMathInElement(document.body, {
+            delimiters: [
+				{left: '$$', right: '$$', display: true},
+				{left: '$', right: '$', display: false}
+            ]
+		});">
+		</script>
+{{ end }}

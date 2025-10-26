@@ -1,0 +1,20 @@
+{
+  "timestamp": "2025-08-09T23:36:52.017939",
+  "model": "intfloat/multilingual-e5-base",
+  "original_dataset_size": 5569,
+  "final_dataset_size": 6540,
+  "augmentation_enabled": true,
+  "test_size": 0.2,
+  "training_results": {
+    "best_alpha": 1.0,
+    "accuracy_results": {
+      "1": 0.9396024464831805,
+      "3": 0.9418960244648318,
+      "5": 0.9457186544342507
+    },
+    "class_weights": {
+      "ham": 0.5669700910273082,
+      "spam": 4.233009708737864
+    }
+  }
+}

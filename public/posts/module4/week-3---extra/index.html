@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+<head><script src="/Time-Series-Team-Hub/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=Time-Series-Team-Hub/livereload" data-no-instant defer></script>
+	<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Module 4 - Tuần 3: Hành trình khám phá **Tree-Based Models**: Từ lý thuyết đến thực chiến | Time Series Team Hub</title>
+
+<meta name="description" content="Tuần 3 là tuần &#39;cây cối nở rộ&#39;: chúng ta ôn tập toàn bộ họ nhà Tree từ Random Forest đến XGBoost, rồi học LightGBM!">
+    <link rel="stylesheet" href="/Time-Series-Team-Hub/css/main.css">
+
+<link rel="icon" type="image/svg+xml" href="http://localhost:1313/Time-Series-Team-Hub/favicon.svg"> 
+<link rel="icon" type="image/x-icon" href="http://localhost:1313/Time-Series-Team-Hub/favicon.ico"> 
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/Time-Series-Team-Hub/favicon.png"> 
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/Time-Series-Team-Hub/favicon-32.png"> 
+<link rel="icon" type="image/png" sizes="64x64" href="http://localhost:1313/Time-Series-Team-Hub/favicon-64.png"> 
+
+	 
+</head>
+<body>
+  <header class="py-6 border-b"><div class="max-w-7xl mx-auto px-4 md:px-6 lg:px-8 flex flex-col">
+	<div class="flex items-center">
+		<div class="flex items-center">
+			<button class="flex items-center space-x-2 rounded-full border py-1 pr-[5px] pl-3 group bg-zinc-100 hover:bg-zinc-200 toggle-button" data-target="menu-bar">
+				<svg width="22" height="22" fill="currentColor" viewBox="0 0 16 16">
+					<path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"></path>
+				</svg>
+				<span class="bg-blue-500 fill-white rounded-full p-1.5">
+					<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="group-hover:animate-spin bi bi-egg-fried fill-white" viewBox="0 0 16 16">
+						<path d="M8 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"></path>
+						<path d="M13.997 5.17a5 5 0 0 0-8.101-4.09A5 5 0 0 0 1.28 9.342a5 5 0 0 0 8.336 5.109 3.5 3.5 0 0 0 5.201-4.065 3.001 3.001 0 0 0-.822-5.216zm-1-.034a1 1 0 0 0 .668.977 2.001 2.001 0 0 1 .547 3.478 1 1 0 0 0-.341 1.113 2.5 2.5 0 0 1-3.715 2.905 1 1 0 0 0-1.262.152 4 4 0 0 1-6.67-4.087 1 1 0 0 0-.2-1 4 4 0 0 1 3.693-6.61 1 1 0 0 0 .8-.2 4 4 0 0 1 6.48 3.273z"></path>
+					</svg>
+				</span>
+			</button>
+			<div class="relative rounded-full py-1.5 px-6 bg-zinc-100 hover:bg-zinc-200 text-xl font-bold uppercase mx-2">
+				<h2><a class="before:content-[''] before:z-10 before:top-0 before:right-0 before:left-0 before:bottom-0 before:absolute before:pointer-events-auto" href="http://localhost:1313/Time-Series-Team-Hub/">Time Series Team Hub</a></h2>
+			</div>
+		</div>
+		<div class="flex items-center ml-auto">
+			<button class="flex items-center rounded-full p-3 bg-zinc-100 hover:bg-zinc-200 toggle-button" data-target="search-bar">
+				<svg width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
+					<path id="path1" class="transition-all ease-linear" d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"></path>
+					<path id="path2" class="transition-all ease-linear hidden" d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"></path>
+				</svg>
+			</button>
+		</div>
+	</div>
+  <nav id="menu-bar" class="block mt-3 close">
+    <ul class="flex items-center flex flex-nowrap whitespace-nowrap overflow-x-auto space-x-4">
+    <li class="my-2">
+      <a class="rounded-full border px-6 py-2 bg-zinc-100 hover:bg-zinc-200" href="/Time-Series-Team-Hub/">Home</a>
+    </li>
+    <li class="my-2">
+      <a class="rounded-full border px-6 py-2 bg-zinc-100 hover:bg-zinc-200" href="/Time-Series-Team-Hub/about/">About</a>
+    </li>
+    </ul>
+  </nav>
+<div id="search-bar" class="block mt-3 close">
+	<form id="search" class="flex items-stretch">
+		<input class="w-full block px-6 py-2 rounded-l-full focus:outline-none border border-zinc-200" type="text" placeholder="Search...">
+		<button class="flex items-center px-7 py-2.5 rounded-r-full border border-zinc-200 ">
+			<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="group-hover:animate-pulse" viewBox="0 0 16 16">
+				<path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"></path>
+			</svg>
+		</button>
+	</form>
+</div>
+</div></header>
+  <main class="max-w-7xl mx-auto px-4 md:px-6 lg:px-8"><div id="breadcrumb" class="max-w-7xl mx-auto py-8">
+	<ul class="flex space-x-4 text-sm text-zinc-500">
+		<li class="after:content-['❯'] after:ml-4 after:opacity-30 last:after:content-none uppercase">
+			<a href="http://localhost:1313/Time-Series-Team-Hub/">Time Series Team Hub</a>
+		</li>
+		<li class="after:content-['❯'] after:ml-4 after:opacity-30 last:after:content-none uppercase">
+			<a href="http://localhost:1313/Time-Series-Team-Hub/posts/">Posts</a>
+		</li>
+	</ul>
+</div><div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-14">
+
+  <article class="md:col-span-2 prose lg:prose-lg">
+
+    <header class="not-prose">
+      
+      <h1 id="title" class="text-4xl font-bold leading-normal">Module 4 - Tuần 3: Hành trình khám phá **Tree-Based Models**: Từ lý thuyết đến thực chiến</h1>
+
+      <div id="lead" class="my-6">
+
+        <p class="font-bold">Tuần 3 là tuần &#39;cây cối nở rộ&#39;: chúng ta ôn tập toàn bộ họ nhà Tree từ Random Forest đến XGBoost, rồi học LightGBM! </p>
+
+      </div>
+      
+      <div id="writer" class="flex items-center space-x-4"><ul class="flex items-center space-x-4 flex-nowrap whitespace-nowrap overflow-x-auto">
+          
+          <li class="font-semibold my-2"></li>
+          
+          <li class="before:content-['•'] before:mr-2 before:opacity-50 my-2"><time datetime="2025-09-22T10:00:00&#43;07:00">September 22, 2025</time>
+          </li>
+
+          <li class="before:content-['•'] before:mr-2 before:opacity-50 my-2">
+            4 min read
+          </li>
+
+        </ul>
+
+      </div>
+      
+    </header>
+
+    <figure id="featureimage" class="rounded-xl aspect-video">
+            <img class="rounded-lg" src="http://localhost:1313/Time-Series-Team-Hub/images/all_about_tree_hu_f4b2028ea3c26441.jpg" alt="" width="750" height="375">
+
+    </figure>
+
+    <div id="content" class="mb-14">
+      <p>✨ Đây không chỉ là một bài blog, mà là toàn bộ <strong>tinh túy quá trình học tập và tổng hợp</strong> của nhóm với các mô hình cây. Từ những bước tính tay đơn giản nhất cho một cây quyết định, đến việc so sánh benchmark hàng loạt mô hình hiện đại như <strong>XGBoost</strong> và <strong>LightGBM</strong>.</p>
+<hr>
+<h2 id="-vì-sao-viết-blog-này">🚀 Vì sao viết blog này?</h2>
+<p>Trong hành trình học Machine Learning, nhóm nhận ra:</p>
+<ul>
+<li>Các mô hình cây (<strong>Decision Tree, Random Forest, Gradient Boosting…</strong>) là nền tảng cho rất nhiều hệ thống thực tế.</li>
+<li>Nhưng khi học qua sách vở/tài liệu, thường bị rời rạc: công thức thì khô khan, code thì chạy “mặc định”, ít khi kết nối với <strong>ý nghĩa thực sự</strong>.</li>
+</ul>
+<p>👉 Blog này là nỗ lực của nhóm để <strong>ghép nối tất cả</strong>:</p>
+<ul>
+<li><strong>Giải thích nguyên lý cặn kẽ</strong> (Entropy, Gini, residual, similarity score…).</li>
+<li><strong>Chứng minh công thức</strong> bằng toán học (Taylor expansion, tối ưu convex).</li>
+<li><strong>Ví dụ tính tay</strong> từng bước trên tập dữ liệu toy nhỏ.</li>
+<li><strong>Code Python</strong> đối chiếu để kiểm chứng.</li>
+<li><strong>Benchmark toàn diện</strong> trên tập dữ liệu chuẩn (<code>breast_cancer</code>) để thấy hiệu quả thực tế.</li>
+</ul>
+<hr>
+<h2 id="-nội-dung-chính">📚 Nội dung chính</h2>
+<ul>
+<li>🌱 <strong>Decision Tree</strong>: nguyên lý, entropy vs gini, ví dụ tính tay, cắt tỉa cây.</li>
+<li>🌲 <strong>Random Forest</strong>: bootstrap, OOB error, minh họa bỏ phiếu.</li>
+<li>🔥 <strong>AdaBoost</strong>: trọng số mẫu, công thức alpha, bảng cập nhật từng vòng.</li>
+<li>📈 <strong>Gradient Boosting</strong>: residual, Taylor expansion, cập nhật từng bước.</li>
+<li>⚡ <strong>XGBoost</strong>: công thức lá tối ưu, similarity score, chứng minh vì sao xuất hiện.</li>
+<li>💡 <strong>LightGBM</strong>: histogram-based, leaf-wise growth, GOSS, EFB – và vì sao nó nhanh.</li>
+</ul>
+<p>Mỗi phần đều có:<br>
+✔ Công thức toán học rõ ràng<br>
+✔ Ví dụ tính tay minh họa<br>
+✔ Code Python để chạy lại<br>
+✔ Kết quả benchmark thực tế</p>
+<hr>
+<h2 id="-benchmark--kết-quả">🏆 Benchmark &amp; Kết quả</h2>
+<p>Nhóm đã chạy thử trên <strong>tập breast_cancer</strong> của sklearn, với cross-validation nhiều lần.<br>
+Kết quả (ROC-AUC, Accuracy, thời gian fit &amp; predict) được so sánh giữa:</p>
+<ul>
+<li>DecisionTree</li>
+<li>RandomForest</li>
+<li>ExtraTrees</li>
+<li>GradientBoosting</li>
+<li>HistGradientBoosting</li>
+<li>AdaBoost (stump)</li>
+<li>XGBoost</li>
+<li>LightGBM</li>
+</ul>
+<p>📊 Biểu đồ ROC-AUC, Accuracy, thời gian training/predict đều có sẵn trong blog.</p>
+<hr>
+<h2 id="-điểm-đặc-biệt-của-blog-này">🔑 Điểm đặc biệt của blog này</h2>
+<ul>
+<li><strong>Không phải chỉ là lý thuyết</strong> – mà là sự kết nối giữa toán học, trực giác, và code.</li>
+<li><strong>Không chỉ copy từ sách vở</strong> – mà là sản phẩm của quá trình học, tính tay, debug, thử sai rồi rút ra kết luận.</li>
+<li><strong>Không chỉ một mô hình</strong> – mà là toàn bộ hệ sinh thái tree-based, từ “cây thô sơ” đến “rừng tối tân”.</li>
+</ul>
+<hr>
+<h2 id="-tài-liệu-chi-tiết">📄 Tài liệu chi tiết</h2>
+<p>Blog này đi kèm với một bản PDF chi tiết, trong đó:</p>
+<ul>
+<li>Trình bày công thức đầy đủ, chứng minh chi tiết.</li>
+<li>Có bảng “Tính tay vs Python” để đối chiếu từng bước.</li>
+<li>Có code benchmark để bạn tự chạy lại.</li>
+</ul>
+<p>👉 [Tải bản PDF chi tiết tại đây]
+(<details>
+	<summary> M4W4D2D4_All_about_tree </summary>
+	<div class="pdf-container my-6 border rounded-lg overflow-hidden shadow-lg">
+		<div class="pdf-header bg-zinc-100 px-4 py-2 flex items-center justify-between">
+			<span class="font-semibold text-sm">📄 M4W4D2D4_All_about_tree </span>
+			<div class="flex space-x-2">
+				<a href="/Time-Series-Team-Hub/pdf/M4W4D2D4_All_about_tree.pdf" target="_blank" class="text-blue-600 hover:text-blue-800 text-sm">
+					Open in New Tab
+				</a>
+				<a href="/Time-Series-Team-Hub/pdf/M4W4D2D4_All_about_tree.pdf" download class="text-blue-600 hover:text-blue-800 text-sm">
+					Download
+				</a>
+			</div>
+		</div>
+		<iframe
+			src="/Time-Series-Team-Hub/pdf/M4W4D2D4_All_about_tree.pdf"
+			width="100%"
+			height="700px"
+			class="border-0"
+			title="M4W4D2D4_All_about_tree">
+			<p>Your browser does not support PDFs. <a href="/Time-Series-Team-Hub/pdf/M4W4D2D4_All_about_tree.pdf">Download the PDF</a>.</p>
+		</iframe>
+	</div>
+</details>
+)</p>
+<hr>
+<h2 id="-dành-cho-ai">🎯 Dành cho ai?</h2>
+<ul>
+<li>Người mới học ML muốn có cái nhìn <strong>hệ thống, dễ hiểu</strong>.</li>
+<li>Người đã biết cơ bản nhưng muốn <strong>đào sâu công thức</strong>.</li>
+<li>Người làm thực tế muốn biết <strong>mô hình nào nhanh &amp; chính xác nhất</strong>.</li>
+</ul>
+<hr>
+<p>💡 Nếu bạn cũng từng chật vật với mớ công thức khô khan, hoặc hoang mang trước hàng chục thuật toán boosting khác nhau, nhóm tin blog này sẽ giúp bạn tiết kiệm rất nhiều thời gian – vì nó là tất cả những gì tụi mình đã gói gọn lại sau nhiều tháng học tập và thử nghiệm.</p>
+<hr>
+<h2 id="-viết-bởi-nhóm-gồm-các-thành-viên-đam-mê-dữ-liệu-mong-muốn-biến-hành-trình-học-tập-thành-tài-liệu-hữu-ích-cho-cộng-đồng">✍️ <em>Viết bởi nhóm gồm các thành viên đam mê dữ liệu, mong muốn biến hành trình học tập thành tài liệu hữu ích cho cộng đồng.</em></h2>
+<p>📂 <em>Tài liệu đi kèm:</em></p>
+<details>
+	<summary> M4W4D2D4_All_about_tree </summary>
+	<div class="pdf-container my-6 border rounded-lg overflow-hidden shadow-lg">
+		<div class="pdf-header bg-zinc-100 px-4 py-2 flex items-center justify-between">
+			<span class="font-semibold text-sm">📄 M4W4D2D4_All_about_tree </span>
+			<div class="flex space-x-2">
+				<a href="/Time-Series-Team-Hub/pdf/M4W4D2D4_All_about_tree.pdf" target="_blank" class="text-blue-600 hover:text-blue-800 text-sm">
+					Open in New Tab
+				</a>
+				<a href="/Time-Series-Team-Hub/pdf/M4W4D2D4_All_about_tree.pdf" download class="text-blue-600 hover:text-blue-800 text-sm">
+					Download
+				</a>
+			</div>
+		</div>
+		<iframe
+			src="/Time-Series-Team-Hub/pdf/M4W4D2D4_All_about_tree.pdf"
+			width="100%"
+			height="700px"
+			class="border-0"
+			title="M4W4D2D4_All_about_tree">
+			<p>Your browser does not support PDFs. <a href="/Time-Series-Team-Hub/pdf/M4W4D2D4_All_about_tree.pdf">Download the PDF</a>.</p>
+		</iframe>
+	</div>
+</details>
+
+<hr>
+<p>🧠 <strong><em>Repository được quản lý bởi <a href="https://github.com/Jennifer1907/Time-Series-Team-Hub">Time Series Team Hub</a></em></strong></p>
+
+</div>
+
+    <footer id="content-footer" class="not-prose">
+
+      <div id="related-post" class="">
+
+        <h2 class="text-xl md:text-2xl font-bold mb-6 md:mb-8">Recommended for You</h2>
+      </div>
+
+    </footer>
+
+  </article>
+
+  
+  <aside class="md:col-span-1"><div class="lg:sticky lg:top-8">
+
+	
+
+	<div class="space-y-6">
+
+		<h2 class="font-bold text-xl mb-8">Recent Post</h2>
+
+		<article class="relative group flex flex-row">
+	<a class="insert-link" href="http://localhost:1313/Time-Series-Team-Hub/posts/module5/week1&#43;2/"></a>
+	<figure class="basis-1/3 aspect-square overflow-hidden rounded-2xl bg-zinc-100"><img class="object-cover h-full w-full group-hover:scale-105 transition duration-500 cursor-pointer" src="http://localhost:1313/Time-Series-Team-Hub/images/Advanced_Linear_FeatureStore_hu_8b9eecce38576bbf.jpeg" alt="Module 5 - Tuần 1 &#43; 2: Chinh phục Linear Regression &amp; Hủy Diệt Data Conflicts cùng MLOps Versioning và Feast" width="250" height="250">
+
+	</figure>
+	<div class="basis-2/3 self-center ml-4">
+		<h3 class="font-bold group-hover:underline decoration-auto">Module 5 - Tuần 1 &#43; 2: Chinh phục Linear Regression &amp; Hủy Diệt Data Conflicts cùng MLOps Versioning và Feast</h3>
+	</div>
+</article><article class="relative group flex flex-row">
+	<a class="insert-link" href="http://localhost:1313/Time-Series-Team-Hub/posts/module4/week-3---extra/"></a>
+	<figure class="basis-1/3 aspect-square overflow-hidden rounded-2xl bg-zinc-100"><img class="object-cover h-full w-full group-hover:scale-105 transition duration-500 cursor-pointer" src="http://localhost:1313/Time-Series-Team-Hub/images/all_about_tree_hu_cb545c6c30038f07.jpg" alt="Module 4 - Tuần 3: Hành trình khám phá **Tree-Based Models**: Từ lý thuyết đến thực chiến" width="250" height="250">
+
+	</figure>
+	<div class="basis-2/3 self-center ml-4">
+		<h3 class="font-bold group-hover:underline decoration-auto">Module 4 - Tuần 3: Hành trình khám phá **Tree-Based Models**: Từ lý thuyết đến thực chiến</h3>
+	</div>
+</article><article class="relative group flex flex-row">
+	<a class="insert-link" href="http://localhost:1313/Time-Series-Team-Hub/posts/module4/week-3/"></a>
+	<figure class="basis-1/3 aspect-square overflow-hidden rounded-2xl bg-zinc-100"><img class="object-cover h-full w-full group-hover:scale-105 transition duration-500 cursor-pointer" src="http://localhost:1313/Time-Series-Team-Hub/images/tree_tree_hu_143839aaf923d1c3.png" alt="Module 4 - Tuần 3: Tree Review &amp; LightGBM – Cây cối nở rộ và nở hoa với Time-series" width="250" height="250">
+
+	</figure>
+	<div class="basis-2/3 self-center ml-4">
+		<h3 class="font-bold group-hover:underline decoration-auto">Module 4 - Tuần 3: Tree Review &amp; LightGBM – Cây cối nở rộ và nở hoa với Time-series</h3>
+	</div>
+</article><article class="relative group flex flex-row">
+	<a class="insert-link" href="http://localhost:1313/Time-Series-Team-Hub/posts/module4/week-2/"></a>
+	<figure class="basis-1/3 aspect-square overflow-hidden rounded-2xl bg-zinc-100"><img class="object-cover h-full w-full group-hover:scale-105 transition duration-500 cursor-pointer" src="http://localhost:1313/Time-Series-Team-Hub/images/Boosting_hu_e42f5e8dff6e7ac3.png" alt="Module 4 - Tuần 2: Tree Series Tiếp Tục – Gradient Boosting, XGBoost &amp; FastAPI Deployment" width="250" height="250">
+
+	</figure>
+	<div class="basis-2/3 self-center ml-4">
+		<h3 class="font-bold group-hover:underline decoration-auto">Module 4 - Tuần 2: Tree Series Tiếp Tục – Gradient Boosting, XGBoost &amp; FastAPI Deployment</h3>
+	</div>
+</article><article class="relative group flex flex-row">
+	<a class="insert-link" href="http://localhost:1313/Time-Series-Team-Hub/posts/module3/week-4/"></a>
+	<figure class="basis-1/3 aspect-square overflow-hidden rounded-2xl bg-zinc-100"><img class="object-cover h-full w-full group-hover:scale-105 transition duration-500 cursor-pointer" src="http://localhost:1313/Time-Series-Team-Hub/images/AI_Biet_Tuot_hu_b7faaa548b2b6d55.png" alt="Module 3 - Tuần 4 - Abstract Classifier: Phân loại chủ đề bài báo khoa học có giải thích" width="250" height="250">
+
+	</figure>
+	<div class="basis-2/3 self-center ml-4">
+		<h3 class="font-bold group-hover:underline decoration-auto">Module 3 - Tuần 4 - Abstract Classifier: Phân loại chủ đề bài báo khoa học có giải thích</h3>
+	</div>
+</article>
+		
+	</div>
+
+</div>
+</aside>
+
+</div>
+  
+</main>
+  <footer class="bg-zinc-100 py-10 md:py-14"><div class="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
+
+  <div class="flex flex-wrap space-y-6 mb-4">
+
+    <div class="w-full md:w-3/5 flex flex-col space-y-4 md:pr-8 lg:pr-10">
+
+      <a class="flex items-center group" href="http://localhost:1313/Time-Series-Team-Hub/">
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="mr-2 group-hover:animate-spin" viewBox="0 0 16 16">
+          <path d="M8 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+          <path d="M13.997 5.17a5 5 0 0 0-8.101-4.09A5 5 0 0 0 1.28 9.342a5 5 0 0 0 8.336 5.109 3.5 3.5 0 0 0 5.201-4.065 3.001 3.001 0 0 0-.822-5.216zm-1-.034a1 1 0 0 0 .668.977 2.001 2.001 0 0 1 .547 3.478 1 1 0 0 0-.341 1.113 2.5 2.5 0 0 1-3.715 2.905 1 1 0 0 0-1.262.152 4 4 0 0 1-6.67-4.087 1 1 0 0 0-.2-1 4 4 0 0 1 3.693-6.61 1 1 0 0 0 .8-.2 4 4 0 0 1 6.48 3.273z"/>
+        </svg>
+        
+        <span class="text-2xl font-semibold uppercase">Time Series Team Hub</span>
+      </a>
+
+      <p class="font-semibold">
+        Write with love. Minimalism design.<br>
+      </p>
+    </div>
+
+    <div class="self-center flex flex-col w-full md:w-2/5">
+
+<ul id="social-media" class="flex items-center space-x-4">
+	
+	<li>
+		<a class="w-12 h-12 rounded-full bg-white hover:bg-zinc-200 flex items-center justify-center p-2" href="https://github.com/Jennifer1907" target="_blank" rel="noopener noreferrer">
+			<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" viewBox="0 0 16 16">
+				  <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+			</svg>
+		</a>
+	</li>
+	<li>
+    <a class="w-12 h-12 rounded-full bg-white hover:bg-zinc-200 flex items-center justify-center p-2" href="https://www.linkedin.com/in/ha-jennifer-nguyen/" target="_blank" rel="noopener noreferrer">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+        </svg>
+    </a>
+	</li>
+</ul>
+
+    </div>
+    
+  </div>
+
+  <div class="my-8">
+    <ul class="flex items-center space-x-4">
+      
+        <li><a class="decoration-auto hover:underline font-semibold" href="/Time-Series-Team-Hub/">Home</a></li>
+      
+        <li><a class="decoration-auto hover:underline font-semibold" href="/Time-Series-Team-Hub/about/">About</a></li>
+      
+    </ul>
+  </div>
+
+  <div class="border-t pt-4">
+
+    <p class="text-sm">Copyright © 2025. All rights reserved.</p>
+
+  </div>
+  
+</div>
+</footer>
+      <script src="/Time-Series-Team-Hub/js/insertoggle.js"></script>
+</body>
+</html>

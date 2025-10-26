@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+<head><script src="/Time-Series-Team-Hub/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=Time-Series-Team-Hub/livereload" data-no-instant defer></script>
+	<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Module 5 - Tuần 2: Advanced Linear Regression &amp; MLOps cho Data Versioning và Feast | Time Series Team Hub</title>
+
+<meta name="description" content="Tuần 2 của Module 5 đào sâu vào Advanced Linear Regression — từ vector hóa công thức đến triển khai dự án ML thực chiến với Feast. Blog này tập trung vào Linear Regression và MLOps, trong khi XAI (LIME–ANCHOR–SHAP) sẽ được tổng hợp trong một bài blog đặc biệt sắp tới!">
+    <link rel="stylesheet" href="/Time-Series-Team-Hub/css/main.css">
+
+<link rel="icon" type="image/svg+xml" href="http://localhost:1313/Time-Series-Team-Hub/favicon.svg"> 
+<link rel="icon" type="image/x-icon" href="http://localhost:1313/Time-Series-Team-Hub/favicon.ico"> 
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/Time-Series-Team-Hub/favicon.png"> 
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/Time-Series-Team-Hub/favicon-32.png"> 
+<link rel="icon" type="image/png" sizes="64x64" href="http://localhost:1313/Time-Series-Team-Hub/favicon-64.png"> 
+
+	 
+</head>
+<body>
+  <header class="py-6 border-b"><div class="max-w-7xl mx-auto px-4 md:px-6 lg:px-8 flex flex-col">
+	<div class="flex items-center">
+		<div class="flex items-center">
+			<button class="flex items-center space-x-2 rounded-full border py-1 pr-[5px] pl-3 group bg-zinc-100 hover:bg-zinc-200 toggle-button" data-target="menu-bar">
+				<svg width="22" height="22" fill="currentColor" viewBox="0 0 16 16">
+					<path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"></path>
+				</svg>
+				<span class="bg-blue-500 fill-white rounded-full p-1.5">
+					<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="group-hover:animate-spin bi bi-egg-fried fill-white" viewBox="0 0 16 16">
+						<path d="M8 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"></path>
+						<path d="M13.997 5.17a5 5 0 0 0-8.101-4.09A5 5 0 0 0 1.28 9.342a5 5 0 0 0 8.336 5.109 3.5 3.5 0 0 0 5.201-4.065 3.001 3.001 0 0 0-.822-5.216zm-1-.034a1 1 0 0 0 .668.977 2.001 2.001 0 0 1 .547 3.478 1 1 0 0 0-.341 1.113 2.5 2.5 0 0 1-3.715 2.905 1 1 0 0 0-1.262.152 4 4 0 0 1-6.67-4.087 1 1 0 0 0-.2-1 4 4 0 0 1 3.693-6.61 1 1 0 0 0 .8-.2 4 4 0 0 1 6.48 3.273z"></path>
+					</svg>
+				</span>
+			</button>
+			<div class="relative rounded-full py-1.5 px-6 bg-zinc-100 hover:bg-zinc-200 text-xl font-bold uppercase mx-2">
+				<h2><a class="before:content-[''] before:z-10 before:top-0 before:right-0 before:left-0 before:bottom-0 before:absolute before:pointer-events-auto" href="http://localhost:1313/Time-Series-Team-Hub/">Time Series Team Hub</a></h2>
+			</div>
+		</div>
+		<div class="flex items-center ml-auto">
+			<button class="flex items-center rounded-full p-3 bg-zinc-100 hover:bg-zinc-200 toggle-button" data-target="search-bar">
+				<svg width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
+					<path id="path1" class="transition-all ease-linear" d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"></path>
+					<path id="path2" class="transition-all ease-linear hidden" d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"></path>
+				</svg>
+			</button>
+		</div>
+	</div>
+  <nav id="menu-bar" class="block mt-3 close">
+    <ul class="flex items-center flex flex-nowrap whitespace-nowrap overflow-x-auto space-x-4">
+    <li class="my-2">
+      <a class="rounded-full border px-6 py-2 bg-zinc-100 hover:bg-zinc-200" href="/Time-Series-Team-Hub/">Home</a>
+    </li>
+    <li class="my-2">
+      <a class="rounded-full border px-6 py-2 bg-zinc-100 hover:bg-zinc-200" href="/Time-Series-Team-Hub/about/">About</a>
+    </li>
+    </ul>
+  </nav>
+<div id="search-bar" class="block mt-3 close">
+	<form id="search" class="flex items-stretch">
+		<input class="w-full block px-6 py-2 rounded-l-full focus:outline-none border border-zinc-200" type="text" placeholder="Search...">
+		<button class="flex items-center px-7 py-2.5 rounded-r-full border border-zinc-200 ">
+			<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="group-hover:animate-pulse" viewBox="0 0 16 16">
+				<path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"></path>
+			</svg>
+		</button>
+	</form>
+</div>
+</div></header>
+  <main class="max-w-7xl mx-auto px-4 md:px-6 lg:px-8"><div id="breadcrumb" class="max-w-7xl mx-auto py-8">
+	<ul class="flex space-x-4 text-sm text-zinc-500">
+		<li class="after:content-['❯'] after:ml-4 after:opacity-30 last:after:content-none uppercase">
+			<a href="http://localhost:1313/Time-Series-Team-Hub/">Time Series Team Hub</a>
+		</li>
+		<li class="after:content-['❯'] after:ml-4 after:opacity-30 last:after:content-none uppercase">
+			<a href="http://localhost:1313/Time-Series-Team-Hub/posts/">Posts</a>
+		</li>
+	</ul>
+</div><div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-14">
+
+  <article class="md:col-span-2 prose lg:prose-lg">
+
+    <header class="not-prose">
+      
+      <h1 id="title" class="text-4xl font-bold leading-normal">Module 5 - Tuần 2: Advanced Linear Regression &amp; MLOps cho Data Versioning và Feast</h1>
+
+      <div id="lead" class="my-6">
+
+        <p class="font-bold">Tuần 2 của Module 5 đào sâu vào Advanced Linear Regression — từ vector hóa công thức đến triển khai dự án ML thực chiến với Feast. Blog này tập trung vào Linear Regression và MLOps, trong khi XAI (LIME–ANCHOR–SHAP) sẽ được tổng hợp trong một bài blog đặc biệt sắp tới! </p>
+
+      </div>
+      
+      <div id="writer" class="flex items-center space-x-4"><ul class="flex items-center space-x-4 flex-nowrap whitespace-nowrap overflow-x-auto">
+          
+          <li class="font-semibold my-2"></li>
+          
+          <li class="before:content-['•'] before:mr-2 before:opacity-50 my-2"><time datetime="2025-10-13T10:00:00&#43;07:00">October 13, 2025</time>
+          </li>
+
+          <li class="before:content-['•'] before:mr-2 before:opacity-50 my-2">
+            4 min read
+          </li>
+
+        </ul>
+
+      </div>
+      
+    </header>
+
+    <figure id="featureimage" class="rounded-xl aspect-video">
+            <img class="rounded-lg" src="http://localhost:1313/Time-Series-Team-Hub/images/Advanced_Linear_FeatureStore_hu_7283559fb84e6083.jpeg" alt="" width="750" height="519">
+        <figcaption class="text-center italic text-xs">Illustration by AI Vietnam Team</figcaption>
+
+    </figure>
+
+    <div id="content" class="mb-14">
+      <p>🎓 <strong>All-in-One Course 2025 – aivietnam.edu.vn</strong>
+📘 <strong>Study Guide: Module 5 – Week 2</strong>
+🧩 <strong>Chủ đề:</strong> Advanced Linear Regression &amp; MLOps with Feast</p>
+<blockquote>
+<p>🧠 <em>Lưu ý:</em> Blog này chỉ bao gồm <strong>Linear Regression nâng cao</strong> và <strong>Triển khai, quản lý dự án ML với Feast</strong>.
+Toàn bộ phần <strong>XAI (LIME – ANCHOR – SHAP)</strong> sẽ được *<em>tổng hợp, mở rộng và xuất bản trong bài blog đặc biệt sắp tới:
+“All-in-One XAI Series 2025 – Giải thích mô hình Machine Learning từ cơ bản đến nâng cao.”</em></p></blockquote>
+<hr>
+<h2 id="-lịch-trình-học-và-nội-dung-chính">📅 <strong>Lịch trình học và nội dung chính</strong></h2>
+<h3 id="-thứ-3--ngày-07102025">🧑‍🏫 <strong>Thứ 3 – Ngày 07/10/2025</strong></h3>
+<p><em>(Buổi warm-up – TA Đình Thắng)</em></p>
+<p><strong>Chủ đề:</strong> Linear Regression dùng Vector/Matrix và Numpy</p>
+<ul>
+<li>Mô tả công thức hồi quy tuyến tính bằng vector và ma trận.</li>
+<li>Cài đặt bài toán Linear Regression cơ bản với <strong>Numpy</strong>.</li>
+<li>Trực quan hóa mối quan hệ giữa dữ liệu và mô hình tuyến tính.</li>
+</ul>
+<hr>
+<h3 id="-thứ-4--ngày-08102025">👨‍🏫 <strong>Thứ 4 – Ngày 08/10/2025</strong></h3>
+<p><em>(Buổi học chính – Dr. Quang Vinh)</em></p>
+<p><strong>Chủ đề:</strong> Loss Functions cho Linear Regression</p>
+<ul>
+<li>So sánh <strong>MSE (Mean Squared Error)</strong>, <strong>MAE (Mean Absolute Error)</strong> và <strong>Huber Loss</strong>.</li>
+<li>Thảo luận về <strong>tính lồi (convexity)</strong> trong tối ưu hóa và gradient descent.</li>
+<li>Ứng dụng đạo hàm và cập nhật tham số mô hình với learning rate.</li>
+</ul>
+<hr>
+<h3 id="-thứ-5--ngày-09102025">⚙️ <strong>Thứ 5 – Ngày 09/10/2025</strong></h3>
+<p><em>(MLOps Session – TA Dương Thuận)</em></p>
+<p><strong>Chủ đề:</strong> Triển khai và Quản lý Dự án ML với Feast</p>
+<ul>
+<li>Giới thiệu <strong>Feature Store</strong> trong MLOps – nơi quản lý các feature phục vụ mô hình học máy.</li>
+<li>Nguyên tắc đảm bảo <strong>nhất quán giữa training và serving (online–offline consistency)</strong>.</li>
+<li>Phiên bản hóa feature, truy cập thời gian thực và tích hợp pipeline với Feast.</li>
+<li>Thực hành mini demo: từ dữ liệu thô → feature → model → deployment pipeline.</li>
+</ul>
+<hr>
+<h3 id="-thứ-6--ngày-10102025">👨‍🏫 <strong>Thứ 6 – Ngày 10/10/2025</strong></h3>
+<p><em>(Buổi học chính – Dr. Quang Vinh)</em></p>
+<p><strong>Chủ đề:</strong> Vectorized Linear Regression</p>
+<ul>
+<li>Biểu diễn công thức hồi quy cho 1, m và N samples bằng vector/matrix.</li>
+<li>Tối ưu hóa phép tính bằng vectorization để tăng tốc độ huấn luyện.</li>
+<li>Cài đặt hoàn chỉnh bằng <strong>Numpy</strong> và phân tích hiệu năng.</li>
+</ul>
+<hr>
+<h3 id="-thứ-7--ngày-11102025">🔬 <strong>Thứ 7 – Ngày 11/10/2025</strong></h3>
+<p><em>(XAI Session – Dr. Đình Vinh)</em></p>
+<p><strong>Chủ đề:</strong> Giải thuật ANCHOR trong XAI <em>(preview – sẽ có trong blog riêng)</em></p>
+<ul>
+<li>Giới thiệu khái niệm <strong>Explai­nable AI (XAI)</strong> và ý tưởng của <strong>ANCHOR</strong> trong việc giải thích mô hình theo điều kiện “if–then”.</li>
+<li>Các ví dụ cài đặt minh họa sẽ được <strong>tổng hợp trong blog “All-in-One XAI Series 2025”</strong>.</li>
+</ul>
+<hr>
+<h3 id="-chủ-nhật--ngày-12102025">👨‍🎓 <strong>Chủ nhật – Ngày 12/10/2025</strong></h3>
+<p><em>(Buổi ôn tập – TA Quốc Thái)</em></p>
+<p><strong>Chủ đề:</strong> Advanced Linear Regression – Exercise</p>
+<ul>
+<li>Ôn tập nội dung của buổi thứ 4 và thứ 6.</li>
+<li>Giải bài tập về vectorization, loss function và gradient descent.</li>
+<li>Thảo luận cách mở rộng Linear Regression thành Ridge/Lasso Regression.</li>
+</ul>
+<hr>
+<h2 id="-điểm-nhấn-và-kiến-thức-chính">📌 <strong>Điểm nhấn và kiến thức chính</strong></h2>
+<h3 id="-linear-regression--nền-tảng-mở-rộng">✅ <strong>Linear Regression – Nền tảng mở rộng</strong></h3>
+<ul>
+<li>Hiểu rõ bản chất ma trận trong hồi quy tuyến tính:
+$$
+\hat{y} = X\beta + \varepsilon
+$$</li>
+<li>So sánh và ứng dụng MSE, MAE, Huber trong thực tế.</li>
+<li>Áp dụng vectorization để tăng hiệu quả huấn luyện.</li>
+<li>Xử lý Colinearity trong Hồi quy tuyến tính bội (Multiple Linear Regression)</li>
+<li>Áp dụng regulization để tránh tình trạng overfitting</li>
+</ul>
+<hr>
+<h3 id="-mlops-với-feast--quản-lý-feature-trong-ml">✅ <strong>MLOps với Feast – Quản lý Feature trong ML</strong></h3>
+<ul>
+<li>Làm quen với khái niệm <strong>Feature Store</strong> và cách Feast hỗ trợ version control, lineage và serving.</li>
+<li>Triển khai pipeline từ dữ liệu thô đến mô hình.</li>
+<li>Đảm bảo tính nhất quán dữ liệu và khả năng mở rộng khi deploy ML model.</li>
+</ul>
+<hr>
+<h3 id="-xai-lime--anchor--shap--giới-thiệu">🧩 <strong>XAI (LIME – ANCHOR – SHAP) – Giới thiệu</strong></h3>
+<blockquote>
+<p>🔜 <em>Phần XAI sẽ được giới thiệu chi tiết trong blog riêng sắp tới:
+“All-in-One XAI Series 2025: LIME – ANCHOR – SHAP – Giải thích mô hình ML toàn diện.”</em></p>
+<p>Bài viết đó sẽ bao gồm:</p>
+<ul>
+<li>Giải thích trực quan từng phương pháp.</li>
+<li>Cài đặt minh họa bằng Python (Sklearn, SHAP, LIME).</li>
+<li>So sánh độ ổn định, độ tin cậy, và trade-off giữa các phương pháp.</li>
+</ul></blockquote>
+<hr>
+<h2 id="-tài-liệu-đi-kèm">📚 <strong>Tài liệu đi kèm</strong></h2>
+<details>
+	<summary> Advanced Linear Regression </summary>
+	<div class="pdf-container my-6 border rounded-lg overflow-hidden shadow-lg">
+		<div class="pdf-header bg-zinc-100 px-4 py-2 flex items-center justify-between">
+			<span class="font-semibold text-sm">📄 Advanced Linear Regression </span>
+			<div class="flex space-x-2">
+				<a href="/Time-Series-Team-Hub/pdf/M5W1W2_Linear_Regression.pdf" target="_blank" class="text-blue-600 hover:text-blue-800 text-sm">
+					Open in New Tab
+				</a>
+				<a href="/Time-Series-Team-Hub/pdf/M5W1W2_Linear_Regression.pdf" download class="text-blue-600 hover:text-blue-800 text-sm">
+					Download
+				</a>
+			</div>
+		</div>
+		<iframe
+			src="/Time-Series-Team-Hub/pdf/M5W1W2_Linear_Regression.pdf"
+			width="100%"
+			height="700px"
+			class="border-0"
+			title="Advanced Linear Regression">
+			<p>Your browser does not support PDFs. <a href="/Time-Series-Team-Hub/pdf/M5W1W2_Linear_Regression.pdf">Download the PDF</a>.</p>
+		</iframe>
+	</div>
+</details>
+
+<details>
+	<summary> MLOps with Feast </summary>
+	<div class="pdf-container my-6 border rounded-lg overflow-hidden shadow-lg">
+		<div class="pdf-header bg-zinc-100 px-4 py-2 flex items-center justify-between">
+			<span class="font-semibold text-sm">📄 MLOps with Feast </span>
+			<div class="flex space-x-2">
+				<a href="/Time-Series-Team-Hub/pdf/M5W1W2_MLOps_Data_Versioning.pdf" target="_blank" class="text-blue-600 hover:text-blue-800 text-sm">
+					Open in New Tab
+				</a>
+				<a href="/Time-Series-Team-Hub/pdf/M5W1W2_MLOps_Data_Versioning.pdf" download class="text-blue-600 hover:text-blue-800 text-sm">
+					Download
+				</a>
+			</div>
+		</div>
+		<iframe
+			src="/Time-Series-Team-Hub/pdf/M5W1W2_MLOps_Data_Versioning.pdf"
+			width="100%"
+			height="700px"
+			class="border-0"
+			title="MLOps with Feast">
+			<p>Your browser does not support PDFs. <a href="/Time-Series-Team-Hub/pdf/M5W1W2_MLOps_Data_Versioning.pdf">Download the PDF</a>.</p>
+		</iframe>
+	</div>
+</details>
+
+<h2 id="hahahugoshortcode51s2hbhb"><details>
+	<summary> MLOps with Feast </summary>
+	<div class="pdf-container my-6 border rounded-lg overflow-hidden shadow-lg">
+		<div class="pdf-header bg-zinc-100 px-4 py-2 flex items-center justify-between">
+			<span class="font-semibold text-sm">📄 MLOps with Feast </span>
+			<div class="flex space-x-2">
+				<a href="/Time-Series-Team-Hub/pdf/M5W1W2_MLOps_with_Feast.pdf" target="_blank" class="text-blue-600 hover:text-blue-800 text-sm">
+					Open in New Tab
+				</a>
+				<a href="/Time-Series-Team-Hub/pdf/M5W1W2_MLOps_with_Feast.pdf" download class="text-blue-600 hover:text-blue-800 text-sm">
+					Download
+				</a>
+			</div>
+		</div>
+		<iframe
+			src="/Time-Series-Team-Hub/pdf/M5W1W2_MLOps_with_Feast.pdf"
+			width="100%"
+			height="700px"
+			class="border-0"
+			title="MLOps with Feast">
+			<p>Your browser does not support PDFs. <a href="/Time-Series-Team-Hub/pdf/M5W1W2_MLOps_with_Feast.pdf">Download the PDF</a>.</p>
+		</iframe>
+	</div>
+</details>
+</h2>
+<p>🧠 <em>Repository managed by <a href="https://github.com/AI-Vietnam-Institution/All-in-One-Course">AI Vietnam Team Hub</a></em>
+📍 <em>Blog thuộc series <strong>All-in-One Course 2025</strong> – chương trình đào tạo toàn diện AI, Data Science, và MLOps tại <a href="https://aivietnam.edu.vn">aivietnam.edu.vn</a></em></p>
+
+
+    <ul id="taxonomy" class="not-prose flex items-center space-x-4 flex-nowrap whitespace-nowrap overflow-x-auto">
+
+      <li class="font-semibold my-4">Tags:</li>
+        <li ><a class="py-2 px-6 border rounded-full hover:bg-zinc-100 active:bg-zinc-300" href="/Time-Series-Team-Hub/tags/feature/">Feature</a></li>
+    </ul>
+</div>
+
+    <footer id="content-footer" class="not-prose">
+
+      <div id="related-post" class="">
+
+        <h2 class="text-xl md:text-2xl font-bold mb-6 md:mb-8">Recommended for You</h2>
+      </div>
+
+    </footer>
+
+  </article>
+
+  
+  <aside class="md:col-span-1"><div class="lg:sticky lg:top-8">
+
+	
+
+	<div class="space-y-6">
+
+		<h2 class="font-bold text-xl mb-8">Recent Post</h2>
+
+		<article class="relative group flex flex-row">
+	<a class="insert-link" href="http://localhost:1313/Time-Series-Team-Hub/posts/module-5/week-2/"></a>
+	<figure class="basis-1/3 aspect-square overflow-hidden rounded-2xl bg-zinc-100"><img class="object-cover h-full w-full group-hover:scale-105 transition duration-500 cursor-pointer" src="http://localhost:1313/Time-Series-Team-Hub/images/Advanced_Linear_FeatureStore_hu_8b9eecce38576bbf.jpeg" alt="Module 5 - Tuần 2: Advanced Linear Regression &amp; MLOps cho Data Versioning và Feast" width="250" height="250">
+
+	</figure>
+	<div class="basis-2/3 self-center ml-4">
+		<h3 class="font-bold group-hover:underline decoration-auto">Module 5 - Tuần 2: Advanced Linear Regression &amp; MLOps cho Data Versioning và Feast</h3>
+	</div>
+</article><article class="relative group flex flex-row">
+	<a class="insert-link" href="http://localhost:1313/Time-Series-Team-Hub/posts/module4/week-3---extra/"></a>
+	<figure class="basis-1/3 aspect-square overflow-hidden rounded-2xl bg-zinc-100"><img class="object-cover h-full w-full group-hover:scale-105 transition duration-500 cursor-pointer" src="http://localhost:1313/Time-Series-Team-Hub/images/all_about_tree_hu_cb545c6c30038f07.jpg" alt="Module 4 - Tuần 3: Hành trình khám phá **Tree-Based Models**: Từ lý thuyết đến thực chiến" width="250" height="250">
+
+	</figure>
+	<div class="basis-2/3 self-center ml-4">
+		<h3 class="font-bold group-hover:underline decoration-auto">Module 4 - Tuần 3: Hành trình khám phá **Tree-Based Models**: Từ lý thuyết đến thực chiến</h3>
+	</div>
+</article><article class="relative group flex flex-row">
+	<a class="insert-link" href="http://localhost:1313/Time-Series-Team-Hub/posts/module4/week-3/"></a>
+	<figure class="basis-1/3 aspect-square overflow-hidden rounded-2xl bg-zinc-100"><img class="object-cover h-full w-full group-hover:scale-105 transition duration-500 cursor-pointer" src="http://localhost:1313/Time-Series-Team-Hub/images/tree_tree_hu_143839aaf923d1c3.png" alt="Module 4 - Tuần 3: Tree Review &amp; LightGBM – Cây cối nở rộ và nở hoa với Time-series" width="250" height="250">
+
+	</figure>
+	<div class="basis-2/3 self-center ml-4">
+		<h3 class="font-bold group-hover:underline decoration-auto">Module 4 - Tuần 3: Tree Review &amp; LightGBM – Cây cối nở rộ và nở hoa với Time-series</h3>
+	</div>
+</article><article class="relative group flex flex-row">
+	<a class="insert-link" href="http://localhost:1313/Time-Series-Team-Hub/posts/module4/week-2/"></a>
+	<figure class="basis-1/3 aspect-square overflow-hidden rounded-2xl bg-zinc-100"><img class="object-cover h-full w-full group-hover:scale-105 transition duration-500 cursor-pointer" src="http://localhost:1313/Time-Series-Team-Hub/images/Boosting_hu_e42f5e8dff6e7ac3.png" alt="Module 4 - Tuần 2: Tree Series Tiếp Tục – Gradient Boosting, XGBoost &amp; FastAPI Deployment" width="250" height="250">
+
+	</figure>
+	<div class="basis-2/3 self-center ml-4">
+		<h3 class="font-bold group-hover:underline decoration-auto">Module 4 - Tuần 2: Tree Series Tiếp Tục – Gradient Boosting, XGBoost &amp; FastAPI Deployment</h3>
+	</div>
+</article><article class="relative group flex flex-row">
+	<a class="insert-link" href="http://localhost:1313/Time-Series-Team-Hub/posts/module3/week-4/"></a>
+	<figure class="basis-1/3 aspect-square overflow-hidden rounded-2xl bg-zinc-100"><img class="object-cover h-full w-full group-hover:scale-105 transition duration-500 cursor-pointer" src="http://localhost:1313/Time-Series-Team-Hub/images/AI_Biet_Tuot_hu_b7faaa548b2b6d55.png" alt="Module 3 - Tuần 4 - Abstract Classifier: Phân loại chủ đề bài báo khoa học có giải thích" width="250" height="250">
+
+	</figure>
+	<div class="basis-2/3 self-center ml-4">
+		<h3 class="font-bold group-hover:underline decoration-auto">Module 3 - Tuần 4 - Abstract Classifier: Phân loại chủ đề bài báo khoa học có giải thích</h3>
+	</div>
+</article>
+		
+	</div>
+
+</div>
+</aside>
+
+</div>
+  
+</main>
+  <footer class="bg-zinc-100 py-10 md:py-14"><div class="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
+
+  <div class="flex flex-wrap space-y-6 mb-4">
+
+    <div class="w-full md:w-3/5 flex flex-col space-y-4 md:pr-8 lg:pr-10">
+
+      <a class="flex items-center group" href="http://localhost:1313/Time-Series-Team-Hub/">
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="mr-2 group-hover:animate-spin" viewBox="0 0 16 16">
+          <path d="M8 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+          <path d="M13.997 5.17a5 5 0 0 0-8.101-4.09A5 5 0 0 0 1.28 9.342a5 5 0 0 0 8.336 5.109 3.5 3.5 0 0 0 5.201-4.065 3.001 3.001 0 0 0-.822-5.216zm-1-.034a1 1 0 0 0 .668.977 2.001 2.001 0 0 1 .547 3.478 1 1 0 0 0-.341 1.113 2.5 2.5 0 0 1-3.715 2.905 1 1 0 0 0-1.262.152 4 4 0 0 1-6.67-4.087 1 1 0 0 0-.2-1 4 4 0 0 1 3.693-6.61 1 1 0 0 0 .8-.2 4 4 0 0 1 6.48 3.273z"/>
+        </svg>
+        
+        <span class="text-2xl font-semibold uppercase">Time Series Team Hub</span>
+      </a>
+
+      <p class="font-semibold">
+        Write with love. Minimalism design.<br>
+      </p>
+    </div>
+
+    <div class="self-center flex flex-col w-full md:w-2/5">
+
+<ul id="social-media" class="flex items-center space-x-4">
+	
+	<li>
+		<a class="w-12 h-12 rounded-full bg-white hover:bg-zinc-200 flex items-center justify-center p-2" href="https://github.com/Jennifer1907" target="_blank" rel="noopener noreferrer">
+			<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" viewBox="0 0 16 16">
+				  <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+			</svg>
+		</a>
+	</li>
+	<li>
+    <a class="w-12 h-12 rounded-full bg-white hover:bg-zinc-200 flex items-center justify-center p-2" href="https://www.linkedin.com/in/ha-jennifer-nguyen/" target="_blank" rel="noopener noreferrer">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+        </svg>
+    </a>
+	</li>
+</ul>
+
+    </div>
+    
+  </div>
+
+  <div class="my-8">
+    <ul class="flex items-center space-x-4">
+      
+        <li><a class="decoration-auto hover:underline font-semibold" href="/Time-Series-Team-Hub/">Home</a></li>
+      
+        <li><a class="decoration-auto hover:underline font-semibold" href="/Time-Series-Team-Hub/about/">About</a></li>
+      
+    </ul>
+  </div>
+
+  <div class="border-t pt-4">
+
+    <p class="text-sm">Copyright © 2025. All rights reserved.</p>
+
+  </div>
+  
+</div>
+</footer>
+      <script src="/Time-Series-Team-Hub/js/insertoggle.js"></script>
+</body>
+</html>

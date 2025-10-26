@@ -4,10 +4,10 @@ date: 2025-09-06T10:00:00+07:00
 description: Mô hình dự đoán bệnh tim mở rộng hướng kết hợp ensemble learning và tăng cường dataset bằng dữ liệu ảnh.
 image: images/heart.jpg
 caption:
-categories:  
-  - minutes  
-tags:  
-  - feature
+categories:
+  - minutes
+tags:
+  
 
 draft: false
 ---
@@ -28,7 +28,7 @@ Hệ thống này tập trung vào chẩn đoán và phân loại bệnh tim d�
 ### 🧪 Mã nguồn / Notebook
 - **Google Colab**: [Colab-Pipeline 1](https://colab.research.google.com/drive/1b4kaHX-tU743qJOBEm71biyhZE2e3Q1z?usp=sharing)
 - **Google Colab**: [Colab-Pipeline 2](https://colab.research.google.com/drive/1Sy2U8LzNYSV9NmpGZJb5d9Oqpo7ssiI-?usp=sharing)
-
+- **Streamlit**: [Stremlot-Pipeline 1](https://ensembleheart.streamlit.app/)
 
 ### 👉 Đối tượng người dùng
 - Nhà nghiên cứu AI Y tế: thử nghiệm mô hình đa phương thức trong chẩn đoán tim mạch.
@@ -108,3 +108,4 @@ Explainable AI (XAI):
 🗂️ Bài báo tham khảo
 
 {{< pdf src="/Time-Series-Team-Hub/pdf/M4W4D1_Enhancing_cardiac_disease_by_multimodal.pdf" title="M3W4D1_Fusion of machine learning  and medical imaging" height="700px" >}}
+{{< pdf src="/Time-Series-Team-Hub/pdf/Heart_Disease_Prediction_Model_Using_Feature_Selec.pdf" title="Heart Disease Prediction Model Using Feature Selection and Ensemble Deep Learning with Optimized Weight" height="700px" >}}

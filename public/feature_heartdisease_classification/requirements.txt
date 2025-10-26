@@ -1,0 +1,14 @@
+numpy
+pandas
+opencv-python
+seaborn
+torch
+IPython
+imageio
+Pillow
+matplotlib
+scikit-learn
+xgboost
+lightgbm
+kagglehub
+lightning
