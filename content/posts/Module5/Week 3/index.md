@@ -2,7 +2,7 @@
 title: "Module 5 - Tuần 3: Genetic Algorithms & XAI (SHAP)"
 date: 2025-10-20T10:00:00+07:00
 description: "Tuần 3 của Module 5 tập trung vào nền tảng của Giải thuật Di truyền (Genetic Algorithms), kết hợp MLOps AWS và giải thích mô hình qua SHAP trong XAI. Hướng dẫn cài đặt Python cơ bản, thảo luận randomness, và áp dụng GA trong bài toán tối ưu hóa & dự đoán thực tế."
-image: images/GA_XAI_SHAP.jpg
+image: images/GA.jpg
 caption: Illustration by AI Vietnam Team
 categories:
   - minutes
