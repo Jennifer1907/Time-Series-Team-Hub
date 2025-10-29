@@ -93,9 +93,7 @@ _(Buổi ôn tập – TA Đình Thắng)_
 
 ### ✅ **Genetic Algorithms – Tối ưu hóa qua tiến hóa**
 - Cấu trúc cơ bản của GA:
-  $$
-  \text{Population} \rightarrow \text{Selection} \rightarrow \text{Crossover} \rightarrow \text{Mutation} \rightarrow \text{Next Generation}
-  $$
+  **Population → Selection → Crossover → Mutation → Next Generation**
 - Hiểu rõ cách xây dựng **fitness function** và các cơ chế chọn lọc (roulette wheel, tournament, rank).  
 - Ứng dụng trong tối ưu hóa tham số mô hình, bài toán tìm kiếm, và học máy.
 
