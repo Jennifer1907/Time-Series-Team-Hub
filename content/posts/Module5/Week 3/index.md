@@ -116,6 +116,7 @@ _(Buổi ôn tập – TA Đình Thắng)_
 
 {{< pdf src="/Time-Series-Team-Hub/pdf/M5W3_GA.pdf" title="Genetic Algorithm - Giải thuật di truyền" height="700px" >}}
 {{< pdf src="/Time-Series-Team-Hub/pdf/M5W3D3_MLOps_with_AWS.pdf" title="MLOPs với AWS" height="700px" >}}
+{{< pdf src="/Time-Series-Team-Hub/pdf/M5W3_SHAP.pdf" title="XAI - SHAP" height="700px" >}}
 
 
 ---
