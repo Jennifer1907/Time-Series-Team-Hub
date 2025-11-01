@@ -2,80 +2,80 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on Time Series Team Hub</title>
-    <link>http://localhost:51713/Time-Series-Team-Hub/tags/</link>
+    <link>http://localhost:1313/Time-Series-Team-Hub/tags/</link>
     <description>Recent content in Tags on Time Series Team Hub</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 01 Nov 2025 10:00:00 +0700</lastBuildDate>
-    <atom:link href="http://localhost:51713/Time-Series-Team-Hub/tags/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/Time-Series-Team-Hub/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Feature</title>
-      <link>http://localhost:51713/Time-Series-Team-Hub/tags/feature/</link>
+      <link>http://localhost:1313/Time-Series-Team-Hub/tags/feature/</link>
       <pubDate>Sat, 01 Nov 2025 10:00:00 +0700</pubDate>
-      <guid>http://localhost:51713/Time-Series-Team-Hub/tags/feature/</guid>
+      <guid>http://localhost:1313/Time-Series-Team-Hub/tags/feature/</guid>
       <description></description>
     </item>
     <item>
       <title>Adaboost</title>
-      <link>http://localhost:51713/Time-Series-Team-Hub/tags/adaboost/</link>
+      <link>http://localhost:1313/Time-Series-Team-Hub/tags/adaboost/</link>
       <pubDate>Tue, 02 Sep 2025 09:00:00 +0700</pubDate>
-      <guid>http://localhost:51713/Time-Series-Team-Hub/tags/adaboost/</guid>
+      <guid>http://localhost:1313/Time-Series-Team-Hub/tags/adaboost/</guid>
       <description></description>
     </item>
     <item>
       <title>Boosting</title>
-      <link>http://localhost:51713/Time-Series-Team-Hub/tags/boosting/</link>
+      <link>http://localhost:1313/Time-Series-Team-Hub/tags/boosting/</link>
       <pubDate>Tue, 02 Sep 2025 09:00:00 +0700</pubDate>
-      <guid>http://localhost:51713/Time-Series-Team-Hub/tags/boosting/</guid>
+      <guid>http://localhost:1313/Time-Series-Team-Hub/tags/boosting/</guid>
       <description></description>
     </item>
     <item>
       <title>Ensemble-Learning</title>
-      <link>http://localhost:51713/Time-Series-Team-Hub/tags/ensemble-learning/</link>
+      <link>http://localhost:1313/Time-Series-Team-Hub/tags/ensemble-learning/</link>
       <pubDate>Tue, 02 Sep 2025 09:00:00 +0700</pubDate>
-      <guid>http://localhost:51713/Time-Series-Team-Hub/tags/ensemble-learning/</guid>
+      <guid>http://localhost:1313/Time-Series-Team-Hub/tags/ensemble-learning/</guid>
       <description></description>
     </item>
     <item>
       <title>Gradio</title>
-      <link>http://localhost:51713/Time-Series-Team-Hub/tags/gradio/</link>
+      <link>http://localhost:1313/Time-Series-Team-Hub/tags/gradio/</link>
       <pubDate>Tue, 02 Sep 2025 09:00:00 +0700</pubDate>
-      <guid>http://localhost:51713/Time-Series-Team-Hub/tags/gradio/</guid>
+      <guid>http://localhost:1313/Time-Series-Team-Hub/tags/gradio/</guid>
       <description></description>
     </item>
     <item>
       <title>Mlops</title>
-      <link>http://localhost:51713/Time-Series-Team-Hub/tags/mlops/</link>
+      <link>http://localhost:1313/Time-Series-Team-Hub/tags/mlops/</link>
       <pubDate>Tue, 02 Sep 2025 09:00:00 +0700</pubDate>
-      <guid>http://localhost:51713/Time-Series-Team-Hub/tags/mlops/</guid>
+      <guid>http://localhost:1313/Time-Series-Team-Hub/tags/mlops/</guid>
       <description></description>
     </item>
     <item>
       <title>Module-4</title>
-      <link>http://localhost:51713/Time-Series-Team-Hub/tags/module-4/</link>
+      <link>http://localhost:1313/Time-Series-Team-Hub/tags/module-4/</link>
       <pubDate>Tue, 02 Sep 2025 09:00:00 +0700</pubDate>
-      <guid>http://localhost:51713/Time-Series-Team-Hub/tags/module-4/</guid>
+      <guid>http://localhost:1313/Time-Series-Team-Hub/tags/module-4/</guid>
       <description></description>
     </item>
     <item>
       <title>Random-Forest</title>
-      <link>http://localhost:51713/Time-Series-Team-Hub/tags/random-forest/</link>
+      <link>http://localhost:1313/Time-Series-Team-Hub/tags/random-forest/</link>
       <pubDate>Tue, 02 Sep 2025 09:00:00 +0700</pubDate>
-      <guid>http://localhost:51713/Time-Series-Team-Hub/tags/random-forest/</guid>
+      <guid>http://localhost:1313/Time-Series-Team-Hub/tags/random-forest/</guid>
       <description></description>
     </item>
     <item>
       <title>Time-Series</title>
-      <link>http://localhost:51713/Time-Series-Team-Hub/tags/time-series/</link>
+      <link>http://localhost:1313/Time-Series-Team-Hub/tags/time-series/</link>
       <pubDate>Tue, 02 Sep 2025 09:00:00 +0700</pubDate>
-      <guid>http://localhost:51713/Time-Series-Team-Hub/tags/time-series/</guid>
+      <guid>http://localhost:1313/Time-Series-Team-Hub/tags/time-series/</guid>
       <description></description>
     </item>
     <item>
       <title>Week-1</title>
-      <link>http://localhost:51713/Time-Series-Team-Hub/tags/week-1/</link>
+      <link>http://localhost:1313/Time-Series-Team-Hub/tags/week-1/</link>
       <pubDate>Tue, 02 Sep 2025 09:00:00 +0700</pubDate>
-      <guid>http://localhost:51713/Time-Series-Team-Hub/tags/week-1/</guid>
+      <guid>http://localhost:1313/Time-Series-Team-Hub/tags/week-1/</guid>
       <description></description>
     </item>
   </channel>

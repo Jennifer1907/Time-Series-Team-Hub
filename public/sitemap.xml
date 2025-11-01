@@ -2,109 +2,115 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:51713/Time-Series-Team-Hub/categories/</loc>
+    <loc>http://localhost:1313/Time-Series-Team-Hub/categories/</loc>
     <lastmod>2025-11-01T10:00:00+07:00</lastmod>
   </url><url>
-    <loc>http://localhost:51713/Time-Series-Team-Hub/tags/feature/</loc>
+    <loc>http://localhost:1313/Time-Series-Team-Hub/tags/feature/</loc>
     <lastmod>2025-11-01T10:00:00+07:00</lastmod>
   </url><url>
-    <loc>http://localhost:51713/Time-Series-Team-Hub/categories/minutes/</loc>
+    <loc>http://localhost:1313/Time-Series-Team-Hub/categories/minutes/</loc>
     <lastmod>2025-11-01T10:00:00+07:00</lastmod>
   </url><url>
-    <loc>http://localhost:51713/Time-Series-Team-Hub/posts/module5/week3---extra/</loc>
+    <loc>http://localhost:1313/Time-Series-Team-Hub/posts/module5/week3---extra/</loc>
     <lastmod>2025-11-01T10:00:00+07:00</lastmod>
   </url><url>
-    <loc>http://localhost:51713/Time-Series-Team-Hub/posts/</loc>
+    <loc>http://localhost:1313/Time-Series-Team-Hub/posts/</loc>
     <lastmod>2025-11-01T10:00:00+07:00</lastmod>
   </url><url>
-    <loc>http://localhost:51713/Time-Series-Team-Hub/tags/</loc>
+    <loc>http://localhost:1313/Time-Series-Team-Hub/tags/</loc>
     <lastmod>2025-11-01T10:00:00+07:00</lastmod>
   </url><url>
-    <loc>http://localhost:51713/Time-Series-Team-Hub/</loc>
+    <loc>http://localhost:1313/Time-Series-Team-Hub/</loc>
     <lastmod>2025-11-01T10:00:00+07:00</lastmod>
   </url><url>
-    <loc>http://localhost:51713/Time-Series-Team-Hub/posts/module5/week1&#43;2/</loc>
+    <loc>http://localhost:1313/Time-Series-Team-Hub/posts/module5/week-4/</loc>
+    <lastmod>2025-10-28T10:00:00+07:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/Time-Series-Team-Hub/posts/module5/week-3/</loc>
+    <lastmod>2025-10-20T10:00:00+07:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/Time-Series-Team-Hub/posts/module5/week1&#43;2/</loc>
     <lastmod>2025-10-13T10:00:00+07:00</lastmod>
   </url><url>
-    <loc>http://localhost:51713/Time-Series-Team-Hub/posts/module4/week-3---extra/</loc>
+    <loc>http://localhost:1313/Time-Series-Team-Hub/posts/module4/week-3---extra/</loc>
     <lastmod>2025-09-22T10:00:00+07:00</lastmod>
   </url><url>
-    <loc>http://localhost:51713/Time-Series-Team-Hub/posts/module4/week-3/</loc>
+    <loc>http://localhost:1313/Time-Series-Team-Hub/posts/module4/week-3/</loc>
     <lastmod>2025-09-22T10:00:00+07:00</lastmod>
   </url><url>
-    <loc>http://localhost:51713/Time-Series-Team-Hub/posts/module4/week-2/</loc>
+    <loc>http://localhost:1313/Time-Series-Team-Hub/posts/module4/week-2/</loc>
     <lastmod>2025-09-14T10:00:00+07:00</lastmod>
   </url><url>
-    <loc>http://localhost:51713/Time-Series-Team-Hub/posts/module3/week-4/</loc>
+    <loc>http://localhost:1313/Time-Series-Team-Hub/posts/module3/week-4/</loc>
     <lastmod>2025-09-06T10:00:00+07:00</lastmod>
   </url><url>
-    <loc>http://localhost:51713/Time-Series-Team-Hub/posts/module4/week-4/</loc>
+    <loc>http://localhost:1313/Time-Series-Team-Hub/posts/module4/week-4/</loc>
     <lastmod>2025-09-06T10:00:00+07:00</lastmod>
   </url><url>
-    <loc>http://localhost:51713/Time-Series-Team-Hub/tags/adaboost/</loc>
+    <loc>http://localhost:1313/Time-Series-Team-Hub/tags/adaboost/</loc>
     <lastmod>2025-09-02T09:00:00+07:00</lastmod>
   </url><url>
-    <loc>http://localhost:51713/Time-Series-Team-Hub/tags/boosting/</loc>
+    <loc>http://localhost:1313/Time-Series-Team-Hub/tags/boosting/</loc>
     <lastmod>2025-09-02T09:00:00+07:00</lastmod>
   </url><url>
-    <loc>http://localhost:51713/Time-Series-Team-Hub/tags/ensemble-learning/</loc>
+    <loc>http://localhost:1313/Time-Series-Team-Hub/tags/ensemble-learning/</loc>
     <lastmod>2025-09-02T09:00:00+07:00</lastmod>
   </url><url>
-    <loc>http://localhost:51713/Time-Series-Team-Hub/tags/gradio/</loc>
+    <loc>http://localhost:1313/Time-Series-Team-Hub/tags/gradio/</loc>
     <lastmod>2025-09-02T09:00:00+07:00</lastmod>
   </url><url>
-    <loc>http://localhost:51713/Time-Series-Team-Hub/tags/mlops/</loc>
+    <loc>http://localhost:1313/Time-Series-Team-Hub/tags/mlops/</loc>
     <lastmod>2025-09-02T09:00:00+07:00</lastmod>
   </url><url>
-    <loc>http://localhost:51713/Time-Series-Team-Hub/posts/module4/week-1/</loc>
+    <loc>http://localhost:1313/Time-Series-Team-Hub/posts/module4/week-1/</loc>
     <lastmod>2025-09-02T09:00:00+07:00</lastmod>
   </url><url>
-    <loc>http://localhost:51713/Time-Series-Team-Hub/tags/module-4/</loc>
+    <loc>http://localhost:1313/Time-Series-Team-Hub/tags/module-4/</loc>
     <lastmod>2025-09-02T09:00:00+07:00</lastmod>
   </url><url>
-    <loc>http://localhost:51713/Time-Series-Team-Hub/tags/random-forest/</loc>
+    <loc>http://localhost:1313/Time-Series-Team-Hub/tags/random-forest/</loc>
     <lastmod>2025-09-02T09:00:00+07:00</lastmod>
   </url><url>
-    <loc>http://localhost:51713/Time-Series-Team-Hub/tags/time-series/</loc>
+    <loc>http://localhost:1313/Time-Series-Team-Hub/tags/time-series/</loc>
     <lastmod>2025-09-02T09:00:00+07:00</lastmod>
   </url><url>
-    <loc>http://localhost:51713/Time-Series-Team-Hub/tags/week-1/</loc>
+    <loc>http://localhost:1313/Time-Series-Team-Hub/tags/week-1/</loc>
     <lastmod>2025-09-02T09:00:00+07:00</lastmod>
   </url><url>
-    <loc>http://localhost:51713/Time-Series-Team-Hub/posts/module3/week-3/</loc>
+    <loc>http://localhost:1313/Time-Series-Team-Hub/posts/module3/week-3/</loc>
     <lastmod>2025-08-18T09:00:00+07:00</lastmod>
   </url><url>
-    <loc>http://localhost:51713/Time-Series-Team-Hub/posts/module3/week-1/</loc>
+    <loc>http://localhost:1313/Time-Series-Team-Hub/posts/module3/week-1/</loc>
     <lastmod>2025-08-11T13:03:07+07:00</lastmod>
   </url><url>
-    <loc>http://localhost:51713/Time-Series-Team-Hub/posts/module3/week-2/</loc>
+    <loc>http://localhost:1313/Time-Series-Team-Hub/posts/module3/week-2/</loc>
     <lastmod>2025-08-03T10:00:00+07:00</lastmod>
   </url><url>
-    <loc>http://localhost:51713/Time-Series-Team-Hub/posts/module2/week-4/spam_ham_classifier/</loc>
+    <loc>http://localhost:1313/Time-Series-Team-Hub/posts/module2/week-4/spam_ham_classifier/</loc>
     <lastmod>2025-08-02T10:00:00+07:00</lastmod>
   </url><url>
-    <loc>http://localhost:51713/Time-Series-Team-Hub/posts/module2/week-3/</loc>
+    <loc>http://localhost:1313/Time-Series-Team-Hub/posts/module2/week-3/</loc>
     <lastmod>2025-07-21T13:03:07+07:00</lastmod>
   </url><url>
-    <loc>http://localhost:51713/Time-Series-Team-Hub/posts/module2/week-2/</loc>
+    <loc>http://localhost:1313/Time-Series-Team-Hub/posts/module2/week-2/</loc>
     <lastmod>2025-07-10T13:03:07+07:00</lastmod>
   </url><url>
-    <loc>http://localhost:51713/Time-Series-Team-Hub/posts/module2/week-1/</loc>
+    <loc>http://localhost:1313/Time-Series-Team-Hub/posts/module2/week-1/</loc>
     <lastmod>2025-07-06T13:03:07+07:00</lastmod>
   </url><url>
-    <loc>http://localhost:51713/Time-Series-Team-Hub/about/</loc>
+    <loc>http://localhost:1313/Time-Series-Team-Hub/about/</loc>
     <lastmod>2025-06-28T20:37:29+07:00</lastmod>
   </url><url>
-    <loc>http://localhost:51713/Time-Series-Team-Hub/posts/module1/week-1/</loc>
+    <loc>http://localhost:1313/Time-Series-Team-Hub/posts/module1/week-1/</loc>
     <lastmod>2025-06-28T13:03:07+07:00</lastmod>
   </url><url>
-    <loc>http://localhost:51713/Time-Series-Team-Hub/posts/module1/week-2/</loc>
+    <loc>http://localhost:1313/Time-Series-Team-Hub/posts/module1/week-2/</loc>
     <lastmod>2025-06-28T13:03:07+07:00</lastmod>
   </url><url>
-    <loc>http://localhost:51713/Time-Series-Team-Hub/posts/module1/week-3/</loc>
+    <loc>http://localhost:1313/Time-Series-Team-Hub/posts/module1/week-3/</loc>
     <lastmod>2025-06-28T13:03:07+07:00</lastmod>
   </url><url>
-    <loc>http://localhost:51713/Time-Series-Team-Hub/posts/module1/week-4/chat_bot/</loc>
+    <loc>http://localhost:1313/Time-Series-Team-Hub/posts/module1/week-4/chat_bot/</loc>
     <lastmod>2025-06-28T13:03:07+07:00</lastmod>
   </url>
 </urlset>

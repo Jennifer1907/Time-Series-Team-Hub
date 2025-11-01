@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+<head><script src="/Time-Series-Team-Hub/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=Time-Series-Team-Hub/livereload" data-no-instant defer></script>
+	<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Module 5 - Tuần 4: Advanced Regression &amp; AI Agent for Housing Appraisal | Time Series Team Hub</title>
+
+<meta name="description" content="Tuần 4 của Module 5 tập trung vào ứng dụng nâng cao của Regression, kết hợp chọn đặc trưng thông minh (Correlation &amp; F-statistics), tối ưu mô hình qua Ensemble, và mở rộng thành Agent AI hỗ trợ thẩm định giá nhà thực tế.">
+    <link rel="stylesheet" href="/Time-Series-Team-Hub/css/main.css">
+
+<link rel="icon" type="image/svg+xml" href="http://localhost:1313/Time-Series-Team-Hub/favicon.svg"> 
+<link rel="icon" type="image/x-icon" href="http://localhost:1313/Time-Series-Team-Hub/favicon.ico"> 
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/Time-Series-Team-Hub/favicon.png"> 
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/Time-Series-Team-Hub/favicon-32.png"> 
+<link rel="icon" type="image/png" sizes="64x64" href="http://localhost:1313/Time-Series-Team-Hub/favicon-64.png"> 
+
+	
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css"
+	integrity="sha384-GqV8jWJ4M4d7KpAaFdFHQPJoPIZHjI46tD/1m5K8Fg8z57EIsYjyN8e/XuID8vQv" crossorigin="anonymous">
+
+
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"
+	integrity="sha384-vL+PRUsWbppvSttTjlL6R9T/cAzSBx3IMT/14F4Hqp6NAY7G6UJzKuZ1S74gCkQw"
+	crossorigin="anonymous"></script>
+
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"
+	integrity="sha384-mll67QQ5HOwCRm7C0blXZqXQKUX2eX0TQ1gV7m4nG1cTQqgXk7HbiUJxO2bdfXU0" crossorigin="anonymous" onload="renderMathInElement(document.body, {
+            delimiters: [
+				{left: '$$', right: '$$', display: true},
+				{left: '$', right: '$', display: false}
+            ]
+		});">
+		</script>
+ 
+</head>
+<body>
+  <header class="py-6 border-b"><div class="max-w-7xl mx-auto px-4 md:px-6 lg:px-8 flex flex-col">
+	<div class="flex items-center">
+		<div class="flex items-center">
+			<button class="flex items-center space-x-2 rounded-full border py-1 pr-[5px] pl-3 group bg-zinc-100 hover:bg-zinc-200 toggle-button" data-target="menu-bar">
+				<svg width="22" height="22" fill="currentColor" viewBox="0 0 16 16">
+					<path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"></path>
+				</svg>
+				<span class="bg-blue-500 fill-white rounded-full p-1.5">
+					<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="group-hover:animate-spin bi bi-egg-fried fill-white" viewBox="0 0 16 16">
+						<path d="M8 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"></path>
+						<path d="M13.997 5.17a5 5 0 0 0-8.101-4.09A5 5 0 0 0 1.28 9.342a5 5 0 0 0 8.336 5.109 3.5 3.5 0 0 0 5.201-4.065 3.001 3.001 0 0 0-.822-5.216zm-1-.034a1 1 0 0 0 .668.977 2.001 2.001 0 0 1 .547 3.478 1 1 0 0 0-.341 1.113 2.5 2.5 0 0 1-3.715 2.905 1 1 0 0 0-1.262.152 4 4 0 0 1-6.67-4.087 1 1 0 0 0-.2-1 4 4 0 0 1 3.693-6.61 1 1 0 0 0 .8-.2 4 4 0 0 1 6.48 3.273z"></path>
+					</svg>
+				</span>
+			</button>
+			<div class="relative rounded-full py-1.5 px-6 bg-zinc-100 hover:bg-zinc-200 text-xl font-bold uppercase mx-2">
+				<h2><a class="before:content-[''] before:z-10 before:top-0 before:right-0 before:left-0 before:bottom-0 before:absolute before:pointer-events-auto" href="http://localhost:1313/Time-Series-Team-Hub/">Time Series Team Hub</a></h2>
+			</div>
+		</div>
+		<div class="flex items-center ml-auto">
+			<button class="flex items-center rounded-full p-3 bg-zinc-100 hover:bg-zinc-200 toggle-button" data-target="search-bar">
+				<svg width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
+					<path id="path1" class="transition-all ease-linear" d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"></path>
+					<path id="path2" class="transition-all ease-linear hidden" d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"></path>
+				</svg>
+			</button>
+		</div>
+	</div>
+  <nav id="menu-bar" class="block mt-3 close">
+    <ul class="flex items-center flex flex-nowrap whitespace-nowrap overflow-x-auto space-x-4">
+    <li class="my-2">
+      <a class="rounded-full border px-6 py-2 bg-zinc-100 hover:bg-zinc-200" href="/Time-Series-Team-Hub/">Home</a>
+    </li>
+    <li class="my-2">
+      <a class="rounded-full border px-6 py-2 bg-zinc-100 hover:bg-zinc-200" href="/Time-Series-Team-Hub/about/">About</a>
+    </li>
+    </ul>
+  </nav>
+<div id="search-bar" class="block mt-3 close">
+	<form id="search" class="flex items-stretch">
+		<input class="w-full block px-6 py-2 rounded-l-full focus:outline-none border border-zinc-200" type="text" placeholder="Search...">
+		<button class="flex items-center px-7 py-2.5 rounded-r-full border border-zinc-200 ">
+			<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="group-hover:animate-pulse" viewBox="0 0 16 16">
+				<path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"></path>
+			</svg>
+		</button>
+	</form>
+</div>
+</div></header>
+  <main class="max-w-7xl mx-auto px-4 md:px-6 lg:px-8"><div id="breadcrumb" class="max-w-7xl mx-auto py-8">
+	<ul class="flex space-x-4 text-sm text-zinc-500">
+		<li class="after:content-['❯'] after:ml-4 after:opacity-30 last:after:content-none uppercase">
+			<a href="http://localhost:1313/Time-Series-Team-Hub/">Time Series Team Hub</a>
+		</li>
+		<li class="after:content-['❯'] after:ml-4 after:opacity-30 last:after:content-none uppercase">
+			<a href="http://localhost:1313/Time-Series-Team-Hub/posts/">Posts</a>
+		</li>
+	</ul>
+</div><div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-14">
+
+  <article class="md:col-span-2 prose lg:prose-lg">
+
+    <header class="not-prose">
+      
+      <h1 id="title" class="text-4xl font-bold leading-normal">Module 5 - Tuần 4: Advanced Regression &amp; AI Agent for Housing Appraisal</h1>
+
+      <div id="lead" class="my-6">
+
+        <p class="font-bold">Tuần 4 của Module 5 tập trung vào ứng dụng nâng cao của Regression, kết hợp chọn đặc trưng thông minh (Correlation &amp; F-statistics), tối ưu mô hình qua Ensemble, và mở rộng thành Agent AI hỗ trợ thẩm định giá nhà thực tế. </p>
+
+      </div>
+      
+      <div id="writer" class="flex items-center space-x-4"><ul class="flex items-center space-x-4 flex-nowrap whitespace-nowrap overflow-x-auto">
+          
+          <li class="font-semibold my-2"></li>
+          
+          <li class="before:content-['•'] before:mr-2 before:opacity-50 my-2"><time datetime="2025-10-28T10:00:00&#43;07:00">October 28, 2025</time>
+          </li>
+
+          <li class="before:content-['•'] before:mr-2 before:opacity-50 my-2">
+            7 min read
+          </li>
+
+        </ul>
+
+      </div>
+      
+    </header>
+
+    <figure id="featureimage" class="rounded-xl aspect-video">
+            <img class="rounded-lg" src="http://localhost:1313/Time-Series-Team-Hub/images/house_prediction_hu_6c1b9f00060b4008.jpg" alt="" width="750" height="439">
+        <figcaption class="text-center italic text-xs">Illustration by AI Vietnam Team</figcaption>
+
+    </figure>
+
+    <div id="content" class="mb-14">
+      <p>🎓 <strong>All-in-One Course 2025 – aivietnam.edu.vn</strong><br>
+📘 <strong>Project: Module 5 – Week 4</strong><br>
+🏠 <strong>Chủ đề:</strong> Advanced Regression Techniques &amp; AI Agent for Housing Appraisal</p>
+<blockquote>
+<p>💡 <em>Dự án này mở rộng từ bài toán kinh điển “House Prices Prediction (Kaggle)” và hướng đến một pipeline hiện đại hơn – nơi Machine Learning, Explainable AI, và Large Language Model kết hợp để xây dựng một hệ thống thẩm định giá nhà tự động (AI Appraisal Agent).</em></p></blockquote>
+<hr>
+<h3 id="-file-source-code">🧪 File Source Code:</h3>
+<p>[Google_Colab] (<a href="https://colab.research.google.com/drive/1a1ap0Th2R9K8CzVXttu4E6JTsnPjYx-g?usp=sharing">https://colab.research.google.com/drive/1a1ap0Th2R9K8CzVXttu4E6JTsnPjYx-g?usp=sharing</a>)</p>
+<h2 id="-mục-tiêu-dự-án">🎯 <strong>Mục tiêu dự án</strong></h2>
+<ul>
+<li>Ứng dụng các kỹ thuật <strong>Advanced Regression</strong> để dự đoán giá nhà với độ chính xác cao.</li>
+<li>Kết hợp <strong>phân tích thống kê truyền thống</strong> (Correlation, F-statistics) và <strong>tối ưu hóa tiến hóa</strong> (Genetic Algorithm).</li>
+<li>Thiết kế và huấn luyện các <strong>pipeline đa dạng</strong> (Raw, Scaled, PCA, GA).</li>
+<li>Áp dụng <strong>Ensemble Learning</strong> để nâng cao độ ổn định và khả năng tổng quát hóa.</li>
+<li>Mở rộng mô hình thành <strong>AI Agent for Housing Appraisal</strong> có khả năng sinh báo cáo thẩm định giá bằng ngôn ngữ tự nhiên.</li>
+</ul>
+<hr>
+<h2 id="-cải-tiến-trong-pipeline-mới">⚙️ <strong>Cải tiến trong pipeline mới</strong></h2>
+<p>Pipeline mới được nhóm đề xuất theo định hướng <strong>kết hợp giữa khả năng tự động hóa, phân tích đa chiều và giải thích mô hình</strong>.<br>
+Các cải tiến chính bao gồm:</p>
+<h3 id="-a-chọn-đặc-trưng-đa-hướng">🔹 (a) Chọn đặc trưng đa hướng</h3>
+<ul>
+<li>Kết hợp <strong>Genetic Algorithm (GA)</strong> để tìm tập biến tối ưu với <strong>Correlation / F-test</strong> nhằm đánh giá thống kê truyền thống.</li>
+<li>Mục tiêu là tạo ra tập đặc trưng vừa có ý nghĩa thống kê, vừa tối ưu theo góc nhìn tìm kiếm toàn cục (global search).</li>
+</ul>
+<h3 id="-b-phân-nhánh-huấn-luyện-có-và-không-có-pca">🔹 (b) Phân nhánh huấn luyện có và không có PCA</h3>
+<ul>
+<li>Tạo hai pipeline song song để <strong>so sánh tác động của giảm chiều dữ liệu</strong> (dimensionality reduction) đến hiệu quả mô hình và khả năng diễn giải.</li>
+<li>Kết quả cho thấy PCA giúp giảm nhiễu nhưng làm mất tính giải thích đối với các biến định danh (categorical).</li>
+</ul>
+<h3 id="-c-mở-rộng-phạm-vi-mô-hình">🔹 (c) Mở rộng phạm vi mô hình</h3>
+<ul>
+<li>Bổ sung và thử nghiệm các thuật toán nâng cao: <strong>ElasticNet, Random Forest, Gradient Boosting, Ensemble Learning.</strong></li>
+<li>Ensemble được chọn là mô hình mạnh nhất, giúp giảm phương sai và tận dụng sức mạnh của nhiều bộ dự đoán cơ sở.</li>
+</ul>
+<h3 id="-d-giải-thích-bằng-shap">🔹 (d) Giải thích bằng SHAP</h3>
+<ul>
+<li>Áp dụng <strong>SHAP (SHapley Additive exPlanations)</strong> để lượng hóa mức đóng góp của từng đặc trưng vào dự đoán cuối cùng.</li>
+<li>Phương pháp này tăng tính minh bạch và hỗ trợ phân tích nguyên nhân định lượng của từng quyết định mô hình.</li>
+</ul>
+<h3 id="-e-hướng-đến-ứng-dụng-thực-tế">🔹 (e) Hướng đến ứng dụng thực tế</h3>
+<ul>
+<li>Tích hợp bước <strong>Prompting – AI Agent for Housing Appraisal</strong>, cho phép mô hình tạo báo cáo định giá và giải thích chi tiết từng yếu tố ảnh hưởng.</li>
+<li>Đây là bước đệm để triển khai hệ thống <strong>AI hỗ trợ thẩm định giá bất động sản tự động</strong> trong tương lai.</li>
+</ul>
+<hr>
+<h2 id="-pipeline-tổng-quan">📊 <strong>Pipeline tổng quan</strong></h2>
+<p><img src="Project_Module5_Pipeline.png" alt="Project Pipeline"></p>
+<p><strong>Các giai đoạn chính:</strong></p>
+<ol>
+<li>Tiền xử lý dữ liệu (xử lý giá trị thiếu, mã hóa, chuẩn hóa).</li>
+<li>Chọn đặc trưng bằng <strong>Correlation / F-statistics</strong> và <strong>GA optimization</strong>.</li>
+<li>Phân nhánh pipeline (Raw / Scaled / PCA / GA).</li>
+<li>Huấn luyện mô hình (Linear, Ridge, Lasso, ElasticNet, RF, GBM, Ensemble).</li>
+<li>Đánh giá hiệu năng qua RMSE và R².</li>
+<li>Tạo <strong>AI Agent</strong> để phân tích và sinh báo cáo định giá nhà tự động.</li>
+</ol>
+<hr>
+<h2 id="-feature-selection">🧩 <strong>Feature Selection</strong></h2>
+<h3 id="-correlation-based-selection">🔹 Correlation-based Selection</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>correlation <span style="color:#f92672">=</span> numeric_df<span style="color:#f92672">.</span>corr()[<span style="color:#e6db74">&#34;SalePrice&#34;</span>]<span style="color:#f92672">.</span>abs()<span style="color:#f92672">.</span>sort_values(ascending<span style="color:#f92672">=</span><span style="color:#66d9ef">False</span>)
+</span></span><span style="display:flex;"><span>selected_numeric_stats <span style="color:#f92672">=</span> correlation[correlation <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0.1</span>]<span style="color:#f92672">.</span>index<span style="color:#f92672">.</span>tolist()
+</span></span><span style="display:flex;"><span>selected_numeric_stats<span style="color:#f92672">.</span>remove(<span style="color:#e6db74">&#34;SalePrice&#34;</span>)
+</span></span></code></pre></div><ul>
+<li>Chỉ giữ các biến có hệ số tương quan ≥ 0.1 so với <code>SalePrice</code>.</li>
+<li>Giúp loại bỏ nhiễu và tăng khả năng giải thích mô hình dựa trên thống kê truyền thống.</li>
+</ul>
+<h3 id="-f-statistics-selection-anova">🔹 F-statistics Selection (ANOVA)</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> sklearn.feature_selection <span style="color:#f92672">import</span> SelectKBest, f_regression
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>selector <span style="color:#f92672">=</span> SelectKBest(score_func<span style="color:#f92672">=</span>f_regression, k<span style="color:#f92672">=</span>min(<span style="color:#ae81ff">15</span>, len(categorical_cols)))
+</span></span><span style="display:flex;"><span>X_cat_selected <span style="color:#f92672">=</span> selector<span style="color:#f92672">.</span>fit_transform(X_cat, y)
+</span></span><span style="display:flex;"><span>selected_cat_mask <span style="color:#f92672">=</span> selector<span style="color:#f92672">.</span>get_support()
+</span></span><span style="display:flex;"><span>selected_categorical_stats <span style="color:#f92672">=</span> [
+</span></span><span style="display:flex;"><span>    categorical_cols[i] <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(len(categorical_cols)) <span style="color:#66d9ef">if</span> selected_cat_mask[i]
+</span></span><span style="display:flex;"><span>]
+</span></span></code></pre></div><ul>
+<li>Lựa chọn các đặc trưng có ý nghĩa thống kê cao nhất thông qua kiểm định F-test.</li>
+<li>Đây là hướng <strong>chọn đặc trưng truyền thống</strong> giúp mô hình dễ giải thích, ổn định và có cơ sở thống kê rõ ràng.</li>
+</ul>
+<hr>
+<h3 id="-genertic-algorithm-ga-feature-selection">🔹 Genertic Algorithm (GA) Feature Selection</h3>
+<p>Ngoài các phương pháp thống kê, nhóm còn phát triển một pipeline riêng sử dụng <strong>Genetic Algorithm (GA)</strong> để tự động hóa việc lựa chọn tập đặc trưng tối ưu.</p>
+<p>GA hoạt động dựa trên cơ chế tiến hóa tự nhiên — chọn lọc, lai ghép, và đột biến — nhằm tìm ra tập biến mang lại hiệu quả dự đoán cao nhất cho mô hình.</p>
+<p><strong>Quy trình chính:</strong></p>
+<ol>
+<li>Mỗi “cá thể” trong quần thể đại diện cho một tập biến.</li>
+<li>Tính “độ thích nghi” (fitness) dựa trên hiệu năng mô hình (RMSE hoặc R²).</li>
+<li>Chọn lọc các cá thể tốt nhất, thực hiện lai ghép và đột biến để tạo thế hệ mới.</li>
+<li>Lặp lại đến khi hội tụ hoặc đạt ngưỡng cải thiện tối đa.</li>
+</ol>
+<p><strong>Ưu điểm của GA:</strong></p>
+<ul>
+<li>Tự động tìm ra tập biến tối ưu mà không cần giả định tuyến tính.</li>
+<li>Phù hợp với các bài toán có tương tác phức tạp giữa biến độc lập.</li>
+<li>Bổ sung cho các phương pháp truyền thống, mở ra pipeline riêng (<code>GA_base_raw</code>, <code>GA_base_scaled</code>, <code>GA_pca</code>) giúp so sánh tính hiệu quả.</li>
+</ul>
+<hr>
+<h2 id="-kết-quả-huấn-luyện-và-so-sánh-nhóm-10-mô-hình-có-thành-tích-tốt-nhất">🤖 <strong>Kết quả huấn luyện và so sánh nhóm 10 mô hình có thành tích tốt nhất</strong></h2>
+<table>
+  <thead>
+      <tr>
+          <th>Pipeline</th>
+          <th>Model</th>
+          <th>RMSE</th>
+          <th>R²</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Stats_base_raw</td>
+          <td><strong>Ensemble</strong></td>
+          <td><strong>0.135</strong></td>
+          <td><strong>0.902</strong></td>
+      </tr>
+      <tr>
+          <td>Stats_base_raw</td>
+          <td>Gradient Boosting</td>
+          <td>0.136</td>
+          <td>0.901</td>
+      </tr>
+      <tr>
+          <td>Stats_base_scaled</td>
+          <td>Linear Regression</td>
+          <td>0.139</td>
+          <td>0.896</td>
+      </tr>
+      <tr>
+          <td>Stats_base_scaled</td>
+          <td>Ridge</td>
+          <td>0.144</td>
+          <td>0.888</td>
+      </tr>
+      <tr>
+          <td>Stats_base_raw</td>
+          <td>Random Forest</td>
+          <td>0.145</td>
+          <td>0.888</td>
+      </tr>
+      <tr>
+          <td>Stats_base_scaled</td>
+          <td>ElasticNet</td>
+          <td>0.145</td>
+          <td>0.887</td>
+      </tr>
+      <tr>
+          <td>GA_base_raw</td>
+          <td>Ensemble</td>
+          <td>0.145</td>
+          <td>0.887</td>
+      </tr>
+      <tr>
+          <td>GA_pca</td>
+          <td>Gradient Boosting</td>
+          <td>0.248</td>
+          <td>0.670</td>
+      </tr>
+      <tr>
+          <td>Stats_pca</td>
+          <td>Random Forest</td>
+          <td>0.259</td>
+          <td>0.640</td>
+      </tr>
+  </tbody>
+</table>
+<p>🔥 <strong>Best Model:</strong><br>
+📊 Pipeline: <code>Stats_base_raw</code><br>
+🤖 Model: <code>Ensemble</code><br>
+📈 R²: 0.9018</p>
+<blockquote>
+<p>PCA không phù hợp cho bài toán này do làm mất thông tin định danh (categorical).<br>
+Ensemble giúp mô hình ổn định và khái quát hóa tốt hơn so với từng mô hình riêng lẻ.</p></blockquote>
+<hr>
+<h2 id="-ai-agent-for-housing-appraisal">🧠 <strong>AI Agent for Housing Appraisal</strong></h2>
+<p>Sau khi xác định mô hình tốt nhất, nhóm mở rộng ứng dụng thành <strong>AI Agent</strong> có khả năng:</p>
+<ul>
+<li>Trích xuất đặc trưng chi tiết của từng căn nhà (<code>extract_property_features</code>).</li>
+<li>Tìm kiếm bất động sản tương đồng bằng hàm tương tự có trọng số (<code>find_comparable_properties_advanced</code>).</li>
+<li>Sinh báo cáo định giá chi tiết qua LLM (<code>generate_comprehensive_analysis_prompt</code>, <code>create_property_report_prompt</code>).</li>
+<li>Kết hợp ML + LLM để tạo <strong>báo cáo thẩm định tự động</strong> như chuyên viên bất động sản.</li>
+</ul>
+<hr>
+<h3 id="-kết-quả-prompt-mẫu">📄 <strong>Kết quả Prompt mẫu</strong></h3>
+<pre tabindex="0"><code>You are a real estate valuation assistant.
+The target property (Index 50) is located in Gilbert.
+It has 3 bedrooms, 2 garage(s), 1470 square feet of living area, built in 1997, with an overall quality rating of 6.
+
+Actual sale price in dataset: $177,000.
+Predicted price from ML model: $175,451.
+The prediction differs by -0.9% from the actual sale price.
+
+The dataset&#39;s mean sale price is $180,921, ranging from $34,900 to $755,000.
+
+Here are the top 5 comparable properties:
+- The first comparable: Located in Gilbert, built in 1997, 1511 sqft, 3 bedrooms, quality 6/10, 2 garage(s), selling for $185,000 (similarity score: 0.992).
+- The second comparable: Located in Gilbert, built in 1994, 1481 sqft, 3 bedrooms, quality 6/10, 2 garage(s), selling for $174,000 (similarity score: 0.989).
+- The third comparable: Located in Gilbert, built in 1995, 1498 sqft, 3 bedrooms, quality 6/10, 2 garage(s), selling for $187,500 (similarity score: 0.988).
+- The fourth comparable: Located in Gilbert, built in 1993, 1470 sqft, 3 bedrooms, quality 6/10, 2 garage(s), selling for $185,000 (similarity score: 0.988).
+- The fifth comparable: Located in Gilbert, built in 1993, 1501 sqft, 3 bedrooms, quality 6/10, 2 garage(s), selling for $165,600 (similarity score: 0.982).
+
+Based on these comparables and model estimates, analyze whether the predicted value is reasonable. Explain which features likely contributed most to the price difference.
+</code></pre><hr>
+<h2 id="-tài-liệu-kèm-theo">📚 <strong>Tài liệu kèm theo</strong></h2>
+<details>
+	<summary> M5W4_Housing_Price.pdf </summary>
+	<div class="pdf-container my-6 border rounded-lg overflow-hidden shadow-lg">
+		<div class="pdf-header bg-zinc-100 px-4 py-2 flex items-center justify-between">
+			<span class="font-semibold text-sm">📄 M5W4_Housing_Price.pdf </span>
+			<div class="flex space-x-2">
+				<a href="/Time-Series-Team-Hub/pdf/M5W4_Housing_Price.pdf" target="_blank" class="text-blue-600 hover:text-blue-800 text-sm">
+					Open in New Tab
+				</a>
+				<a href="/Time-Series-Team-Hub/pdf/M5W4_Housing_Price.pdf" download class="text-blue-600 hover:text-blue-800 text-sm">
+					Download
+				</a>
+			</div>
+		</div>
+		<iframe
+			src="/Time-Series-Team-Hub/pdf/M5W4_Housing_Price.pdf"
+			width="100%"
+			height="700px"
+			class="border-0"
+			title="M5W4_Housing_Price.pdf">
+			<p>Your browser does not support PDFs. <a href="/Time-Series-Team-Hub/pdf/M5W4_Housing_Price.pdf">Download the PDF</a>.</p>
+		</iframe>
+	</div>
+</details>
+
+<hr>
+<p>🧠 <em>Repository managed by <a href="https://github.com/AI-Vietnam-Institution/All-in-One-Course">AI Vietnam Team Hub</a></em><br>
+📍 <em>Blog thuộc series <strong>All-in-One Course 2025</strong> – chương trình đào tạo toàn diện AI, Data Science, và MLOps tại <a href="https://aivietnam.edu.vn">aivietnam.edu.vn</a></em></p>
+
+
+    <ul id="taxonomy" class="not-prose flex items-center space-x-4 flex-nowrap whitespace-nowrap overflow-x-auto">
+
+      <li class="font-semibold my-4">Tags:</li>
+        <li ><a class="py-2 px-6 border rounded-full hover:bg-zinc-100 active:bg-zinc-300" href="/Time-Series-Team-Hub/tags/feature/">Feature</a></li>
+    </ul>
+</div>
+
+    <footer id="content-footer" class="not-prose">
+
+      <div id="related-post" class="">
+
+        <h2 class="text-xl md:text-2xl font-bold mb-6 md:mb-8">Recommended for You</h2>
+      </div>
+
+    </footer>
+
+  </article>
+
+  
+  <aside class="md:col-span-1"><div class="lg:sticky lg:top-8">
+
+	
+
+	<div class="space-y-6">
+
+		<h2 class="font-bold text-xl mb-8">Recent Post</h2>
+
+		<article class="relative group flex flex-row">
+	<a class="insert-link" href="http://localhost:1313/Time-Series-Team-Hub/posts/module5/week-4/"></a>
+	<figure class="basis-1/3 aspect-square overflow-hidden rounded-2xl bg-zinc-100"><img class="object-cover h-full w-full group-hover:scale-105 transition duration-500 cursor-pointer" src="http://localhost:1313/Time-Series-Team-Hub/images/house_prediction_hu_8be3a32fddb410b2.jpg" alt="Module 5 - Tuần 4: Advanced Regression &amp; AI Agent for Housing Appraisal" width="250" height="250">
+
+	</figure>
+	<div class="basis-2/3 self-center ml-4">
+		<h3 class="font-bold group-hover:underline decoration-auto">Module 5 - Tuần 4: Advanced Regression &amp; AI Agent for Housing Appraisal</h3>
+	</div>
+</article><article class="relative group flex flex-row">
+	<a class="insert-link" href="http://localhost:1313/Time-Series-Team-Hub/posts/module5/week-3/"></a>
+	<figure class="basis-1/3 aspect-square overflow-hidden rounded-2xl bg-zinc-100"><img class="object-cover h-full w-full group-hover:scale-105 transition duration-500 cursor-pointer" src="http://localhost:1313/Time-Series-Team-Hub/images/GA_hu_8fdfa4a3f8ae13fc.jpg" alt="Module 5 - Tuần 3: Genetic Algorithms &amp; XAI (SHAP)" width="250" height="250">
+
+	</figure>
+	<div class="basis-2/3 self-center ml-4">
+		<h3 class="font-bold group-hover:underline decoration-auto">Module 5 - Tuần 3: Genetic Algorithms &amp; XAI (SHAP)</h3>
+	</div>
+</article><article class="relative group flex flex-row">
+	<a class="insert-link" href="http://localhost:1313/Time-Series-Team-Hub/posts/module5/week1&#43;2/"></a>
+	<figure class="basis-1/3 aspect-square overflow-hidden rounded-2xl bg-zinc-100"><img class="object-cover h-full w-full group-hover:scale-105 transition duration-500 cursor-pointer" src="http://localhost:1313/Time-Series-Team-Hub/images/Advanced_Linear_FeatureStore_hu_8b9eecce38576bbf.jpeg" alt="Module 5 - Tuần 1 &#43; 2: Chinh phục Linear Regression &amp; Hủy Diệt Data Conflicts cùng MLOps Versioning và Feast" width="250" height="250">
+
+	</figure>
+	<div class="basis-2/3 self-center ml-4">
+		<h3 class="font-bold group-hover:underline decoration-auto">Module 5 - Tuần 1 &#43; 2: Chinh phục Linear Regression &amp; Hủy Diệt Data Conflicts cùng MLOps Versioning và Feast</h3>
+	</div>
+</article><article class="relative group flex flex-row">
+	<a class="insert-link" href="http://localhost:1313/Time-Series-Team-Hub/posts/module4/week-3---extra/"></a>
+	<figure class="basis-1/3 aspect-square overflow-hidden rounded-2xl bg-zinc-100"><img class="object-cover h-full w-full group-hover:scale-105 transition duration-500 cursor-pointer" src="http://localhost:1313/Time-Series-Team-Hub/images/all_about_tree_hu_cb545c6c30038f07.jpg" alt="Module 4 - Tuần 3: Hành trình khám phá **Tree-Based Models**: Từ lý thuyết đến thực chiến" width="250" height="250">
+
+	</figure>
+	<div class="basis-2/3 self-center ml-4">
+		<h3 class="font-bold group-hover:underline decoration-auto">Module 4 - Tuần 3: Hành trình khám phá **Tree-Based Models**: Từ lý thuyết đến thực chiến</h3>
+	</div>
+</article><article class="relative group flex flex-row">
+	<a class="insert-link" href="http://localhost:1313/Time-Series-Team-Hub/posts/module4/week-3/"></a>
+	<figure class="basis-1/3 aspect-square overflow-hidden rounded-2xl bg-zinc-100"><img class="object-cover h-full w-full group-hover:scale-105 transition duration-500 cursor-pointer" src="http://localhost:1313/Time-Series-Team-Hub/images/tree_tree_hu_143839aaf923d1c3.png" alt="Module 4 - Tuần 3: Tree Review &amp; LightGBM – Cây cối nở rộ và nở hoa với Time-series" width="250" height="250">
+
+	</figure>
+	<div class="basis-2/3 self-center ml-4">
+		<h3 class="font-bold group-hover:underline decoration-auto">Module 4 - Tuần 3: Tree Review &amp; LightGBM – Cây cối nở rộ và nở hoa với Time-series</h3>
+	</div>
+</article>
+		
+	</div>
+
+</div>
+</aside>
+
+</div>
+  
+</main>
+  <footer class="bg-zinc-100 py-10 md:py-14"><div class="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
+
+  <div class="flex flex-wrap space-y-6 mb-4">
+
+    <div class="w-full md:w-3/5 flex flex-col space-y-4 md:pr-8 lg:pr-10">
+
+      <a class="flex items-center group" href="http://localhost:1313/Time-Series-Team-Hub/">
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="mr-2 group-hover:animate-spin" viewBox="0 0 16 16">
+          <path d="M8 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+          <path d="M13.997 5.17a5 5 0 0 0-8.101-4.09A5 5 0 0 0 1.28 9.342a5 5 0 0 0 8.336 5.109 3.5 3.5 0 0 0 5.201-4.065 3.001 3.001 0 0 0-.822-5.216zm-1-.034a1 1 0 0 0 .668.977 2.001 2.001 0 0 1 .547 3.478 1 1 0 0 0-.341 1.113 2.5 2.5 0 0 1-3.715 2.905 1 1 0 0 0-1.262.152 4 4 0 0 1-6.67-4.087 1 1 0 0 0-.2-1 4 4 0 0 1 3.693-6.61 1 1 0 0 0 .8-.2 4 4 0 0 1 6.48 3.273z"/>
+        </svg>
+        
+        <span class="text-2xl font-semibold uppercase">Time Series Team Hub</span>
+      </a>
+
+      <p class="font-semibold">
+        Write with love. Minimalism design.<br>
+      </p>
+    </div>
+
+    <div class="self-center flex flex-col w-full md:w-2/5">
+
+<ul id="social-media" class="flex items-center space-x-4">
+	
+	<li>
+		<a class="w-12 h-12 rounded-full bg-white hover:bg-zinc-200 flex items-center justify-center p-2" href="https://github.com/Jennifer1907" target="_blank" rel="noopener noreferrer">
+			<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" viewBox="0 0 16 16">
+				  <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+			</svg>
+		</a>
+	</li>
+	<li>
+    <a class="w-12 h-12 rounded-full bg-white hover:bg-zinc-200 flex items-center justify-center p-2" href="https://www.linkedin.com/in/ha-jennifer-nguyen/" target="_blank" rel="noopener noreferrer">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+        </svg>
+    </a>
+	</li>
+</ul>
+
+    </div>
+    
+  </div>
+
+  <div class="my-8">
+    <ul class="flex items-center space-x-4">
+      
+        <li><a class="decoration-auto hover:underline font-semibold" href="/Time-Series-Team-Hub/">Home</a></li>
+      
+        <li><a class="decoration-auto hover:underline font-semibold" href="/Time-Series-Team-Hub/about/">About</a></li>
+      
+    </ul>
+  </div>
+
+  <div class="border-t pt-4">
+
+    <p class="text-sm">Copyright © 2025. All rights reserved.</p>
+
+  </div>
+  
+</div>
+</footer>
+      <script src="/Time-Series-Team-Hub/js/insertoggle.js"></script>
+</body>
+</html>

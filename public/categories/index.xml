@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Categories on Time Series Team Hub</title>
-    <link>http://localhost:51713/Time-Series-Team-Hub/categories/</link>
+    <link>http://localhost:1313/Time-Series-Team-Hub/categories/</link>
     <description>Recent content in Categories on Time Series Team Hub</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 01 Nov 2025 10:00:00 +0700</lastBuildDate>
-    <atom:link href="http://localhost:51713/Time-Series-Team-Hub/categories/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/Time-Series-Team-Hub/categories/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Minutes</title>
-      <link>http://localhost:51713/Time-Series-Team-Hub/categories/minutes/</link>
+      <link>http://localhost:1313/Time-Series-Team-Hub/categories/minutes/</link>
       <pubDate>Sat, 01 Nov 2025 10:00:00 +0700</pubDate>
-      <guid>http://localhost:51713/Time-Series-Team-Hub/categories/minutes/</guid>
+      <guid>http://localhost:1313/Time-Series-Team-Hub/categories/minutes/</guid>
       <description></description>
     </item>
   </channel>
