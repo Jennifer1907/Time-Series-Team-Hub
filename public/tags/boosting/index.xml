@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Boosting on Time Series Team Hub</title>
-    <link>http://localhost:1313/Time-Series-Team-Hub/tags/boosting/</link>
+    <link>http://localhost:51713/Time-Series-Team-Hub/tags/boosting/</link>
     <description>Recent content in Boosting on Time Series Team Hub</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 02 Sep 2025 09:00:00 +0700</lastBuildDate>
-    <atom:link href="http://localhost:1313/Time-Series-Team-Hub/tags/boosting/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:51713/Time-Series-Team-Hub/tags/boosting/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Module 4 - Tuần 1: Random Forest • AdaBoost • Gradio demo • Tổng quan Time-series</title>
-      <link>http://localhost:1313/Time-Series-Team-Hub/posts/module4/week-1/</link>
+      <link>http://localhost:51713/Time-Series-Team-Hub/posts/module4/week-1/</link>
       <pubDate>Tue, 02 Sep 2025 09:00:00 +0700</pubDate>
-      <guid>http://localhost:1313/Time-Series-Team-Hub/posts/module4/week-1/</guid>
+      <guid>http://localhost:51713/Time-Series-Team-Hub/posts/module4/week-1/</guid>
       <description>&lt;p&gt;🎉 &lt;strong&gt;Chào mừng đến với blog Tuần 1 của team Time Series – Module 4!&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;p&gt;🌟 &lt;strong&gt;Giới thiệu&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;p&gt;Tuần này, chúng ta bước vào các kỹ thuật &lt;strong&gt;ensemble learning&lt;/strong&gt; trọng yếu: &lt;strong&gt;Random Forest&lt;/strong&gt; và &lt;strong&gt;AdaBoost&lt;/strong&gt;. Bên cạnh phần thuật toán, bạn sẽ học cách &lt;strong&gt;triển khai demo mô hình bằng Gradio&lt;/strong&gt; để trình bày và kiểm thử nhanh, đồng thời &lt;strong&gt;củng cố nền tảng về dữ liệu time-series&lt;/strong&gt; nhằm định hướng mô hình và đánh giá đúng bản chất chuỗi thời gian. Kết thúc tuần là một phiên &lt;strong&gt;bài tập tổng hợp&lt;/strong&gt; để bạn liên kết toàn bộ kiến thức đã học vào thực hành end-to-end. (Lịch &amp;amp; nội dung chi tiết dựa trên Study Guide tuần này. :contentReference[oaicite:0]{index=0})&lt;/p&gt;</description>
     </item>
   </channel>

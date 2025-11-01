@@ -10,6 +10,7 @@ googleAnalytics = 'G-MEASUREMENT_ID' # <- Your GA-4
 	# Meta description, not exceeding 160 characters, used for the meta description within the HTML head
 	description = 'Pehtheme Hugo Lite: A minimalist Hugo theme, built with TailwindCSS, for efficient performance and minimalism.'
 	mainSections = 'posts'
+	math = true  # Enable KaTeX for math rendering in all pages
 
 [menu] # Menu management
 	[[menu.main]]
@@ -28,3 +29,14 @@ googleAnalytics = 'G-MEASUREMENT_ID' # <- Your GA-4
   [module.mounts] # Directing the static folder to assets.
   	source = 'assets'
   	target = 'static'
+
+
+[markup.goldmark.renderer]
+unsafe = true
+
+[markup.goldmark.extensions.passthrough]
+enable = true
+
+[markup.goldmark.extensions.passthrough.delimiters]
+block = [['\[', '\]'], ['$$', '$$']]
+inline = [['\(', '\)'], ['$', '$']]
