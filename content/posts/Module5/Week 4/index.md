@@ -17,7 +17,10 @@ draft: false
 > 💡 *Dự án này mở rộng từ bài toán kinh điển “House Prices Prediction (Kaggle)” và hướng đến một pipeline hiện đại hơn – nơi Machine Learning, Explainable AI, và Large Language Model kết hợp để xây dựng một hệ thống thẩm định giá nhà tự động (AI Appraisal Agent).*
 
 ---
-### 🧪 File Source Code: 
+## 🧪 Trải nghiệm Agent tại đây: 
+**Dùng thử ngay**: **[Streamlit](https://housingpriceai.streamlit.app/)** 
+
+## 🧪 File Source Code: 
 [Google_Colab] (https://colab.research.google.com/drive/1a1ap0Th2R9K8CzVXttu4E6JTsnPjYx-g?usp=sharing)
 
 ## 🎯 **Mục tiêu dự án**
