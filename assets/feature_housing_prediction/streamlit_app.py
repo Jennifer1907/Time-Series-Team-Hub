@@ -4,7 +4,7 @@ Streamlit App: House Price Prediction Agent
 Dự đoán giá nhà sử dụng Machine Learning và Explainable AI
 """
 
-import assets.feature_housing_prediction.streamlit_app as st
+import streamlit as st
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
