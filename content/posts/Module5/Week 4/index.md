@@ -14,57 +14,75 @@ draft: false
 📘 **Project: Module 5 – Week 4**  
 🏠 **Chủ đề:** Advanced Regression Techniques & AI Agent for Housing Appraisal
 
-> 💡 *Dự án này mở rộng từ mô hình dự đoán giá nhà cổ điển (House Prices - Kaggle), không chỉ dừng ở dự đoán giá mà còn tiến tới xây dựng Agent hỗ trợ phân tích & thẩm định giá bất động sản dựa trên mô hình ML và LLM.*
+> 💡 *Dự án này mở rộng từ bài toán kinh điển “House Prices Prediction (Kaggle)” và hướng đến một pipeline hiện đại hơn – nơi Machine Learning, Explainable AI, và Large Language Model kết hợp để xây dựng một hệ thống thẩm định giá nhà tự động (AI Appraisal Agent).*
 
 ---
+### 🧪 File Source Code: 
+[Google_Colab] (https://colab.research.google.com/drive/1a1ap0Th2R9K8CzVXttu4E6JTsnPjYx-g?usp=sharing)
 
 ## 🎯 **Mục tiêu dự án**
 
 - Ứng dụng các kỹ thuật **Advanced Regression** để dự đoán giá nhà với độ chính xác cao.  
-- Thực hành **chọn đặc trưng (Feature Selection)** bằng tương quan và F-statistics.  
-- Xây dựng và so sánh nhiều **pipeline mô hình** (Scaled / Raw / PCA / GA).  
-- Kết hợp **Ensemble Learning** để cải thiện hiệu năng dự đoán.  
-- Mở rộng ứng dụng mô hình thành **AI Agent for Housing Appraisal** — trợ lý thẩm định giá tự động dựa trên Machine Learning + LLM.
+- Kết hợp **phân tích thống kê truyền thống** (Correlation, F-statistics) và **tối ưu hóa tiến hóa** (Genetic Algorithm).  
+- Thiết kế và huấn luyện các **pipeline đa dạng** (Raw, Scaled, PCA, GA).  
+- Áp dụng **Ensemble Learning** để nâng cao độ ổn định và khả năng tổng quát hóa.  
+- Mở rộng mô hình thành **AI Agent for Housing Appraisal** có khả năng sinh báo cáo thẩm định giá bằng ngôn ngữ tự nhiên.
 
 ---
 
-## ⚙️ **Pipeline tổng quan**
+## ⚙️ **Cải tiến trong pipeline mới**
+
+Pipeline mới được nhóm đề xuất theo định hướng **kết hợp giữa khả năng tự động hóa, phân tích đa chiều và giải thích mô hình**.  
+Các cải tiến chính bao gồm:
+
+### 🔹 (a) Chọn đặc trưng đa hướng  
+- Kết hợp **Genetic Algorithm (GA)** để tìm tập biến tối ưu với **Correlation / F-test** nhằm đánh giá thống kê truyền thống.  
+- Mục tiêu là tạo ra tập đặc trưng vừa có ý nghĩa thống kê, vừa tối ưu theo góc nhìn tìm kiếm toàn cục (global search).  
+
+### 🔹 (b) Phân nhánh huấn luyện có và không có PCA  
+- Tạo hai pipeline song song để **so sánh tác động của giảm chiều dữ liệu** (dimensionality reduction) đến hiệu quả mô hình và khả năng diễn giải.  
+- Kết quả cho thấy PCA giúp giảm nhiễu nhưng làm mất tính giải thích đối với các biến định danh (categorical).
+
+### 🔹 (c) Mở rộng phạm vi mô hình  
+- Bổ sung và thử nghiệm các thuật toán nâng cao: **ElasticNet, Random Forest, Gradient Boosting, Ensemble Learning.**  
+- Ensemble được chọn là mô hình mạnh nhất, giúp giảm phương sai và tận dụng sức mạnh của nhiều bộ dự đoán cơ sở.
+
+### 🔹 (d) Giải thích bằng SHAP  
+- Áp dụng **SHAP (SHapley Additive exPlanations)** để lượng hóa mức đóng góp của từng đặc trưng vào dự đoán cuối cùng.  
+- Phương pháp này tăng tính minh bạch và hỗ trợ phân tích nguyên nhân định lượng của từng quyết định mô hình.
+
+### 🔹 (e) Hướng đến ứng dụng thực tế  
+- Tích hợp bước **Prompting – AI Agent for Housing Appraisal**, cho phép mô hình tạo báo cáo định giá và giải thích chi tiết từng yếu tố ảnh hưởng.  
+- Đây là bước đệm để triển khai hệ thống **AI hỗ trợ thẩm định giá bất động sản tự động** trong tương lai.
+
+---
+
+## 📊 **Pipeline tổng quan**
 
 ![Project Pipeline](Project_Module5_Pipeline.png)
 
 **Các giai đoạn chính:**
-1. Tiền xử lý dữ liệu (xử lý giá trị thiếu, mã hóa biến phân loại, chuẩn hóa số liệu).  
-2. Chọn đặc trưng dựa trên **tương quan (Correlation)** và **F-statistics (SelectKBest)**.  
-3. Tạo nhiều pipeline với các chiến lược khác nhau:
-   - `GA_base_scaled`  
-   - `GA_base_raw`  
-   - `GA_pca`  
-   - `Stats_base_scaled`  
-   - `Stats_base_raw`  
-   - `Stats_pca`
-4. Huấn luyện mô hình (Linear, Ridge, Lasso, ElasticNet, RandomForest, Gradient Boosting, Ensemble).  
-5. So sánh hiệu năng qua RMSE và $R^2$.  
-6. Tạo **AI Appraisal Agent** giúp phân tích, so sánh, và sinh báo cáo giá trị căn nhà bằng ngôn ngữ tự nhiên.
+1. Tiền xử lý dữ liệu (xử lý giá trị thiếu, mã hóa, chuẩn hóa).  
+2. Chọn đặc trưng bằng **Correlation / F-statistics** và **GA optimization**.  
+3. Phân nhánh pipeline (Raw / Scaled / PCA / GA).  
+4. Huấn luyện mô hình (Linear, Ridge, Lasso, ElasticNet, RF, GBM, Ensemble).  
+5. Đánh giá hiệu năng qua RMSE và R².  
+6. Tạo **AI Agent** để phân tích và sinh báo cáo định giá nhà tự động.
 
 ---
 
 ## 🧩 **Feature Selection**
 
-### 🔹 1. Correlation-based Selection
-
+### 🔹 Correlation-based Selection
 ```python
 correlation = numeric_df.corr()["SalePrice"].abs().sort_values(ascending=False)
 selected_numeric_stats = correlation[correlation >= 0.1].index.tolist()
 selected_numeric_stats.remove("SalePrice")
 ```
-
 - Chỉ giữ các biến có hệ số tương quan ≥ 0.1 so với `SalePrice`.  
-- Giúp giảm nhiễu và tăng khả năng giải thích mô hình.
+- Giúp loại bỏ nhiễu và tăng khả năng giải thích mô hình dựa trên thống kê truyền thống.
 
----
-
-### 🔹 2. F-statistics Selection (ANOVA)
-
+### 🔹 F-statistics Selection (ANOVA)
 ```python
 from sklearn.feature_selection import SelectKBest, f_regression
 
@@ -75,16 +93,30 @@ selected_categorical_stats = [
     categorical_cols[i] for i in range(len(categorical_cols)) if selected_cat_mask[i]
 ]
 ```
+- Lựa chọn các đặc trưng có ý nghĩa thống kê cao nhất thông qua kiểm định F-test.  
+- Đây là hướng **chọn đặc trưng truyền thống** giúp mô hình dễ giải thích, ổn định và có cơ sở thống kê rõ ràng.
 
-- Dựa trên mức độ ảnh hưởng của từng biến phân loại đến biến mục tiêu.  
-- Giúp chọn top-k đặc trưng có ý nghĩa thống kê cao nhất.  
-- Kết quả được kết hợp vào danh sách `selected_features_stats`.
+---
+### 🔹 Genertic Algorithm (GA) Feature Selection
+
+Ngoài các phương pháp thống kê, nhóm còn phát triển một pipeline riêng sử dụng **Genetic Algorithm (GA)** để tự động hóa việc lựa chọn tập đặc trưng tối ưu.
+
+GA hoạt động dựa trên cơ chế tiến hóa tự nhiên — chọn lọc, lai ghép, và đột biến — nhằm tìm ra tập biến mang lại hiệu quả dự đoán cao nhất cho mô hình.
+
+**Quy trình chính:**
+1. Mỗi “cá thể” trong quần thể đại diện cho một tập biến.  
+2. Tính “độ thích nghi” (fitness) dựa trên hiệu năng mô hình (RMSE hoặc R²).  
+3. Chọn lọc các cá thể tốt nhất, thực hiện lai ghép và đột biến để tạo thế hệ mới.  
+4. Lặp lại đến khi hội tụ hoặc đạt ngưỡng cải thiện tối đa.
+
+**Ưu điểm của GA:**
+- Tự động tìm ra tập biến tối ưu mà không cần giả định tuyến tính.  
+- Phù hợp với các bài toán có tương tác phức tạp giữa biến độc lập.  
+- Bổ sung cho các phương pháp truyền thống, mở ra pipeline riêng (`GA_base_raw`, `GA_base_scaled`, `GA_pca`) giúp so sánh tính hiệu quả.
 
 ---
 
-## 🤖 **Huấn luyện và so sánh mô hình**
-
-### 🔸 Kết quả tổng hợp
+## 🤖 **Kết quả huấn luyện và so sánh nhóm 10 mô hình có thành tích tốt nhất**
 
 | Pipeline | Model | RMSE | R² |
 |-----------|--------|------|------|
@@ -103,19 +135,19 @@ selected_categorical_stats = [
 🤖 Model: `Ensemble`  
 📈 R²: 0.9018  
 
-> PCA tỏ ra không hiệu quả trong bài toán này do mất thông tin định danh (categorical encoding).  
-> Ensemble kết hợp nhiều mô hình nền (Linear, Ridge, Lasso, RandomForest, GBM) giúp ổn định kết quả và giảm phương sai.
+> PCA không phù hợp cho bài toán này do làm mất thông tin định danh (categorical).  
+> Ensemble giúp mô hình ổn định và khái quát hóa tốt hơn so với từng mô hình riêng lẻ.
 
 ---
 
-## 🧠 **Agent for Housing Appraisal**
+## 🧠 **AI Agent for Housing Appraisal**
 
-Sau khi huấn luyện mô hình tốt nhất, nhóm mở rộng ứng dụng thành **AI Agent** có khả năng:
+Sau khi xác định mô hình tốt nhất, nhóm mở rộng ứng dụng thành **AI Agent** có khả năng:
 
-- Trích xuất đặc trưng của căn nhà (`extract_property_features`).  
-- Tìm bất động sản tương đồng theo trọng số diện tích, khu phố, chất lượng, tuổi nhà (`find_comparable_properties_advanced`).  
-- Sinh prompt cho LLM để tạo báo cáo thẩm định (`generate_comprehensive_analysis_prompt`, `create_property_report_prompt`).  
-- Kết hợp dự đoán của mô hình với khả năng diễn giải của LLM → báo cáo “thị trường hóa”.
+- Trích xuất đặc trưng chi tiết của từng căn nhà (`extract_property_features`).  
+- Tìm kiếm bất động sản tương đồng bằng hàm tương tự có trọng số (`find_comparable_properties_advanced`).  
+- Sinh báo cáo định giá chi tiết qua LLM (`generate_comprehensive_analysis_prompt`, `create_property_report_prompt`).  
+- Kết hợp ML + LLM để tạo **báo cáo thẩm định tự động** như chuyên viên bất động sản.
 
 ---
 
@@ -143,28 +175,6 @@ Based on these comparables and model estimates, analyze whether the predicted va
 ```
 
 ---
-
-## 🧩 **Kiến thức chính**
-
-### ✅ Advanced Regression
-- Ứng dụng Ridge, Lasso, ElasticNet, Gradient Boosting, và Ensemble.  
-- So sánh ảnh hưởng của scaling, PCA và feature selection.  
-
-### ✅ Feature Engineering & Selection
-- Kết hợp Correlation và F-statistics để chọn biến hiệu quả.  
-- Tránh overfitting và tăng khả năng giải thích mô hình.
-
-### ✅ Model Evaluation
-- RMSE đo sai số tuyệt đối trung bình.  
-- $R^2$ đánh giá mức độ giải thích biến mục tiêu.  
-- Ensemble giúp mô hình ổn định hơn và tổng quát tốt hơn.
-
-### ✅ AI Integration
-- Sử dụng kết quả ML làm đầu vào cho LLM để sinh báo cáo tự động.  
-- Mô hình ML + LLM có thể tái sử dụng trong các hệ thống định giá thực tế (real-estate valuation assistant).
-
----
-
 ## 📚 **Tài liệu kèm theo**
 
 {{< pdf src="/Time-Series-Team-Hub/pdf/M5W4_Housing_Price.pdf" title="M5W4_Housing_Price.pdf" height="700px" >}}  
