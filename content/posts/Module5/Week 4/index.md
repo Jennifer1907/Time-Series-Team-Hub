@@ -7,7 +7,7 @@ caption: Illustration by AI Vietnam Team
 categories:
   - minutes
 tags:
-  - feature
+
 draft: false
 ---
 🎓 **All-in-One Course 2025 – aivietnam.edu.vn**  
