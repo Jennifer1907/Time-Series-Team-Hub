@@ -2,7 +2,7 @@
 title: "Module 6 - Tuần 2: Softmax Regression & MLFlow for Model Tracking"
 date: 2025-11-11T10:00:00+07:00
 description: "Tuần 2 của Module 6 đi sâu vào Softmax Regression cho bài toán phân loại đa lớp, cùng với ứng dụng thực tế trong MLOps bằng MLFlow. Sinh viên được thực hành tính toán, lập trình với Numpy và PyTorch, và tìm hiểu cách quản lý mô hình bằng MLFlow."
-image: images/Softmax_MLFlow.jpg
+image: images/Softmax_MLFlow.png
 caption: Illustration by AI Vietnam Team
 categories:
   - minutes
