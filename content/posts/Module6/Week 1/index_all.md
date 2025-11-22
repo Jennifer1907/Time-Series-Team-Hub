@@ -1,3 +1,16 @@
+---
+title: "Module 6 - Tuần 1 - Bước chân đầu tiên vào thế giới Deep Learning "
+date: 2025-06-28T13:03:07+07:00
+description: Các Thước Đo Đánh Giá Mô Hình Hồi Quy 
+image: images/M6W1.png
+caption:
+categories:
+  - minutes
+tags:
+  
+draft: false
+---
+
 # 📘 Study Guide – Module 6, Week 1  
 **Chủ đề chính:** Logistic Regression & Loss / Metrics cho Regression  
 
