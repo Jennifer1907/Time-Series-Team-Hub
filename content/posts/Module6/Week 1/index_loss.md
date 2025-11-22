@@ -1,6 +1,6 @@
 ---
 title: "Module 6 - Tuần 1 - Đừng yêu một metric duy nhất"
-date: 2025-06-28T13:03:07+07:00
+date: 2025-11-21T13:03:07+07:00
 description: Các Thước Đo Đánh Giá Mô Hình Hồi Quy 
 image: images/metric.jpg
 caption:
