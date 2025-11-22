@@ -186,3 +186,4 @@ Tuần 1 – Module 6 là lúc chúng ta học cách tránh bẫy đó. 🚀
 
 📂 _Tài liệu đi kèm:_
 {{< pdf src="/Time-Series-Team-Hub/pdf/M6W1D5_Evaluation_Metrics.pdf" title="M6W1D5_Evaluation_Metrics" height="700px" >}}
+{{< pdf src="/Time-Series-Team-Hub/pdf/M6W1D3_Apache_Airflow.pdf" title="M6W1D3_Apache_Airflow" height="700px" >}}
