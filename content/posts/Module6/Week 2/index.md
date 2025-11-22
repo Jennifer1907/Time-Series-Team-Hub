@@ -1,4 +1,3 @@
-
 ---
 title: "Module 6 - Tuần 2: Softmax Regression & MLFlow for Model Tracking"
 date: 2025-11-11T10:00:00+07:00
@@ -8,7 +7,7 @@ caption: Illustration by AI Vietnam Team
 categories:
   - minutes
 tags:
-  - feature
+ 
 draft: false
 ---
 
