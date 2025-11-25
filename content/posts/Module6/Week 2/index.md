@@ -125,7 +125,7 @@ _(Buổi ôn tập – MSc. Quốc Thái)_
 
 ## 📚 **Tài liệu đi kèm**
 
-{{< pdf src="/Time-Series-Team-Hub/pdf/M6W2_SoftmaxRegression.pdf" title="Softmax Regression – Step-by-step Guide" height="700px" >}}
+{{< pdf src="/Time-Series-Team-Hub/pdf/M6W2D4+6_Prometheus_Grafana.pdf" title="M6W2D4+6_Prometheus_Grafana_MLOPs" height="700px" >}}
 
 
 ---
