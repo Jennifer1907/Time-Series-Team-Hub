@@ -7,7 +7,7 @@ caption:
 categories:
   - minutes
 tags:
-  - feature
+  
 draft: false
 ---
 
