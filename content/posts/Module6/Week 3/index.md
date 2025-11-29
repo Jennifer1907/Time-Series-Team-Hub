@@ -32,10 +32,10 @@ draft: false
 * Nhắc lại Softmax/Logistic Regression, lý do phải **thêm hidden layer**.
 * Thảo luận các bước trong **MLP pipeline**: chuẩn bị dữ liệu → chuẩn hóa → xây network → khởi tạo tham số.
 * Làm 1 ví dụ tính tay đơn giản forward qua 1 hidden layer để hiểu:
-  [
+  $$
   \mathbf{h} = \sigma(W_1 \mathbf{x} + \mathbf{b}_1), \quad
   \hat{\mathbf{y}} = \text{softmax}(W_2 \mathbf{h} + \mathbf{b}_2)
-  ]
+  $$
 
 ---
 
@@ -140,14 +140,14 @@ draft: false
 ### ✅ Từ Softmax Regression tới Multilayer Perceptron
 
 * Softmax Regression là **mô hình tuyến tính** trên feature:\
-  [
+  $$
   \hat{\mathbf{y}} = \text{softmax}(W\mathbf{x} + \mathbf{b})
-  ]
+  $$
   → không đủ để học các biên quyết định phi tuyến.
 * MLP thêm **hidden layers + activation** để biểu diễn hàm phi tuyến phức tạp:
-  [
+  $$
   \mathbf{h}^{(l)} = \sigma(W^{(l)}\mathbf{h}^{(l-1)} + \mathbf{b}^{(l)})
-  ]
+  $$
 * Các câu hỏi thực tế khi design MLP:
 
   * Bao nhiêu layer là “vừa đẹp” cho bài toán hiện tại?
