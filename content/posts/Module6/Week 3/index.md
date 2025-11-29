@@ -121,16 +121,10 @@ draft: false
 ### ✅ Từ Softmax Regression tới MLP
 
 * Softmax Regression là mô hình tuyến tính:  
+  $\hat{\mathbf{y}} = \text{softmax}(W\mathbf{x} + \mathbf{b})$
 
-  $$
-  \hat{\mathbf{y}} = \text{softmax}(W\mathbf{x} + \mathbf{b})
-  $$
-
-* MLP thêm hidden layers + activation:
-
-  $$
-  \mathbf{h}^{(l)} = \sigma(W^{(l)} \mathbf{h}^{(l-1)} + \mathbf{b}^{(l)})
-  $$
+* MLP thêm hidden layers + activation:  
+  $\mathbf{h}^{(l)} = \sigma(W^{(l)} \mathbf{h}^{(l-1)} + \mathbf{b}^{(l)})$
 
 ---
 
