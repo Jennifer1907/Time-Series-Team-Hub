@@ -32,10 +32,10 @@ draft: false
 * Nhắc lại Softmax/Logistic Regression, lý do phải **thêm hidden layer**.
 * Thảo luận các bước trong **MLP pipeline**: chuẩn bị dữ liệu → chuẩn hóa → xây network → khởi tạo tham số.
 * Làm 1 ví dụ tính tay đơn giản forward qua 1 hidden layer để hiểu:
-  $
-  \mathbf{h} = \sigma(W_1 \mathbf{x} + \mathbf{b}_1), \quad
-  \hat{\mathbf{y}} = \text{softmax}(W_2 \mathbf{h} + \mathbf{b}_2)
-  $
+  $$
+    \mathbf{h} = \sigma(W_1 \mathbf{x} + \mathbf{b}_1), \quad
+    \hat{\mathbf{y}} = \text{softmax}(W_2 \mathbf{h} + \mathbf{b}_2)
+  $$
 
 ---
 
