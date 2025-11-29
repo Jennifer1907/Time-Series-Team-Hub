@@ -9,7 +9,8 @@ categories:
   - minutes
 tags:
 
-## draft: false
+draft: false
+---
 
 🎓 **All-in-One Course 2025 – aivietnam.edu.vn**
 📘 **Study Guide: Module 6 – Week 3** 
