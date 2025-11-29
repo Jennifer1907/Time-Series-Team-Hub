@@ -6,9 +6,8 @@ description: "Tuần 3 của Module 6 nâng cấp từ Softmax Regression lên M
 image: images/MLP_Metrics.png
 caption: Illustration by AI Vietnam Team
 categories:
-
-* minutes
-  tags:
+  - minutes
+tags:
 
 ## draft: false
 
