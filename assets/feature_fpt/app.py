@@ -851,11 +851,22 @@ def main():
                 showlegend=True
             ))
             
-            # Train end line
-            fig.add_vline(
-                x=str(results["train_end_date"]),
-                line=dict(color="gray", dash="dash"),
-                annotation_text="Train End"
+            # Train end line (using shape to avoid Plotly annotation issues)
+            train_end_str = results["train_end_date"].strftime("%Y-%m-%d")
+            fig.add_shape(
+                type="line",
+                x0=train_end_str, x1=train_end_str,
+                y0=0, y1=1,
+                yref="paper",
+                line=dict(color="gray", dash="dash", width=1),
+            )
+            fig.add_annotation(
+                x=train_end_str,
+                y=1.02,
+                yref="paper",
+                text="Train End",
+                showarrow=False,
+                font=dict(size=10, color="gray"),
             )
             
             fig.update_layout(
