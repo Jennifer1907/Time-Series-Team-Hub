@@ -7,7 +7,7 @@ caption:
 categories:
   - minutes
 tags:
-  - feature
+  
 draft: false
 ---
 # 📘 Xây dựng Loss Function cho Linear & Logistic Regression từ đầu  
