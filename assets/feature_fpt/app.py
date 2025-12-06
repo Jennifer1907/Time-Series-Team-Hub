@@ -556,13 +556,12 @@ def train_final_base_model(df_train: pd.DataFrame, stl_period: int, horizon: int
 # ============================================================
 # MAIN FORECAST FUNCTION
 # ============================================================
-@st.cache_data
 def run_forecast(
     df_train: pd.DataFrame,
     total_predict_days: int,
     stl_period: int,
     pricing_params: dict,
-    progress_callback=None,
+    _progress_callback=None,
 ):
     """Run the full forecast pipeline"""
     horizon = 1
@@ -571,8 +570,8 @@ def run_forecast(
     pricing = PricingParams(**pricing_params)
     
     # Train final model
-    if progress_callback:
-        progress_callback(0.2, "Training XGBoost model...")
+    if _progress_callback:
+        _progress_callback(0.2, "Training XGBoost model...")
     
     final_base = train_final_base_model(
         df_train=df_train,
@@ -581,8 +580,8 @@ def run_forecast(
     )
     
     # Build raw hybrid path
-    if progress_callback:
-        progress_callback(0.5, "Building hybrid forecast path...")
+    if _progress_callback:
+        _progress_callback(0.5, "Building hybrid forecast path...")
     
     raw_base_prices, raw_rets = build_raw_base_path_hybrid(
         df_hist=final_base.df_train,
@@ -596,8 +595,8 @@ def run_forecast(
     hist_close = final_base.df_train["close"].values.astype(float)
     
     # Apply pricing layer
-    if progress_callback:
-        progress_callback(0.7, "Applying pricing layer...")
+    if _progress_callback:
+        _progress_callback(0.7, "Applying pricing layer...")
     
     base_path = apply_pricing_on_raw_path(
         hist_close=hist_close,
@@ -616,8 +615,8 @@ def run_forecast(
     trend_price = lr.predict(future_idx)
     
     # Uncertainty band
-    if progress_callback:
-        progress_callback(0.9, "Computing uncertainty bands...")
+    if _progress_callback:
+        _progress_callback(0.9, "Computing uncertainty bands...")
     
     uncert_center, uncert_lower, uncert_upper = build_uncertainty_band(
         base_path,
@@ -779,7 +778,7 @@ def main():
                     total_predict_days=total_predict_days,
                     stl_period=stl_period,
                     pricing_params=pricing_params,
-                    progress_callback=update_progress,
+                    _progress_callback=update_progress,
                 )
                 
                 progress_bar.progress(1.0)
