@@ -10,9 +10,9 @@ tags:
   - feature
 draft: false
 ---
-# 🚀 Trải nghiệm ứng dụng ngay hôm nay
-**Dùng thử ngay**: **[Streamlit](https://fptstock.streamlit.app/)** 
-**Video demo:**: **[Video](https://us05web.zoom.us/clips/share/zvX8aKz4R0i8WfVX48Z_aQ)**
+### 🚀 Trải nghiệm ứng dụng ngay hôm nay
+- **Dùng thử ngay**: **[Streamlit](https://fptstock.streamlit.app/)** 
+- **Video demo:**: **[Video](https://us05web.zoom.us/clips/share/zvX8aKz4R0i8WfVX48Z_aQ)**
 
 Ứng dụng Streamlit này cho phép bạn:
 - 🔮 Dự báo giá FPT 100 ngày tiếp theo
@@ -23,10 +23,10 @@ draft: false
 Được thiết kế đặc biệt cho thị trường chứng khoán Việt Nam, nơi biến động ngắn hạn mạnh nhưng xu hướng dài hạn của FPT luôn bền vữn
 
 ---
-# 🚀 LTSF-Linear — FPT Forecasting Challenge  
-### **Hybrid Trend + XGBoost Residual + Regime-aware Pricing**
+###  🚀 LTSF-Linear — FPT Forecasting Challenge  
+#### **Hybrid Trend + XGBoost Residual + Regime-aware Pricing**
 
-## 🎯 Mục tiêu dự án
+#### 🎯 Mục tiêu dự án
 Xây dựng mô hình **dự báo giá đóng cửa FPT 100 ngày tương lai (T+100)**  
 chỉ từ một file duy nhất: `FPT_train.csv`.
 
@@ -48,13 +48,13 @@ Toàn bộ thiết kế hướng đến mục tiêu:
 > **Không cố tiên tri giá từng ngày, mà dựng nên một trajectory hợp lý, có vật lý, có kinh tế và có ràng buộc.**
 ---
 
-## 🧪 Source Code  
+### 🧪 Source Code  
 🔗 **Google Colab Notebook**  
 https://drive.google.com/file/d/1i1CL8pMqbykRZiGpC6qojPCeSSwLGOVA/view?usp=sharing
 
 ---
 
-# Problem Overview — *Tại sao baseline Linear thất bại?*
+### Problem Overview — *Tại sao baseline Linear thất bại?*
 
 Hầu hết mô hình LTSF (Linear / NLinear / DLinear) khi dự báo cuốn-chiếu 100 bước đều tạo ra:
 
@@ -76,7 +76,7 @@ Nguyên nhân:
 Điều này khiến mô hình **không còn tính thị trường**, không có bull/bear, không có shock, không có volatility.
 
 ---
-# 🚀 Đặc trưng của cổ phiếu FPT:
+### 🚀 Đặc trưng của cổ phiếu FPT:
 
 - Là bluechip đầu ngành công nghệ  
 - Xu hướng **tăng trưởng dài hạn (strong secular uptrend)**  
@@ -86,7 +86,7 @@ Nguyên nhân:
   - 2023–2024: Sideways rộng + hồi phục  
 - Volume có tính chu kỳ theo quý và theo sóng ngành IT  
 
-# 🔎 Hạn chế của dataset:
+### 🔎 Hạn chế của dataset:
 
 - Chỉ có OHLCV hằng ngày (không có macro, news sentiment, ETF flow…)  
 - Chỉ ~1150 mẫu, nhưng yêu cầu dự báo tới 100 ngày  
@@ -100,24 +100,15 @@ Chính vì vậy mô hình cần:
 
 ---
 
-# Pipeline giải pháp: Hybrid 3 lớp
+### Pipeline giải pháp: Hybrid 3 lớp
 
 Dưới đây là cấu trúc của pipeline dự báo:
 
-(1) Math Backbone (Trend)
-↓
-(2) XGBoost Residual Model
-↓
-(3) Regime-aware Pricing Layer
-↓
-Forecast Path (Base → Central → Uncertainty)
-
-yaml
-Copy code
+(1) Math Backbone (Trend) --> (2) XGBoost Residual Model --> (3) Regime-aware Pricing Layer --> (4) Forecast Path (Base → Central → Uncertainty)
 
 ---
 
-# **3.1 Math Backbone — Chuyên gia Trend**
+#### **3.1 Math Backbone — Chuyên gia Trend**
 
 Backbone đơn giản nhưng cực kỳ quan trọng:
 
@@ -134,23 +125,17 @@ Backbone được tách thành một **Expert độc lập trong Ensemble** đ�
 
 ---
 
-# **3.2 XGBoost Residual — Bắt nhiễu phi tuyến**
 
-Thay vì dự báo giá trực tiếp, XGB học:
+#### **3.2 XGBoost Residual — Bắt nhiễu phi tuyến**
 
-residual = future_return – math_return
-
-yaml
-Copy code
+Thay vì dự báo giá trực tiếp, XGB học: residual = future_return – math_return
 
 Ưu điểm:
-
 - Học tốt tương tác phi tuyến (OHLCV, volume patterns…)  
 - Không bị drift dài hạn vì backbone đã lo phần slope  
 - Giữ được volatility thực tế của thị trường  
 
 Kết quả cross-validation nhiều cutoff (2021–2024) cho thấy:
-
 - Train MAE ~ 0.003–0.005  
 - Test MAE ~ 0.008–0.02  
 - Residual std ~ 0.007–0.013  
@@ -160,7 +145,7 @@ Residual std này được chuyển cho Monte Carlo để tạo *uncertainty ban
 
 ---
 
-# **3.3 Pricing Layer — Regime-aware + Mean Reversion**
+#### **3.3 Pricing Layer — Regime-aware + Mean Reversion**
 
 Đây là trái tim của pipeline, giúp dự báo:
 
@@ -170,16 +155,16 @@ Residual std này được chuyển cho Monte Carlo để tạo *uncertainty ban
 
 Các thành phần chính:
 
-### 1️⃣ Clipping  
+##### 1️⃣ Clipping  
 Giới hạn biên độ return mỗi ngày để tránh dự báo “điên rồ”
 
-### 2️⃣ Damping  
+##### 2️⃣ Damping  
 Biến động càng xa hiện tại → càng giảm (nhiễu không lan vô hạn)
 
-### 3️⃣ Mean Reversion  
+##### 3️⃣ Mean Reversion  
 Giá luôn có điểm cân bằng (fair level) mà nó dao động quanh
 
-### 4️⃣ Regime-aware  
+##### 4️⃣ Regime-aware  
 Tham số thay đổi theo 3 chế độ:
 
 - **Bull:** cho phép upside lớn hơn  
@@ -190,7 +175,7 @@ Pricing layer được tối ưu bằng **Random Search + Time-based Cross-valid
 
 ---
 
-# Final Result — FPT 100-day Forecast
+#### Final Result — FPT 100-day Forecast
 
 ![FPT Forecast](images/FPT_forecast.png)
 
@@ -205,7 +190,7 @@ Và dải bất định Monte Carlo:
 - **Uncertainty upper/lower band** thể hiện rủi ro thị trường  
 - Bề rộng band phản ánh độ bất ổn tăng dần theo thời gian  
 
-# Điểm nổi bật:
+#### Điểm nổi bật:
 
 ✔ Forecast không phẳng như Linear  
 ✔ Có volatility hợp lý  
@@ -214,17 +199,16 @@ Và dải bất định Monte Carlo:
 
 ---
 
-# 5. Reliability — Độ tin cậy của mô hình
+#### 5. Reliability — Độ tin cậy của mô hình
 
 Dự án cung cấp nhiều lớp bảo vệ rủi ro:
 
-### ✔ Backbone neo quỹ đạo dài hạn  
-### ✔ XGBoost Residual duy trì nhiễu có cấu trúc  
-### ✔ Regime-aware Pricing kiểm soát overshoot  
-### ✔ Monte Carlo mô phỏng sự bất định  
+- ✔ Backbone neo quỹ đạo dài hạn  
+- ✔ XGBoost Residual duy trì nhiễu có cấu trúc  
+- ✔ Regime-aware Pricing kiểm soát overshoot  
+- ✔ Monte Carlo mô phỏng sự bất định  
 
 Sự kết hợp này tạo thành một mô hình:
-
 > **Ổn định – Có thể giải thích – Bền vững theo nhiều pha thị trường**
 
 Band bất định rộng dần theo horizon, cho thấy:
@@ -235,7 +219,7 @@ Band bất định rộng dần theo horizon, cho thấy:
 
 ---
 
-# 📚 Tài liệu đính kèm
+#### 📚 Tài liệu đính kèm
 
 {{< pdf src="/Time-Series-Team-Hub/pdf/M6W4D1+6_Project_Module.pdf" title="M6W4D1+6_Project_Module" height="700px" >}}
 
