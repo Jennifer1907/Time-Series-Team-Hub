@@ -80,8 +80,8 @@ Bạn có thể tổ chức repo như sau:
 │   └── main.py               # Pipeline end-to-end (CV + training + forecast + plot)
 └── notebooks/
     └── eda_and_visualization.ipynb  # EDA, charts, sanity-checks
-
-
+```
+---
 ## 📚 **Tài liệu đi kèm**
 
 * {{< pdf src="/Time-Series-Team-Hub/pdf/M6W4D1+6_Project_Module.pdf" title="M6W4D1+6_Project_Module" height="700px" >}}
