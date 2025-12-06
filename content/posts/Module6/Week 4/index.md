@@ -11,8 +11,10 @@ tags:
 draft: false
 ---
 ### 🚀 Trải nghiệm ứng dụng ngay hôm nay
-- **Dùng thử ngay**: **[Streamlit](https://aio-timeseries-fpt-stock-prediction.streamlit.app/)**
-- **Video demo:**: **[Video](https://drive.google.com/file/d/13w62NgvbqopSAVusEDSrZ5RnRHh8CPUS/view?usp=sharing)**
+- **Dùng thử ngay - Bảng Chuyên nghiệp**: **[Streamlit](https://aio-timeseries-fpt-stock-prediction.streamlit.app/)** 
+- **Dùng thử ngay - Bảng Beta**: **[Streamlit](https://fptstock.streamlit.app/)** 
+- **Video demo - Bảng Chuyên nghiệp:**: **[Video](https://drive.google.com/file/d/13w62NgvbqopSAVusEDSrZ5RnRHh8CPUS/view)**
+- **Video demo - Bảng Beta:**: **[Video](https://us05web.zoom.us/clips/share/zvX8aKz4R0i8WfVX48Z_aQ)**
 
 Ứng dụng Streamlit này cho phép bạn:
 - 🔮 Dự báo giá FPT 100 ngày tiếp theo
@@ -21,6 +23,9 @@ draft: false
 - ⚙️ Tùy chỉnh Pricing Layer theo các trạng thái Bull / Bear / Sideways
 
 Được thiết kế đặc biệt cho thị trường chứng khoán Việt Nam, nơi biến động ngắn hạn mạnh nhưng xu hướng dài hạn của FPT luôn bền vữn
+
+### 🚀 Slide giới AI chuyên gia tài chính
+- - **Slide**: **[Canvas](https://www.canva.com/design/DAG6wb_GkSk/GGwWp5HRd_JerCEb5ScXIw/view?utm_content=DAG6wb_GkSk&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h50e134ab07)**
 
 ---
 ###  🚀 LTSF-Linear — FPT Forecasting Challenge
