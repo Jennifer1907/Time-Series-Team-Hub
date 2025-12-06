@@ -12,6 +12,7 @@ draft: false
 ---
 # 🚀 Trải nghiệm ứng dụng ngay hôm nay
 **Dùng thử ngay**: **[Streamlit](https://fptstock.streamlit.app/)** 
+**Video demo:**: **[Video](https://us05web.zoom.us/clips/share/zvX8aKz4R0i8WfVX48Z_aQ)**
 
 Ứng dụng Streamlit này cho phép bạn:
 - 🔮 Dự báo giá FPT 100 ngày tiếp theo
