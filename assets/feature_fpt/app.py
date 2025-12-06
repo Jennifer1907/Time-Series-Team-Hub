@@ -853,7 +853,7 @@ def main():
             
             # Train end line
             fig.add_vline(
-                x=results["train_end_date"],
+                x=str(results["train_end_date"]),
                 line=dict(color="gray", dash="dash"),
                 annotation_text="Train End"
             )
