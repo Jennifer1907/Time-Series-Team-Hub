@@ -10,7 +10,18 @@ tags:
   - feature
 draft: false
 ---
+# 🚀 Trải nghiệm ứng dụng ngay hôm nay
+**Dùng thử ngay**: **[Streamlit](https://fptstock.streamlit.app/)** 
 
+Ứng dụng Streamlit này cho phép bạn:
+- 🔮 Dự báo giá FPT 100 ngày tiếp theo
+- 📊 Theo dõi đồ thị xu hướng, đường trung vị, biên độ bất định (uncertainty)
+- 🧠 Hiểu cách mô hình học và phản ứng với từng giai đoạn thị trường
+- ⚙️ Tùy chỉnh Pricing Layer theo các trạng thái Bull / Bear / Sideways
+
+Được thiết kế đặc biệt cho thị trường chứng khoán Việt Nam, nơi biến động ngắn hạn mạnh nhưng xu hướng dài hạn của FPT luôn bền vữn
+
+---
 # 🚀 LTSF-Linear — FPT Forecasting Challenge  
 ### **Hybrid Trend + XGBoost Residual + Regime-aware Pricing**
 
