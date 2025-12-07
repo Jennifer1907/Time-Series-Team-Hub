@@ -172,6 +172,7 @@ Metric không differentiable → dùng Loss surrogate như Cross-Entropy.
 
 * {{< pdf src="/Time-Series-Team-Hub/pdf/M06W03-StudyGuide.pdf" title="M06W03 – Study Guide" height="700px" >}}
 * {{< pdf src="/Time-Series-Team-Hub/pdf/M06W03-MLP.pdf" title="M06W03 – Multilayer Perceptron Slides" height="700px" >}}
+* {{< pdf src="/Time-Series-Team-Hub/pdf/M6W2D4+6_Prometheus_Grafana.pdf" title="M6W2D4+6_Prometheus_Grafana_MLOPs" height="700px" >}}
 * {{< pdf src="/Time-Series-Team-Hub/pdf/M06W03-InsightIntoMLP.pdf" title="M06W03 – Insight into MLP" height="700px" >}}
 * {{< pdf src="/Time-Series-Team-Hub/pdf/M06W03-MetricsForClassification.pdf" title="M06W03 – Metrics for Classification" height="700px" >}}
 
