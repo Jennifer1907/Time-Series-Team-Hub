@@ -105,7 +105,7 @@ Chính vì vậy mô hình cần:
 
 ---
 
-### Pipeline giải pháp: Hybrid 3 lớp
+### 🔎 Pipeline giải pháp: Hybrid 3 lớp
 
 Dưới đây là cấu trúc của pipeline dự báo:
 (1) Math Backbone (Trend) --> (2) XGBoost Residual Model --> (3) Regime-aware Pricing Layer --> (4) Forecast Path (Base → Central → Uncertainty)
@@ -173,7 +173,7 @@ Pricing layer được tối ưu bằng **Random Search + Time-based Cross-valid
 
 ---
 
-#### Final Result — FPT 100-day Forecast
+### 🔎 Final Result — FPT 100-day Forecast
 
 Dự báo cuối cùng được xây dựng từ 3 đường:
 
@@ -195,7 +195,7 @@ Và dải bất định Monte Carlo:
 
 ---
 
-#### 5. Reliability — Độ tin cậy của mô hình
+#### Reliability — Độ tin cậy của mô hình
 
 Dự án cung cấp nhiều lớp bảo vệ rủi ro:
 
@@ -215,6 +215,6 @@ Band bất định rộng dần theo horizon, cho thấy:
 
 ---
 
-#### 📚 Tài liệu đính kèm
+### 📚 Tài liệu đính kèm
 
 {{< pdf src="/Time-Series-Team-Hub/pdf/M6W4D1+6_Project_Module.pdf" title="M6W4D1+6_Project_Module" height="700px" >}}
