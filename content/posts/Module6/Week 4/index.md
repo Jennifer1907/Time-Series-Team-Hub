@@ -59,7 +59,7 @@ https://drive.google.com/file/d/1i1CL8pMqbykRZiGpC6qojPCeSSwLGOVA/view?usp=shari
 
 ---
 
-### Problem Overview — *Tại sao baseline Linear thất bại?*
+### 🚀 Problem Overview — *Tại sao baseline Linear thất bại?*
 
 Hầu hết mô hình LTSF (Linear / NLinear / DLinear) khi dự báo cuốn-chiếu 100 bước đều tạo ra:
 
@@ -188,10 +188,10 @@ Và dải bất định Monte Carlo:
 
 #### Điểm nổi bật:
 
-✔ Forecast không phẳng như Linear
-✔ Có volatility hợp lý
-✔ Không overshoot không cần thiết
-✔ Phản ánh đúng trạng thái thị trường hiện tại (SIDEWAYS)
+- ✔ Forecast không phẳng như Linear
+- ✔ Có volatility hợp lý
+- ✔ Không overshoot không cần thiết
+- ✔ Phản ánh đúng trạng thái thị trường hiện tại (SIDEWAYS)
 
 ---
 
