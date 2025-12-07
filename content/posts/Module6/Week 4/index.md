@@ -99,9 +99,9 @@ Nguyên nhân:
 
 Chính vì vậy mô hình cần:
 
-✔ Khả năng mô hình hóa trend
-✔ Khả năng nắm bắt residual phi tuyến
-✔ Cơ chế “vật lý” để giữ cho đường dự báo hợp lý
+- ✔ Khả năng mô hình hóa trend
+- ✔ Khả năng nắm bắt residual phi tuyến
+- ✔ Cơ chế “vật lý” để giữ cho đường dự báo hợp lý
 
 ---
 
