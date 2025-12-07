@@ -108,10 +108,7 @@ Chính vì vậy mô hình cần:
 ### Pipeline giải pháp: Hybrid 3 lớp
 
 Dưới đây là cấu trúc của pipeline dự báo:
-
 (1) Math Backbone (Trend) --> (2) XGBoost Residual Model --> (3) Regime-aware Pricing Layer --> (4) Forecast Path (Base → Central → Uncertainty)
-
----
 
 #### **3.1 Math Backbone — Chuyên gia Trend**
 
@@ -160,17 +157,13 @@ Residual std này được chuyển cho Monte Carlo để tạo *uncertainty ban
 
 Các thành phần chính:
 
-##### 1️⃣ Clipping
-Giới hạn biên độ return mỗi ngày để tránh dự báo “điên rồ”
+##### **1️⃣ Clipping**: Giới hạn biên độ return mỗi ngày để tránh dự báo “điên rồ”
 
-##### 2️⃣ Damping
-Biến động càng xa hiện tại → càng giảm (nhiễu không lan vô hạn)
+##### **2️⃣ Damping**: Biến động càng xa hiện tại → càng giảm (nhiễu không lan vô hạn)
 
-##### 3️⃣ Mean Reversion
-Giá luôn có điểm cân bằng (fair level) mà nó dao động quanh
+##### **3️⃣ Mean Reversion**: Giá luôn có điểm cân bằng (fair level) mà nó dao động quanh
 
-##### 4️⃣ Regime-aware
-Tham số thay đổi theo 3 chế độ:
+##### **4️⃣ Regime-aware**: Tham số thay đổi theo 3 chế độ:
 
 - **Bull:** cho phép upside lớn hơn
 - **Bear:** tăng lực hồi khi rơi sâu
@@ -181,8 +174,6 @@ Pricing layer được tối ưu bằng **Random Search + Time-based Cross-valid
 ---
 
 #### Final Result — FPT 100-day Forecast
-
-![FPT Forecast](images/FPT_forecast.png)
 
 Dự báo cuối cùng được xây dựng từ 3 đường:
 
