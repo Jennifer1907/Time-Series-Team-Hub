@@ -55,7 +55,7 @@ Toàn bộ thiết kế hướng đến mục tiêu:
 
 ### 🧪 Source Code
 🔗 **Google Colab Notebook**
-https://drive.google.com/file/d/1i1CL8pMqbykRZiGpC6qojPCeSSwLGOVA/view?usp=sharing
+https://colab.research.google.com/drive/1SCAKPHi5GxYdHv0GPo3vjsu2G8_gLuSm?usp=sharing
 
 ---
 
@@ -218,3 +218,4 @@ Band bất định rộng dần theo horizon, cho thấy:
 ### 📚 Tài liệu đính kèm
 
 {{< pdf src="/Time-Series-Team-Hub/pdf/M6W4D1+6_Project_Module.pdf" title="M6W4D1+6_Project_Module" height="700px" >}}
+
