@@ -11,8 +11,8 @@ tags:
 draft: false
 ---
 ### 🚀 Trải nghiệm ứng dụng ngay hôm nay
-- **Dùng thử ngay - Bảng Chuyên nghiệp**: **[Streamlit](https://aio-timeseries-fpt-stock-prediction.streamlit.app/)** 
-- **Dùng thử ngay - Bảng Beta**: **[Streamlit](https://fptstock.streamlit.app/)** 
+- **Dùng thử ngay - Bảng Chuyên nghiệp**: **[Streamlit](https://aio-timeseries-fpt-stock-prediction.streamlit.app/)[Code]()**
+- **Dùng thử ngay - Bảng Beta**: **[Streamlit](https://fptstock.streamlit.app/)**
 - **Video demo - Bảng Chuyên nghiệp**: **[Video](https://drive.google.com/file/d/13w62NgvbqopSAVusEDSrZ5RnRHh8CPUS/view)**
 - **Video demo - Bảng Beta**: **[Video](https://us05web.zoom.us/clips/share/zvX8aKz4R0i8WfVX48Z_aQ)**
 
@@ -218,4 +218,3 @@ Band bất định rộng dần theo horizon, cho thấy:
 ### 📚 Tài liệu đính kèm
 
 {{< pdf src="/Time-Series-Team-Hub/pdf/M6W4D1+6_Project_Module.pdf" title="M6W4D1+6_Project_Module" height="700px" >}}
-
