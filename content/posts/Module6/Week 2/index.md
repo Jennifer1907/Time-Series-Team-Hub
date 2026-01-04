@@ -125,7 +125,12 @@ _(Buổi ôn tập – MSc. Quốc Thái)_
 
 ## 📚 **Tài liệu đi kèm**
 
+{{< pdf src="/Time-Series-Team-Hub/pdf/M6W2D2+3_Softmax.pdf" title="M6W2D_Softmax" height="700px" >}}
+
 {{< pdf src="/Time-Series-Team-Hub/pdf/M6W2D4+6_Prometheus_Grafana.pdf" title="M6W2D4+6_Prometheus_Grafana_MLOPs" height="700px" >}}
+
+
+{{< pdf src="/Time-Series-Team-Hub/pdf/M6W2D7_LossFuncForClassify.pdf" title="M6W2D7_LossFuncForClassify" height="700px" >}}
 
 
 ---

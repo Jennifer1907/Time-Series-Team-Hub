@@ -6,8 +6,22 @@
     <description>Recent content on Time Series Team Hub</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 13 Oct 2025 10:00:00 +0700</lastBuildDate>
+    <lastBuildDate>Tue, 28 Oct 2025 10:00:00 +0700</lastBuildDate>
     <atom:link href="http://localhost:1313/Time-Series-Team-Hub/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Module 5 - Tuần 4: Advanced Regression &amp; AI Agent for Housing Appraisal</title>
+      <link>http://localhost:1313/Time-Series-Team-Hub/posts/module5/week-4/</link>
+      <pubDate>Tue, 28 Oct 2025 10:00:00 +0700</pubDate>
+      <guid>http://localhost:1313/Time-Series-Team-Hub/posts/module5/week-4/</guid>
+      <description>&lt;p&gt;🎓 &lt;strong&gt;All-in-One Course 2025 – aivietnam.edu.vn&lt;/strong&gt;&lt;br&gt;&#xA;📘 &lt;strong&gt;Project: Module 5 – Week 4&lt;/strong&gt;&lt;br&gt;&#xA;🏠 &lt;strong&gt;Chủ đề:&lt;/strong&gt; Advanced Regression Techniques &amp;amp; AI Agent for Housing Appraisal&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Module 5 - Tuần 3: Genetic Algorithms &amp; XAI (SHAP)</title>
+      <link>http://localhost:1313/Time-Series-Team-Hub/posts/module5/week-3/</link>
+      <pubDate>Mon, 20 Oct 2025 10:00:00 +0700</pubDate>
+      <guid>http://localhost:1313/Time-Series-Team-Hub/posts/module5/week-3/</guid>
+      <description>&lt;p&gt;🎓 &lt;strong&gt;All-in-One Course 2025 – aivietnam.edu.vn&lt;/strong&gt;&lt;br&gt;&#xA;📘 &lt;strong&gt;Study Guide: Module 5 – Week 3&lt;/strong&gt;&lt;br&gt;&#xA;🧬 &lt;strong&gt;Chủ đề:&lt;/strong&gt; Genetic Algorithms &amp;amp; Explainable AI (SHAP)&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Module 5 - Tuần 1 &#43; 2: Chinh phục Linear Regression &amp; Hủy Diệt Data Conflicts cùng MLOps Versioning và Feast</title>
       <link>http://localhost:1313/Time-Series-Team-Hub/posts/module5/week1&#43;2/</link>

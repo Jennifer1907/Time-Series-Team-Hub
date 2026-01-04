@@ -1,5 +1,9 @@
 {
 	"python-envs.defaultEnvManager": "ms-python.python:conda",
 		"python-envs.defaultPackageManager": "ms-python.python:conda",
-			"python-envs.pythonProjects": []
+			"python-envs.pythonProjects": [],
+
+				// Disable LaTeX Utilities word count for markdown files
+				"latex-utilities.countWord.activate": false,
+					"latex-utilities.countWord.path": ""
 }

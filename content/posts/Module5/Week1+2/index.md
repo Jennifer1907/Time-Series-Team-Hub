@@ -7,7 +7,6 @@ caption: Illustration by AI Vietnam Team
 categories:
   - minutes
 tags:
-
 draft: false
 ---
 
