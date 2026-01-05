@@ -1,5 +1,5 @@
 ---
-title: "Module 7: Hiểu và Xây dựng CNN từ Gốc"
+title: "Module 7: Hiểu và Xây dựng CNN gốc với góc nhìn từ bộ lọc Kernel"
 date: 2025-11-21T10:00:00+07:00
 description: "Module 7 đi sâu vào Mạng Nơ-ron Tích chập (CNN). Chúng ta sẽ đi từ những hạn chế của MLP truyền thống trong xử lý ảnh đến 'Góc nhìn Bộ lọc' của CNN, khám phá các cơ chế chính như Stride, Padding, Pooling, và các khái niệm nâng cao như Backpropagation và Tích chập 1x1."
 image: images/CNN_Visual.png
@@ -15,7 +15,7 @@ draft: false
 
 🎓 **All-in-One Course 2025 – aivietnam.edu.vn**
 📘 **Study Guide: Module 7**
-🧩 **Chủ đề:** Hiểu và Xây dựng CNN từ Gốc và Trực giác
+🧩 **Chủ đề:** Hiểu và Xây dựng CNN gốc với góc nhìn từ bộ lọc Kernel
 
 > 💡 *Tuần này, chúng ta sẽ giải mã "Ma thuật" của Thị giác Máy tính (Computer Vision). Chúng ta sẽ "mổ xẻ" Mạng Nơ-ron Tích chập (CNN) để hiểu cách nó "nhìn" thế giới thông qua các Bộ lọc (Filters), Bước nhảy (Strides), và Lề (Padding), vượt ra khỏi cách tiếp cận hộp đen của các thư viện Deep Learning thông thường.*
 
